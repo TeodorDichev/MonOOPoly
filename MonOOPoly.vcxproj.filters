@@ -51,7 +51,7 @@
     <ClCompile Include="SourceFiles\Entities\Cards\MovePositionCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Entities\PaymentCard.cpp">
+    <ClCompile Include="SourceFiles\Entities\Cards\PaymentCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Entities\Cards\GroupPaymentCard.cpp">
@@ -112,6 +112,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Utills\SerializeFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Entities\Fields\JailField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -216,6 +222,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Utills\GlobalFunctionsAndContants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Entities\Fields\JailField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Entities\Fields\FreeParkingField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Utills\HeterogeneousStack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

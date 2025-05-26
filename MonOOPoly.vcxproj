@@ -123,6 +123,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp" />
+    <ClCompile Include="SourceFiles\Entities\Fields\JailField.cpp" />
     <ClCompile Include="SourceFiles\Utills\GlobalFunctionsAndContants.cpp" />
     <ClCompile Include="SourceFiles\Commands\BuyField.cpp" />
     <ClCompile Include="SourceFiles\Commands\CheckField.cpp" />
@@ -139,7 +141,7 @@
     <ClCompile Include="SourceFiles\Entities\Mortgage\Mortgage.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\GroupPaymentCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\MovePositionCard.cpp" />
-    <ClCompile Include="SourceFiles\Entities\PaymentCard.cpp" />
+    <ClCompile Include="SourceFiles\Entities\Cards\PaymentCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\Card.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\CardDeck.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\CardField.cpp" />
@@ -158,6 +160,7 @@
     <ClCompile Include="SourceFiles\Utills\SerializeFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Entities\Fields\FreeParkingField.h" />
     <ClInclude Include="Headers\Utills\GlobalFunctionsAndContants.h" />
     <ClInclude Include="Headers\Commands\BuyField.h" />
     <ClInclude Include="Headers\Commands\CheckField.h" />
@@ -192,6 +195,8 @@
     <ClInclude Include="Headers\Utills\MyString.h" />
     <ClInclude Include="Headers\Utills\MyVector.hpp" />
     <ClInclude Include="Headers\Utills\SerializeFunctions.h" />
+    <ClInclude Include="Headers\Entities\Fields\JailField.h" />
+    <ClInclude Include="Headers\Utills\HeterogeneousStack.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

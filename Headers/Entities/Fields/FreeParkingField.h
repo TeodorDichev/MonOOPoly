@@ -1,10 +1,11 @@
 #pragma once
 #include "Field.h"
-class CardField : public Field
+
+class FreeParkingField : public Field
 {
 public:
-	CardField();
-	CardField(int index);
+	FreeParkingField();
+	FreeParkingField(int index);
 
 	void interactWithField(Player* player) override;
 };
