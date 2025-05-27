@@ -22,11 +22,11 @@ public:
 	int getbasePurchaseValue() const;
 	int getbaseCottageValue() const;
 	int getbaseCastleValue() const;
-	int getownerIndex() const;
+	int getOwnerIndex() const;
 
 	const Mortgage* getMortgage() const;
 
 	void addMortgage(const Mortgage* mortgage);
 
-	void interactWithField(Player* player) override;
+	void interactWithField(Player* player) override; // Visitor Pattern
 };

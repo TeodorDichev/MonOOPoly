@@ -170,9 +170,6 @@
     <ClInclude Include="Headers\Entities\Mortgage\Castle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Entities\Trade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Commands\Command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -231,6 +228,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Utills\HeterogeneousStack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Entities\Trade\FieldTrade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Entities\Trade\Trade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Entities\Trade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
