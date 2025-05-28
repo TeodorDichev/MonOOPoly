@@ -125,7 +125,6 @@
   <ItemGroup>
     <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\JailField.cpp" />
-    <ClCompile Include="SourceFiles\Utills\GlobalFunctionsAndContants.cpp" />
     <ClCompile Include="SourceFiles\Commands\BuyField.cpp" />
     <ClCompile Include="SourceFiles\Commands\CheckField.cpp" />
     <ClCompile Include="SourceFiles\Commands\Command.cpp" />
@@ -156,6 +155,7 @@
     <ClCompile Include="SourceFiles\Entities\Trade.cpp" />
     <ClCompile Include="SourceFiles\Commands\StartNewGame.cpp" />
     <ClCompile Include="SourceFiles\Commands\UpgradeMortgage.cpp" />
+    <ClCompile Include="SourceFiles\Utills\GlobalFunctionsAndConstants.cpp" />
     <ClCompile Include="SourceFiles\Utills\MyString.cpp" />
     <ClCompile Include="SourceFiles\Utills\SerializeFunctions.cpp" />
   </ItemGroup>
@@ -163,7 +163,7 @@
     <ClInclude Include="Headers\Entities\Trade.h" />
     <ClInclude Include="Headers\Entities\Trade\FieldTrade.h" />
     <ClInclude Include="Headers\Entities\Fields\FreeParkingField.h" />
-    <ClInclude Include="Headers\Utills\GlobalFunctionsAndContants.h" />
+    <ClInclude Include="Headers\Utills\GlobalFunctionsAndConstants.h" />
     <ClInclude Include="Headers\Commands\BuyField.h" />
     <ClInclude Include="Headers\Commands\CheckField.h" />
     <ClInclude Include="Headers\Commands\Command.h" />
@@ -199,6 +199,9 @@
     <ClInclude Include="Headers\Utills\SerializeFunctions.h" />
     <ClInclude Include="Headers\Entities\Fields\JailField.h" />
     <ClInclude Include="Headers\Utills\HeterogeneousStack.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Help.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

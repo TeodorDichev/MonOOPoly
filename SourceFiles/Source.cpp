@@ -1,6 +1,7 @@
-#include <iostream>
+#include "../Headers/Monopoly.h"
 
 int main() 
 {
-	std::cout << "Hello MonOOPoly!";
+	Monopoly monopoly;
+	monopoly.Run();
 }

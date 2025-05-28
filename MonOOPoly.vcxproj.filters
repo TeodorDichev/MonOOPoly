@@ -105,9 +105,6 @@
     <ClCompile Include="SourceFiles\Commands\RollDice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Utills\GlobalFunctionsAndContants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\Utills\MyString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\Utills\GlobalFunctionsAndConstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -218,7 +218,7 @@
     <ClInclude Include="Headers\Utills\SerializeFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Utills\GlobalFunctionsAndContants.h">
+    <ClInclude Include="Headers\Utills\GlobalFunctionsAndConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Entities\Fields\JailField.h">
@@ -239,5 +239,8 @@
     <ClInclude Include="Headers\Entities\Trade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Help.txt" />
   </ItemGroup>
 </Project>

@@ -7,17 +7,24 @@
 class Board
 {
 private:
-	static Bank bank;
-	static CardDeck cardDeck;
+	int currPlayerIndex;
+
+	Bank bank;
+	CardDeck cardDeck;
 
 	MyVector<Trade> trades;
 	MyVector<Player> players;
 	HeterogeneousContainer<Field*> fields;
 
-public:
-	static int currPlayerIndex;
+	Board();
+	static Board* instance;
 
-	void setBoard();
+public:
+	static Board* getInstance();
+	static void freeInstance();
+
+	void resetPlayerIndex();
+	void addPlayer(const MyString& playerName, int balance);
 
 	void addTrade();
 	void removeTrade();

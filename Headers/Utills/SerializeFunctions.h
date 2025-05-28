@@ -5,8 +5,10 @@
 class SerializeFunctions
 {
 public:
-	static void saveSystemToFile();
-	static void loadSystemFromFile();
+	static void saveGameToFile();
+	static void loadGameFromFile();
+	static void loadDefaultFieldsFromFile();
+	static void printRules();
 
 private:
 

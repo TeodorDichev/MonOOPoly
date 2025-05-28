@@ -2,5 +2,7 @@
 
 void LoadGame::execute() const
 {
-
+	SerializeFunctions::loadDefaultFieldsFromFile();
+	SerializeFunctions::loadGameFromFile();
+	board->nextTurn();
 }
