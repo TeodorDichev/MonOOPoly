@@ -12,8 +12,9 @@ private:
 	int balance;
 	int pairsCount;
 	int playerIndex;
+	int currentFieldIndex;
+
 	MyString playerName;
-	Field* currentField;
 	MyVector<Property> properties;
 
 public:
@@ -23,10 +24,11 @@ public:
 	int getBalance() const;
 	int getPairsCount() const;
 	int getPlayerIndex() const;
+	int getCurrentFieldIndex() const;
 	bool hasSufficientFund(int debt) const;
 	bool owsProperty(const Property* property) const;
 
-	void setCurrentField(Field* currentField);
+	void setCurrentFieldIndex(int value);
 	void throwsPair();
 
 	void addToBalance(int amount);

@@ -20,9 +20,10 @@ void StartNewGame::execute() const
 		std::cin >> playerName;
 		std::cout << std::endl;
 
-		board->addPlayer(playerName, GlobalFunctionsAndConstants::startingPlayerBalance);
+		board->addPlayer(i + 1,playerName, GlobalFunctionsAndConstants::startingPlayerBalance);
 	}
 
-	board->resetPlayerIndex();
-	board->nextTurn();
+	board->printBoard(); // printing the game board
+	board->setPlayerIndex(1); // start new game
+	board->playTurn(1); // start new game from player 1
 }

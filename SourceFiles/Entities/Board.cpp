@@ -1,6 +1,6 @@
 #include "../../Headers/Entities/Board.h"
 
-Board::Board() : currPlayerIndex(1)
+Board::Board() : currPlayerIndex(-1) // the game hasn't started yet
 { }
 
 Board* Board::instance = nullptr;
@@ -21,12 +21,53 @@ void Board::freeInstance()
 	instance = nullptr;
 }
 
-void Board::resetPlayerIndex()
+int Board::getPlayerIndex() const
 {
-	currPlayerIndex = 1;
+	return currPlayerIndex;
 }
 
-void Board::addPlayer(const MyString& playerName, int balance)
+Player* Board::getPlayer(int index)
 {
-	players.push_back(Player(currPlayerIndex++, playerName, balance));
+	for (int i = 0; i < players.size(); i++)
+	{
+		if(players[i].getPlayerIndex() == index)
+		{
+			return &players[i];
+		}
+	}
+}
+
+void Board::setPlayerIndex(int value)
+{
+	currPlayerIndex = value;
+}
+
+void Board::addPlayer(int index, const MyString& playerName, int balance)
+{
+	players.push_back(Player(index, playerName, balance));
+}
+
+void Board::playTurn(int playerIndex)
+{
+	Player* currPlayer = getPlayer(playerIndex);
+	int field = currPlayer->getCurrentFieldIndex();
+
+	if (field == getJailIndex())
+	{
+		Field* jail = getField(field);
+		jail->interactWithField(currPlayer);
+	}
+
+	if (field >= fields.getSize()) // player has moved past starting position
+	{
+		currPlayer->addToBalance(200);
+		currPlayer->setCurrentFieldIndex(field - fields.getSize()); // POSIBLE ERROR FOR CALCULATIONS CHECK LATER
+	}
+	
+	return;
+}
+
+void Board::playTurn()
+{
+	playTurn(currPlayerIndex);
 }

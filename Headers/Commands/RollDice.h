@@ -1,5 +1,6 @@
 #pragma once
 #include "Command.h"
+#include <ctime>
 
 class RollDice : public Command
 {
