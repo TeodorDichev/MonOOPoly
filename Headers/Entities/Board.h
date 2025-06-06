@@ -7,6 +7,7 @@
 class Board
 {
 private:
+	bool gameOver = false;
 	int currPlayerIndex; // when loading the game to know where to start and also to check if the game has started
 
 	Bank bank;
@@ -22,6 +23,9 @@ private:
 public:
 	static Board* getInstance();
 	static void freeInstance();
+
+	bool isGameOver() const;
+	int getWinnerIndex() const;
 
 	int getPlayerIndex() const;
 	Player* getPlayer(int index);

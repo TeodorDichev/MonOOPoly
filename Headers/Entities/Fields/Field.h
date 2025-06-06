@@ -13,4 +13,5 @@ public:
 
 	int getFieldIndex() const;
 	virtual void interactWithField(Player* player) = 0; // Visitor Pattern
+	virtual void printInfo() const = 0;
 };

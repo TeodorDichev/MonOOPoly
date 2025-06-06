@@ -12,4 +12,5 @@ public:
 	int getPrizonTax() const;
 
 	void interactWithField(Player* player) override;
+	void printInfo() const override;
 };

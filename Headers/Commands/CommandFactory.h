@@ -6,7 +6,7 @@
 #include "CheckField.h"
 #include "Help.h"
 #include "LoadGame.h"
-#include "PayPrison.h"
+#include "EndTurn.h"
 #include "Resign.h"
 #include "RollDice.h"
 #include "SellField.h"

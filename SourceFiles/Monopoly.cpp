@@ -3,8 +3,9 @@
 void Monopoly::Run()
 {
 	CommandFactory* factory = CommandFactory::getInstance();
+	Board* board = Board::getInstance();
 
-	while (true)
+	while (!board->isGameOver())
 	{
 		MyString input;
 		std::cin >> input;
@@ -23,6 +24,7 @@ void Monopoly::Run()
 		catch (const std::exception& e)
 		{
 			std::cerr << e.what() << std::endl;
+			std::cin.clear();
 		}
 	}
 

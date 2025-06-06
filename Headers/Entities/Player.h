@@ -5,10 +5,14 @@
 #include "Fields/CardField.h"
 #include "Fields/JailField.h"
 #include "Fields/FreeParkingField.h"
+#include "../Utills/GlobalFunctionsAndConstants.h"
 
 class Player
 {
 private:
+	bool resigned;
+	bool skipTurn = false;
+
 	int balance;
 	int pairsCount;
 	int playerIndex;
@@ -26,18 +30,25 @@ public:
 	int getPlayerIndex() const;
 	int getCurrentFieldIndex() const;
 	bool hasSufficientFund(int debt) const;
-	bool owsProperty(const Property* property) const;
+	bool owsProperty(int fieldIndex) const;
+	bool hasResigned() const;
+	bool shouldSkipTurn() const;
+
+	void resetSkipTurn();
+	void Resign();
 
 	void setCurrentFieldIndex(int value);
 	void throwsPair();
+	void resetPairsCount();
 
 	void addToBalance(int amount);
 	void addProperty(Property* Property);
 	void removeProperty(Property* Property);
+	void sellCheapestProperty();
 
 	void visit(const CardField* field);
 	void visit(const JailField* field);
-	void visit(const Property* field);
+	void visit(Property* field);
 	void visit(const FreeParkingField* field);
 
 	void printCurrentPosition() const;

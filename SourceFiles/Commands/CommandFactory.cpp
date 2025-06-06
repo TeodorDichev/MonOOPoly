@@ -23,6 +23,10 @@ Command* CommandFactory::readCommand(const MyString& command) const
 	{
 		return new BuyField();
 	}
+	if (command == "end_turn")
+	{
+		return new EndTurn();
+	}
 	else if (command == "check_field")
 	{
 		return new CheckField();

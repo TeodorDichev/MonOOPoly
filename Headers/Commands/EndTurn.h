@@ -1,9 +1,9 @@
 #pragma once
 #include "Command.h"
 
-class PayPrison : public Command
+class EndTurn : public Command
 {
 public:
-	PayPrison() = default;
+	EndTurn() = default;
 	virtual void execute() const override;
 };

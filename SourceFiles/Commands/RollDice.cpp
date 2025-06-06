@@ -25,11 +25,29 @@ void RollDice::execute() const
 		currPlayer->throwsPair();
 	}
 
-	bool goToJail = isPair && currPlayer->getPairsCount() == 3;
-
-	if (goToJail) 
+	// player did not throw a pair and must pay to get out of prison
+	if (currPlayer->getCurrentFieldIndex() == board->getJailIndex() && !isPair)
 	{
-		currPlayer->setCurrentFieldIndex(board->getJailIndex());
+		std::cout << "You did not throw a pair and you must pay to get out of prison! Enter 'y' if you like to pay?" << std::endl;
+		MyString answer;
+		std::cin >> answer;
+
+		if (answer == "y")
+		{
+			currPlayer->addToBalance(-100);
+		}
+		else
+		{
+			board->playTurn(playerIndex++);
+		}
+	}
+
+	int newFieldIndex = currPlayer->getCurrentFieldIndex() + die1 + die2;
+
+	if (currPlayer->getPairsCount() == 3 || newFieldIndex == board->getJailIndex())
+	{
+		Field* jail = board->getField(board->getJailIndex());
+		jail->interactWithField(currPlayer);
 
 		board->printBoard();
 		std::cout << "You threw : " << die1 << ", " << die2 << std::endl;
@@ -39,14 +57,11 @@ void RollDice::execute() const
 	}
 	else 
 	{
-		int newFieldIndex = currPlayer->getCurrentFieldIndex() + die1 + die2;
 		currPlayer->setCurrentFieldIndex(newFieldIndex);
 
 		board->printBoard();
 		std::cout << "You threw : " << die1 << ", " << die2 << std::endl;
 
-		Field* field = board->getField(newFieldIndex);
-		field->interactWithField(currPlayer);
 
 		if (isPair) 
 		{
@@ -55,6 +70,7 @@ void RollDice::execute() const
 		}
 		else
 		{
+			currPlayer->resetPairsCount();
 			board->playTurn(playerIndex++); // next player's turn
 		}
 	}

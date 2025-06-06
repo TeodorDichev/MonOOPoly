@@ -7,4 +7,5 @@ public:
 	GoToJailField(int index);
 
 	void interactWithField(Player* player) override;
+	void printInfo() const override;
 };

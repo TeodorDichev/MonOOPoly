@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Commands\EndTurn.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\JailField.cpp" />
     <ClCompile Include="SourceFiles\Commands\BuyField.cpp" />
@@ -131,7 +132,6 @@
     <ClCompile Include="SourceFiles\Commands\CommandFactory.cpp" />
     <ClCompile Include="SourceFiles\Commands\Help.cpp" />
     <ClCompile Include="SourceFiles\Commands\LoadGame.cpp" />
-    <ClCompile Include="SourceFiles\Commands\PayPrison.cpp" />
     <ClCompile Include="SourceFiles\Commands\Resign.cpp" />
     <ClCompile Include="SourceFiles\Commands\RollDice.cpp" />
     <ClCompile Include="SourceFiles\Commands\SellField.cpp" />
@@ -160,6 +160,7 @@
     <ClCompile Include="SourceFiles\Utills\SerializeFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Commands\EndTurn.h" />
     <ClInclude Include="Headers\Entities\Trade.h" />
     <ClInclude Include="Headers\Entities\Trade\FieldTrade.h" />
     <ClInclude Include="Headers\Entities\Fields\FreeParkingField.h" />
@@ -187,7 +188,6 @@
     <ClInclude Include="Headers\Entities\Trade\Trade.h" />
     <ClInclude Include="Headers\Commands\Help.h" />
     <ClInclude Include="Headers\Commands\LoadGame.h" />
-    <ClInclude Include="Headers\Commands\PayPrison.h" />
     <ClInclude Include="Headers\Commands\Resign.h" />
     <ClInclude Include="Headers\Commands\RollDice.h" />
     <ClInclude Include="Headers\Commands\SellField.h" />
