@@ -21,6 +21,8 @@ private:
 	MyString playerName;
 	MyVector<Property> properties;
 
+	void buyProperty(Property* property);
+
 public:
 	Player();
 	Player(int playerIndex, MyString playerName, int playerBalance);
@@ -35,15 +37,14 @@ public:
 	bool shouldSkipTurn() const;
 
 	void resetSkipTurn();
-	void Resign();
+	void resign();
 
 	void setCurrentFieldIndex(int value);
 	void throwsPair();
 	void resetPairsCount();
 
 	void addToBalance(int amount);
-	void addProperty(Property* Property);
-	void removeProperty(Property* Property);
+	void sellProperty(int fieldIndex);
 	void sellCheapestProperty();
 
 	void visit(const CardField* field);

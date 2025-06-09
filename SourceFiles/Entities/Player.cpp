@@ -1,5 +1,11 @@
 #include "../../Headers/Entities/Player.h"
 
+void Player::resign()
+{
+	resigned = true;
+	// all property and money goes to the bank
+}
+
 void Player::setCurrentFieldIndex(int value)
 {
 	currentFieldIndex = value;
@@ -15,6 +21,12 @@ void Player::addToBalance(int amount)
 	balance += amount;
 }
 
+void Player::buyProperty(Property* property)
+{
+	property->setOwner(this);
+	addToBalance(property->getBasePurchaseValue() * (-1));
+}
+
 void Player::visit(Property* field)
 {
 	Player* owner = field->getOwner();
@@ -26,8 +38,7 @@ void Player::visit(Property* field)
 
 		if (hasSufficientFund(purchaseValue))
 		{
-			field->setOwner(this);
-			addToBalance(purchaseValue * (-1));
+			buyProperty(field);
 		}
 
 		throw std::invalid_argument(ExceptionMessages::insufficientFunds.c_str());

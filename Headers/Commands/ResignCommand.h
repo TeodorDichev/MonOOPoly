@@ -1,9 +1,9 @@
 #pragma once
 #include "Command.h"
 
-class Resign : public Command
+class ResignCommand : public Command
 {
 public:
-	Resign() = default;
+	ResignCommand() = default;
 	virtual void execute() const override;
 };

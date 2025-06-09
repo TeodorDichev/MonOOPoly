@@ -7,7 +7,7 @@
 #include "Help.h"
 #include "LoadGame.h"
 #include "EndTurn.h"
-#include "Resign.h"
+#include "ResignCommand.h"
 #include "RollDice.h"
 #include "SellField.h"
 #include "StartNewGame.h"

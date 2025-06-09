@@ -132,7 +132,7 @@
     <ClCompile Include="SourceFiles\Commands\CommandFactory.cpp" />
     <ClCompile Include="SourceFiles\Commands\Help.cpp" />
     <ClCompile Include="SourceFiles\Commands\LoadGame.cpp" />
-    <ClCompile Include="SourceFiles\Commands\Resign.cpp" />
+    <ClCompile Include="SourceFiles\Commands\ResignCommand.cpp" />
     <ClCompile Include="SourceFiles\Commands\RollDice.cpp" />
     <ClCompile Include="SourceFiles\Commands\SellField.cpp" />
     <ClCompile Include="SourceFiles\Entities\Mortgage\Castle.cpp" />
@@ -188,7 +188,7 @@
     <ClInclude Include="Headers\Entities\Trade\Trade.h" />
     <ClInclude Include="Headers\Commands\Help.h" />
     <ClInclude Include="Headers\Commands\LoadGame.h" />
-    <ClInclude Include="Headers\Commands\Resign.h" />
+    <ClInclude Include="Headers\Commands\ResignCommand.h" />
     <ClInclude Include="Headers\Commands\RollDice.h" />
     <ClInclude Include="Headers\Commands\SellField.h" />
     <ClInclude Include="Headers\Commands\StartNewGame.h" />

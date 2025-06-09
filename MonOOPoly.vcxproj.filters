@@ -96,7 +96,7 @@
     <ClCompile Include="SourceFiles\Commands\SellField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Commands\Resign.cpp">
+    <ClCompile Include="SourceFiles\Commands\ResignCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Commands\RollDice.cpp">
@@ -197,7 +197,7 @@
     <ClInclude Include="Headers\Commands\SellField.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Commands\Resign.h">
+    <ClInclude Include="Headers\Commands\ResignCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Commands\RollDice.h">

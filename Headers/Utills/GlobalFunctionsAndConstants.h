@@ -14,6 +14,6 @@ namespace ExceptionMessages
 	const static MyString playerNotFound;
 	const static MyString invalidFieldIndex;
 	const static MyString cannotBuyPropertyTwice;
-	const static MyString cannotBuyAnotherPlayerProperty;
+	const static MyString anotherPlayerProperty;
 	const static MyString insufficientFunds;
 };

@@ -39,13 +39,9 @@ Command* CommandFactory::readCommand(const MyString& command) const
 	{
 		return new LoadGame();
 	}
-	else if (command == "pay_prison")
-	{
-		return new PayPrison();
-	}
 	else if (command == "resign")
 	{
-		return new Resign();
+		return new ResignCommand();
 	}
 	else if (command == "roll")
 	{
