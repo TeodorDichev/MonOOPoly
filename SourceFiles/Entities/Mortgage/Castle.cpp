@@ -1,6 +1,21 @@
 #include "../../../Headers/Entities/Mortgage/Castle.h"
 
-void Castle::addToProperty(Property* property)
+double Castle::getRentIncrease() const
 {
-	property->
+	return this->rentIncreasePercentage;
+}
+
+bool Cottage::isCastle() const
+{
+	return true;
+}
+
+bool Cottage::isCottage() const
+{
+	return false;
+}
+
+Mortgage* Castle::clone() const
+{
+	return new Castle(*this);
 }

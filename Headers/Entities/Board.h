@@ -1,7 +1,6 @@
 #pragma once
 #include "Cards/CardDeck.h"
 #include "../Utills/HeterogeneousContainer.hpp"
-#include "Bank.h"
 #include "Trade.h"
 
 class Board

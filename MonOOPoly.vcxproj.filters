@@ -24,9 +24,6 @@
     <ClCompile Include="SourceFiles\Entities\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Entities\Bank.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\Entities\Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,9 +49,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Entities\Cards\GroupPaymentCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceFiles\Entities\Mortgage\Mortgage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Entities\Mortgage\Cottage.cpp">
@@ -123,9 +117,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Entities\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Entities\Bank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Entities\Board.h">

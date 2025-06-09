@@ -1,22 +1,23 @@
 #pragma once
 #include "../Utills/MyVector.hpp"
-#include "Fields/Property.h"
 #include "../Utills/MyString.h"
+#include "../Utills/GlobalFunctionsAndConstants.h"
+
+#include "Fields/Property.h"
 #include "Fields/CardField.h"
 #include "Fields/JailField.h"
 #include "Fields/FreeParkingField.h"
-#include "../Utills/GlobalFunctionsAndConstants.h"
 #include "Mortgage/Cottage.h"
 #include "Mortgage/Castle.h"
 
 class Player
 {
 private:
-	bool resigned;
+	bool resigned = false;
 	bool skipTurn = false;
 
-	int balance;
-	int pairsCount;
+	int balance = 0;
+	int pairsCount = 0;
 	int playerIndex;
 	int currentFieldIndex;
 
@@ -29,34 +30,32 @@ private:
 
 public:
 	Player();
-	Player(int playerIndex, MyString playerName, int playerBalance);
+	Player(int playerIndex, const MyString& playerName, int playerBalance);
 
-	void moveTo(Field* field);
+	void resign();
+	void throwsPair();
+	void resetPairsCount();
 	void setSkipTurn(bool value);
 
 	bool hasAnyProperties() const;
-	int getPropertiesWithColor(const MyString& color);
-	int getBalance() const;
-	int getPairsCount() const;
-	int getPlayerIndex() const;
-	int getCurrentFieldIndex() const;
+	bool hasAllPropertiesOfColor(const MyString& color);
 	bool hasSufficientFund(int debt) const;
 	bool owsProperty(int fieldIndex) const;
 	bool hasResigned() const;
 	bool shouldSkipTurn() const;
 
-	void resetSkipTurn();
-	void resign();
+	int getBalance() const;
+	int getPairsCount() const;
+	int getPlayerIndex() const;
+	int getCurrentFieldIndex() const;
 
-	void throwsPair();
-	void resetPairsCount();
+	void moveWith(int positions);
+	void moveTo(int index);
 
 	void addToBalance(int amount);
 	void sellProperty(int fieldIndex);
 	void sellCheapestProperty();
 
-	void visit(Property* field);
-
-	void printCurrentPosition() const;
 	void printPlayerDetails() const;
+	void printPlayerSummary() const;
 };

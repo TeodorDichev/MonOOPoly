@@ -7,4 +7,5 @@ void CardDeck::drawCard(Player* player)
 	int index = std::rand() % cards.getSize() + 1;
 
 	cards[index]->applyEffect(*player);
+	cards[index]->printCardDescription();
 }

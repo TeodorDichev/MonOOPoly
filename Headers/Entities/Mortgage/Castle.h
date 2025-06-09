@@ -8,4 +8,7 @@ private:
 
 public:
 	double getRentIncrease() const override;
+	bool isCastle() const override;
+	bool isCottage() const override;
+	Mortgage* clone() const override;
 };

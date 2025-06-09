@@ -24,5 +24,5 @@ void MovePositionCard::printCardDescription() const
 
 void MovePositionCard::applyEffect(Player& player) const
 {
-	// TO DO
+	player.moveWith(positions);
 }

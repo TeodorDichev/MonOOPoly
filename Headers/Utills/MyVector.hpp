@@ -198,6 +198,7 @@ void MyVector<T>::insert(T&& data, unsigned idx)
 		_data[i] = std::move(_data[i - 1]);
 	_data[idx] = std::move(data);
 }
+
 template <typename T>
 void MyVector<T>::erase(unsigned idx)
 {

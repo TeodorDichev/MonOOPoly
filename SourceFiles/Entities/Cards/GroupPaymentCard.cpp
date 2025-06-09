@@ -24,5 +24,5 @@ void GroupPaymentCard::printCardDescription() const
 
 void GroupPaymentCard::applyEffect(Player& player) const
 {
-	// TO DO
+	
 }

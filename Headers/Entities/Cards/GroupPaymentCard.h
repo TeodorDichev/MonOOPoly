@@ -1,6 +1,5 @@
 #pragma once
 #include "Card.h"
-#include "../Bank.h"
 
 class GroupPaymentCard : public Card
 {

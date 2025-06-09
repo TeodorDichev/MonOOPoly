@@ -17,7 +17,17 @@ Property::Property(int index, const MyString& description, const MyString& color
 
 int Property::getBaseCastleValue() const
 {
-	return 0;
+	return baseCastleValue;
+}
+
+int Property::getBasePurchaseValue() const
+{
+	return basePurchaseValue;
+}
+
+int Property::getBaseCottageValue() const
+{
+	return baseCottageValue;
 }
 
 Player* Property::getOwner() const
@@ -30,19 +40,24 @@ void Property::setOwner(Player* player)
 	owner = player;
 }
 
+void Property::removeOwner()
+{
+	owner = nullptr;
+}
+
 const Mortgage* Property::getMortgage() const
 {
 	return mortgage;
 }
 
-void Property::addMortgage(Mortgage& mortgage)
+void Property::addMortgage(const Mortgage& mortgage)
 {
-	this->mortgage = &mortgage;
-}
+	if (this->mortgage)
+	{
+		delete this->mortgage;
+	}
 
-void Property::payRent() const
-{
-	owner->addToBalance(getRent());
+	this->mortgage = mortgage.clone();
 }
 
 int Property::getRent() const

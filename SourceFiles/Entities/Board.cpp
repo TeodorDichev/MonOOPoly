@@ -43,6 +43,31 @@ int Board::getPlayerIndex() const
 	return currPlayerIndex;
 }
 
+int Player::getCurrentFieldIndex() const
+{
+	return 0;
+}
+
+bool Player::hasSufficientFund(int debt) const
+{
+	return false;
+}
+
+bool Player::owsProperty(int fieldIndex) const
+{
+	return false;
+}
+
+bool Player::hasResigned() const
+{
+	return false;
+}
+
+bool Player::shouldSkipTurn() const
+{
+	return false;
+}
+
 Player* Board::getPlayer(int index)
 {
 	for (int i = 0; i < players.size(); i++)
@@ -86,15 +111,9 @@ void Board::playTurn(int playerIndex)
 	// player went to prison last turn or drew a card and should skip a turn
 	if (currPlayer->shouldSkipTurn())
 	{
-		currPlayer->resetSkipTurn();
+		currPlayer->setSkipTurn(false);
 		playTurn(playerIndex++);
 	}
-
-	if (field == getJailIndex())
-	{
-		std::cout << "Your are in prison either pay_prison or throw a pair to get out";
-	}
-
 
 	return;
 }

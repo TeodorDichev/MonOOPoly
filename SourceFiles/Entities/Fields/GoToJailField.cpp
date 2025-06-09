@@ -3,8 +3,10 @@
 GoToJailField::GoToJailField() : Field()
 { }
 
-GoToJailField::GoToJailField(int index, const MyString& description) : Field(index, description)
-{ }
+GoToJailField::GoToJailField(int index, const MyString& description, int jailIndex) : Field(index, description)
+{ 
+	this->jailFieldIndex = jailIndex;
+}
 
 void GoToJailField::printInfo() const
 {
@@ -13,6 +15,5 @@ void GoToJailField::printInfo() const
 
 void GoToJailField::interactWithField(Player* player)
 {
-	// TO DO 
-	// moveTo(jail)
+	player->moveTo(jailFieldIndex);
 }

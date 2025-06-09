@@ -1,6 +1,5 @@
 #pragma once
 #include "../Player.h"
-#include "../../Utills/MyString.h"
 
 class Card
 {

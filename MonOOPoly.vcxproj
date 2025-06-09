@@ -137,7 +137,6 @@
     <ClCompile Include="SourceFiles\Commands\SellField.cpp" />
     <ClCompile Include="SourceFiles\Entities\Mortgage\Castle.cpp" />
     <ClCompile Include="SourceFiles\Entities\Mortgage\Cottage.cpp" />
-    <ClCompile Include="SourceFiles\Entities\Mortgage\Mortgage.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\GroupPaymentCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\MovePositionCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\PaymentCard.cpp" />
@@ -147,7 +146,6 @@
     <ClCompile Include="SourceFiles\Entities\Fields\Property.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\Field.cpp" />
     <ClCompile Include="SourceFiles\Entities\Board.cpp" />
-    <ClCompile Include="SourceFiles\Entities\Bank.cpp" />
     <ClCompile Include="SourceFiles\Entities\Player.cpp" />
     <ClCompile Include="SourceFiles\Monopoly.cpp" />
     <ClCompile Include="SourceFiles\Source.cpp" />
@@ -177,7 +175,6 @@
     <ClInclude Include="Headers\Entities\Fields\GoToJailField.h" />
     <ClInclude Include="Headers\Entities\Fields\Field.h" />
     <ClInclude Include="Headers\Entities\Board.h" />
-    <ClInclude Include="Headers\Entities\Bank.h" />
     <ClInclude Include="Headers\Monopoly.h" />
     <ClInclude Include="Headers\Entities\Player.h" />
     <ClInclude Include="Headers\Entities\Fields\Property.h" />

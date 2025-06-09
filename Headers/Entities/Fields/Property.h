@@ -22,7 +22,6 @@ public:
 	Property(int index, const MyString& description, const MyString& color, 
 		int baseRentValue, int basePurchaseValue, int baseCottageValue, int baseCastleValue);
 
-	void payRent() const;
 	int getRent() const;
 	bool hasMortgage() const;
 	const MyString& getColor() const;
@@ -32,12 +31,14 @@ public:
 	int getBaseCastleValue() const;
 
 	Player* getOwner() const;
+
 	void setOwner(Player* player);
+	void removeOwner();
 
 	const Mortgage* getMortgage() const;
 
-	void addMortgage(Mortgage& mortgage);
+	void addMortgage(const Mortgage& mortgage);
 
-	void interactWithField(Player* player) override; // Visitor Pattern
+	void interactWithField(Player* player) override;
 	void printInfo() const override;
 };
