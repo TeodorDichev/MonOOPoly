@@ -3,11 +3,11 @@
 Property::Property() : Property(-1, "", "", 0, 0, 0, 0)
 { }
 
-Property::Property(int index, const MyString& description, const MyString& color, int baseRentValue,
+Property::Property(int index, const MyString& content, const MyString& color, int baseRentValue,
 	int basePurchaseValue, int baseCottageValue, int baseCastleValue)
 {
 	this->index = index;
-	this->description = description;
+	this->content = content;
 	this->color = color;
 	this->baseRentValue = baseRentValue;
 	this->basePurchaseValue = basePurchaseValue;
@@ -101,4 +101,28 @@ void Property::interactWithField(Player* player)
 
 		owner->addToBalance(player->getBalance());
 	}
+}
+
+void Property::printInfo() const
+{
+	std::cout << index << ", Property | BasePurchaseValue: " << basePurchaseValue << "$ | "
+		<< "BaseCottageValue: " << baseCottageValue << "$ | "
+		<< "BaseCastleValue: " << baseCastleValue << "$ | "
+		<< "Rent: " << getRent() << "$ | ";
+
+	if (owner != nullptr)
+	{
+		std::cout << "Owner: none" << "$ | ";
+	}
+	else
+	{
+		std::cout << "Owner: " << owner->getName() << " | ";
+	}
+
+	if (hasMortgage())
+	{
+		std::cout << "Mortgage: " << (mortgage->isCastle() ? "Castle" : "Cottage") << " | ";
+	}
+
+	std::cout << std::endl;
 }

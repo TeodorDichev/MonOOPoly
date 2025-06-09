@@ -11,7 +11,7 @@ private:
 
 public:
 	CardField();
-	CardField(int index, const MyString& description);
+	CardField(int index, const MyString& content);
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

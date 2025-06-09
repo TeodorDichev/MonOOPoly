@@ -62,6 +62,11 @@ bool Player::hasAllPropertiesOfColor(const MyString& color)
 	return cnt == 4;
 }
 
+const MyString& Player::getName() const
+{
+	return playerName;
+}
+
 int Player::getBalance() const
 {
 	return balance;
@@ -135,7 +140,7 @@ void Player::sellCheapestProperty()
 
 void Player::printPlayerDetails() const
 {
-	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << std::endl;
+	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | propertiesCount: " << properties.size() << std::endl;
 	
 	for (int i = 0; i < properties.size(); i++)
 	{
@@ -145,7 +150,14 @@ void Player::printPlayerDetails() const
 
 void Player::printPlayerSummary() const
 {
-	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << std::endl;
+	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | properties: ";
+
+	for (int i = 0; i < properties.size(); i++)
+	{
+		std::cout << properties[i].getFieldIndex() << " ";
+	}
+
+	std::cout << std::endl;
 }
 
 void Player::buyProperty(Property* property)
@@ -195,3 +207,35 @@ void Player::buyCottage(Property* property)
 	property->addMortgage(Cottage());
 }
 
+int Player::getCurrentFieldIndex() const
+{
+	return currentFieldIndex;
+}
+
+bool Player::hasSufficientFund(int debt) const
+{
+	return balance - debt >= 0;
+}
+
+bool Player::owsProperty(int fieldIndex) const
+{
+	for (int i = 0; i < properties.size(); i++)
+	{
+		if (properties[i].getFieldIndex() == fieldIndex) 
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Player::hasResigned() const
+{
+	return resign;
+}
+
+bool Player::shouldSkipTurn() const
+{
+	return skipTurn;
+}

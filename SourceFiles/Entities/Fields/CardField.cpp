@@ -8,7 +8,7 @@ CardField::CardField(int index, const MyString& description) : Field(index, desc
 
 void CardField::printInfo() const
 {
-	std::cout << index << ", CardField: " << description << std::endl;
+	std::cout << index << ", CardField" << std::endl;
 }
 
 void CardField::interactWithField(Player* player)

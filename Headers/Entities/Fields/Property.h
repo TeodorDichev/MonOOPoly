@@ -19,7 +19,7 @@ private:
 
 public:
 	Property();
-	Property(int index, const MyString& description, const MyString& color, 
+	Property(int index, const MyString& content, const MyString& color,
 		int baseRentValue, int basePurchaseValue, int baseCottageValue, int baseCastleValue);
 
 	int getRent() const;

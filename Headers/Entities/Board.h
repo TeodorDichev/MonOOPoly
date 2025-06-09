@@ -9,7 +9,6 @@ private:
 	bool gameOver = false;
 	int currPlayerIndex; // when loading the game to know where to start and also to check if the game has started
 
-	Bank bank;
 	CardDeck cardDeck;
 
 	MyVector<Trade> trades;

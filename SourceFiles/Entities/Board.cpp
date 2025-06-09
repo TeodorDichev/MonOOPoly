@@ -1,6 +1,6 @@
 #include "../../Headers/Entities/Board.h"
 
-Board::Board() : currPlayerIndex(-1) // the game hasn't started yet
+Board::Board() : currPlayerIndex(-1)
 { }
 
 Board* Board::instance = nullptr;
@@ -19,6 +19,11 @@ void Board::freeInstance()
 {
 	delete instance;
 	instance = nullptr;
+}
+
+bool Board::isGameOver() const
+{
+	return gameOver;
 }
 
 int Board::getWinnerIndex() const
@@ -43,30 +48,7 @@ int Board::getPlayerIndex() const
 	return currPlayerIndex;
 }
 
-int Player::getCurrentFieldIndex() const
-{
-	return 0;
-}
 
-bool Player::hasSufficientFund(int debt) const
-{
-	return false;
-}
-
-bool Player::owsProperty(int fieldIndex) const
-{
-	return false;
-}
-
-bool Player::hasResigned() const
-{
-	return false;
-}
-
-bool Player::shouldSkipTurn() const
-{
-	return false;
-}
 
 Player* Board::getPlayer(int index)
 {
@@ -89,19 +71,132 @@ void Board::addPlayer(int index, const MyString& playerName, int balance)
 	players.push_back(Player(index, playerName, balance));
 }
 
+Field* Board::getField(int index)
+{
+	for (int i = 0; i < fields.getSize(); i++)
+	{
+		if (fields[i]->getFieldIndex() == index)
+		{
+			return fields[i];
+		}
+	}
+
+	throw std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
+}
+
+int Board::getJailIndex() const
+{
+	return 0;
+}
+
+void Board::addTrade()
+{
+	// TO DO
+	return;
+}
+
+void Board::removeTrade()
+{
+	// TO DO
+	return;
+}
+
+void Board::printBoard() const
+{
+	// clear the console
+	std::cout << "\033[2J\033[1;1H"; 
+	
+	// prints the table
+	for (int r = 0; r < GlobalFunctionsAndConstants::tableSize; ++r) 
+	{
+		// Top line of current row
+		for (int c = 0; c < GlobalFunctionsAndConstants::tableSize; ++c) 
+		{
+			bool onBorder = (r == 0 || r == GlobalFunctionsAndConstants::tableSize - 1 || c == 0 || c == GlobalFunctionsAndConstants::tableSize - 1 || r == 1);
+			std::cout << Field::fieldEdge(onBorder);
+			
+			if (r != 0 && r != 1 && r != GlobalFunctionsAndConstants::tableSize - 1 && c == 0) 
+			{
+				std::cout << "+";
+				std::cout << MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth, ' ');
+				c++;
+			}
+		}
+		std::cout << "+" << std::endl;
+
+		// Inner cell lines
+		for (int h = 0; h < GlobalFunctionsAndConstants::fieldHeight; ++h) 
+		{
+			for (int c = 0; c < GlobalFunctionsAndConstants::tableSize; ++c) 
+			{
+				// The variable exists with the sole purpose to be know what exactly the conditions is
+				bool finalColLeftLine = (c == GlobalFunctionsAndConstants::tableSize - 1 && h == 0 && r != GlobalFunctionsAndConstants::tableSize - 1 && r != 0);
+				if (r == 0 && c == 0 || (c == 0 && h == 0) || finalColLeftLine)
+				{
+					std::cout << "|";
+				}
+
+				if (c == GlobalFunctionsAndConstants::tableSize - 2 && r != 0 && r != GlobalFunctionsAndConstants::tableSize - 1)
+				{
+					std::cout << MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth, ' ');
+					continue;
+				}
+
+				// Using else if to make sure edges are not printed twice
+				if (r == 0) // top row including edges
+				{
+					int index = 20 + c;
+					std::cout << fields[index]->printContent();
+				}
+				else if (r == GlobalFunctionsAndConstants::tableSize - 1) // bottom row including edges
+				{
+					int index = 10 - c;
+					std::cout << fields[index]->printContent();
+				}
+				else if (c == 0) 
+				{
+					int index = 20 - r;
+					std::cout << fields[index]->printContent();
+				}
+				else if (c == GlobalFunctionsAndConstants::tableSize - 1)
+				{
+					int index = 30 + r;
+					std::cout << fields[index]->printContent();
+				}
+				else
+				{
+					std::cout << MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth + 1, ' ');
+				}
+			}
+			std::cout << std::endl;
+		}
+	}
+
+	// Final bottom line
+	for (int c = 0; c < GlobalFunctionsAndConstants::tableSize; ++c) 
+	{
+		std::cout << Field::fieldEdge(true);
+	}
+	std::cout << "+" << std::endl;
+
+	for (int i = 0; i < players.size(); i++)
+	{
+		players[i].printPlayerSummary();
+	}
+}
+
 void Board::playTurn(int playerIndex)
 {
-	Player* currPlayer = getPlayer(playerIndex);
-	int field = currPlayer->getCurrentFieldIndex();
-	currPlayerIndex = playerIndex;
-
 	if (getWinnerIndex() != -1)
 	{
 		printGameSummary();
 		gameOver = true;
 		return;
-		// end of game
 	}
+	
+	Player* currPlayer = getPlayer(playerIndex);
+	int field = currPlayer->getCurrentFieldIndex();
+	currPlayerIndex = playerIndex;
 
 	if (currPlayer->hasResigned())
 	{
@@ -121,4 +216,8 @@ void Board::playTurn(int playerIndex)
 void Board::playTurn()
 {
 	playTurn(currPlayerIndex);
+}
+
+void Board::printGameSummary() const
+{
 }

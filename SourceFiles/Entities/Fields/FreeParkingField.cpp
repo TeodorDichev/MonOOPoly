@@ -8,7 +8,7 @@ FreeParkingField::FreeParkingField(int index, const MyString& description) : Fie
 
 void FreeParkingField::printInfo() const
 {
-	std::cout << index << ", FreeParkingField: " << description << std::endl;
+	std::cout << index << ", FreeParkingField" << std::endl;
 }
 
 void FreeParkingField::interactWithField(Player* player)

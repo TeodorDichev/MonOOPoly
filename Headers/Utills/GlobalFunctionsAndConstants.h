@@ -3,6 +3,11 @@
 
 namespace GlobalFunctionsAndConstants
 {
+	static constexpr int fieldWidth = 6;
+	static constexpr int fieldHeight = 1;
+
+	static constexpr int tableSize = 11;
+	
 	constexpr static int boardSize = 40;
 	constexpr static int startingPlayerBalance = 1500;
 	const static MyString helpFileName;

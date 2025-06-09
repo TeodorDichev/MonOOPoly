@@ -10,7 +10,7 @@ JailField::JailField(int index, const MyString& description, int tax) : Field(in
 
 void JailField::printInfo() const
 {
-	std::cout << index << ", JailField: " << description << std::endl;
+	std::cout << index << ", JailField: Your next turn will be skipped! If you want to go out you will need to pay a tax of " << tax << "$!" << std::endl;
 }
 
 int JailField::getJailTax() const
@@ -20,6 +20,5 @@ int JailField::getJailTax() const
 
 void JailField::interactWithField(Player* player)
 {
-	std::cout << "You entered jail! Your next turn will be skipped! If you want to go out you will need to pay a tax of " << tax << "$!" << std::endl;
 	player->setSkipTurn(true);
 }

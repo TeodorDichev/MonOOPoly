@@ -71,6 +71,17 @@ MyString& MyString::operator=(const MyString& other)
 	return *this;
 }
 
+MyString MyString::repeatChar(char ch, size_t count) {
+	char* buffer = new char[count + 1];
+	for (size_t i = 0; i < count; ++i) {
+		buffer[i] = ch;
+	}
+	buffer[count] = '\0';
+	MyString result(buffer);
+	delete[] buffer;
+	return result;
+}
+
 
 void MyString::free()
 {

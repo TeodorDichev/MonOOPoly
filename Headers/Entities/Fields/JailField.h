@@ -7,7 +7,7 @@ private:
 
 public:
 	JailField();
-	JailField(int index, const MyString& description, int tax);
+	JailField(int index, const MyString& content, int tax);
 
 	int getJailTax() const;
 

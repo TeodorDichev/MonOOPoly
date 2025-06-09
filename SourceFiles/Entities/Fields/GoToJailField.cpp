@@ -10,7 +10,7 @@ GoToJailField::GoToJailField(int index, const MyString& description, int jailInd
 
 void GoToJailField::printInfo() const
 {
-	std::cout << index << ", GoToJailField: " << description << std::endl;
+	std::cout << index << ", GoToJailField" << std::endl;
 }
 
 void GoToJailField::interactWithField(Player* player)

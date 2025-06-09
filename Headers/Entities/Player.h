@@ -44,6 +44,7 @@ public:
 	bool hasResigned() const;
 	bool shouldSkipTurn() const;
 
+	const MyString& getName() const;
 	int getBalance() const;
 	int getPairsCount() const;
 	int getPlayerIndex() const;

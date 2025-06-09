@@ -35,6 +35,8 @@ public:
 
 	const char* c_str() const;
 
+	static MyString repeatChar(char ch, size_t count);
+
 	friend MyString operator+(const MyString& lhs, const MyString& rhs);
 	friend std::istream& operator>>(std::istream&, MyString& str);
 };

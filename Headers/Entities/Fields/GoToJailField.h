@@ -7,7 +7,7 @@ private:
 
 public:
 	GoToJailField();
-	GoToJailField(int index, const MyString& description, int jailIndex);
+	GoToJailField(int index, const MyString& content, int jailIndex);
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;
