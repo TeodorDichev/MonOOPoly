@@ -8,10 +8,10 @@ private:
 
 public:
 	MovePositionCard();
-	MovePositionCard(const MyString& description, int positions);
+	MovePositionCard(int positions);
 
 	Card* clone() const override;
 
 	void printCardDescription() const override;
-	void applyEffect(Player& player) override;
+	void applyEffect(Player& player) const override;
 };

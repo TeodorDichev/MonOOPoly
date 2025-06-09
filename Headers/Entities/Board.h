@@ -15,7 +15,7 @@ private:
 
 	MyVector<Trade> trades;
 	MyVector<Player> players;
-	HeterogeneousContainer<Field*> fields;
+	HeterogeneousContainer<Field> fields;
 
 	Board();
 	static Board* instance;

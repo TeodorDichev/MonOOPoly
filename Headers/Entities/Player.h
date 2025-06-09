@@ -6,6 +6,8 @@
 #include "Fields/JailField.h"
 #include "Fields/FreeParkingField.h"
 #include "../Utills/GlobalFunctionsAndConstants.h"
+#include "Mortgage/Cottage.h"
+#include "Mortgage/Castle.h"
 
 class Player
 {
@@ -22,11 +24,16 @@ private:
 	MyVector<Property> properties;
 
 	void buyProperty(Property* property);
+	void buyCastle(Property* property);
+	void buyCottage(Property* property);
 
 public:
 	Player();
 	Player(int playerIndex, MyString playerName, int playerBalance);
 
+	void moveTo(Field* field);
+
+	int getPropertiesWithColor(const MyString& color);
 	int getBalance() const;
 	int getPairsCount() const;
 	int getPlayerIndex() const;
@@ -39,7 +46,6 @@ public:
 	void resetSkipTurn();
 	void resign();
 
-	void setCurrentFieldIndex(int value);
 	void throwsPair();
 	void resetPairsCount();
 
@@ -47,7 +53,6 @@ public:
 	void sellProperty(int fieldIndex);
 	void sellCheapestProperty();
 
-	void visit(const CardField* field);
 	void visit(const JailField* field);
 	void visit(Property* field);
 	void visit(const FreeParkingField* field);

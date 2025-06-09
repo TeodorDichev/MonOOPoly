@@ -95,16 +95,7 @@ void Board::playTurn(int playerIndex)
 		std::cout << "Your are in prison either pay_prison or throw a pair to get out";
 	}
 
-	// player has moved past starting position
-	if (field >= fields.getSize())
-	{
-		currPlayer->addToBalance(200);
 
-		// reseting current field index of player
-		// POSIBLE ERROR FOR CALCULATIONS CHECK LATER
-		currPlayer->setCurrentFieldIndex(field - fields.getSize());
-	}
-	
 	return;
 }
 

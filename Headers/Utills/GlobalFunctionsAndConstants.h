@@ -16,4 +16,11 @@ namespace ExceptionMessages
 	const static MyString cannotBuyPropertyTwice;
 	const static MyString anotherPlayerProperty;
 	const static MyString insufficientFunds;
+	const static MyString invalidMortgageName;
+};
+
+enum class Mortgages
+{
+	cottage,
+	castle
 };

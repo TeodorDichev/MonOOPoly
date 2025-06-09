@@ -8,3 +8,4 @@ const static MyString ExceptionMessages::invalidFieldIndex = "Fields start from 
 const static MyString ExceptionMessages::cannotBuyPropertyTwice = "You have already bought this property!";
 const static MyString ExceptionMessages::anotherPlayerProperty = "This property is owned by another player!";
 const static MyString ExceptionMessages::insufficientFunds = "You have insufficient funds to purchase this property!";
+const static MyString ExceptionMessages::invalidMortgageName = "Invalid mortgage name!";

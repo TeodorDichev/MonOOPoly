@@ -4,16 +4,12 @@
 
 class Card
 {
-protected:
-	MyString cardDescription;
-
 public:
-	Card();
-	Card(const MyString& description);
-	virtual ~Card();
+	Card() = default;
+	virtual ~Card() = default;
 
 	virtual Card* clone() const = 0;
 
 	virtual void printCardDescription() const = 0;
-	virtual void applyEffect(Player& player) = 0;
+	virtual void applyEffect(Player& player) const = 0;
 };

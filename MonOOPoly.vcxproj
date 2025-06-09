@@ -141,7 +141,6 @@
     <ClCompile Include="SourceFiles\Entities\Cards\GroupPaymentCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\MovePositionCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\PaymentCard.cpp" />
-    <ClCompile Include="SourceFiles\Entities\Cards\Card.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\CardDeck.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\CardField.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\GoToJailField.cpp" />
@@ -198,7 +197,6 @@
     <ClInclude Include="Headers\Utills\MyVector.hpp" />
     <ClInclude Include="Headers\Utills\SerializeFunctions.h" />
     <ClInclude Include="Headers\Entities\Fields\JailField.h" />
-    <ClInclude Include="Headers\Utills\HeterogeneousStack.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Help.txt" />

@@ -5,10 +5,11 @@ class Field
 {
 protected:
 	int index;
+	MyString description;
 
 public:
 	Field();
-	Field(int index);
+	Field(int index, const MyString& description);
 	virtual ~Field() = default;
 
 	int getFieldIndex() const;

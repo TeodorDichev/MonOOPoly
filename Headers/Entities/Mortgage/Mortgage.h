@@ -1,4 +1,5 @@
 #pragma once
+#include "../Fields/Property.h"
 
 class Mortgage
 {

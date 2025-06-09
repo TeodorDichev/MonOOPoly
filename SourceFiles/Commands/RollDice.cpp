@@ -42,14 +42,25 @@ void RollDice::execute() const
 		}
 	}
 
-	int newFieldIndex = currPlayer->getCurrentFieldIndex() + die1 + die2;
+	int newIndex = (currPlayer->getCurrentFieldIndex() + die1 + die2);
 
-	if (currPlayer->getPairsCount() == 3 || newFieldIndex == board->getJailIndex())
+	if (newIndex / 39 != 0)
+	{
+		newIndex = newIndex % 39 - 1;
+		currPlayer->addToBalance(200);
+	}
+
+
+	Field* field = board->getField(newIndex);
+	field->interactWithField(currPlayer);
+
+	if (currPlayer->getPairsCount() == 3)
 	{
 		Field* jail = board->getField(board->getJailIndex());
-		jail->interactWithField(currPlayer);
+		currPlayer->moveTo(jail);
 
 		board->printBoard();
+
 		std::cout << "You threw : " << die1 << ", " << die2 << std::endl;
 		std::cout << "You threw a pair for third time in a roll, you are sent to jail!" << std::endl;
 
@@ -57,11 +68,11 @@ void RollDice::execute() const
 	}
 	else 
 	{
-		currPlayer->setCurrentFieldIndex(newFieldIndex);
+		currPlayer->moveTo(field);
 
 		board->printBoard();
-		std::cout << "You threw : " << die1 << ", " << die2 << std::endl;
 
+		std::cout << "You threw : " << die1 << ", " << die2 << std::endl;
 
 		if (isPair) 
 		{

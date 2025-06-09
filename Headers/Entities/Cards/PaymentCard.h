@@ -7,10 +7,10 @@ private:
 
 public:
 	PaymentCard();
-	PaymentCard(const MyString& description, int amount);
+	PaymentCard(int amount);
 
 	Card* clone() const override;
 
 	void printCardDescription() const override;
-	void applyEffect(Player& player) override;
+	void applyEffect(Player& player) const override;
 };

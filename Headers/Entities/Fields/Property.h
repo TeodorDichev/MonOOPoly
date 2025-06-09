@@ -1,6 +1,7 @@
 #pragma once
 #include "Field.h"
-#include "../Mortgage/Mortgage.h"
+
+class Mortgage;
 
 class Property : public Field
 {
@@ -10,16 +11,21 @@ private:
 	int baseCottageValue;
 	int baseCastleValue;
 
+	MyString color;
+
 	Player* owner = nullptr;
 
 	Mortgage* mortgage = nullptr;
 
 public:
 	Property();
-	Property(int index, int baseRentValue, int basePurchaseValue, int baseCottageValue, int baseCastleValue);
+	Property(int index, const MyString& description, const MyString& color, 
+		int baseRentValue, int basePurchaseValue, int baseCottageValue, int baseCastleValue);
 
 	void payRent() const;
 	int getRent() const;
+	bool hasMortgage() const;
+	const MyString& getColor() const;
 
 	int getBasePurchaseValue() const;
 	int getBaseCottageValue() const;
@@ -30,7 +36,7 @@ public:
 
 	const Mortgage* getMortgage() const;
 
-	void addMortgage(const Mortgage* mortgage);
+	void addMortgage(const Mortgage& mortgage);
 
 	void interactWithField(Player* player) override; // Visitor Pattern
 	void printInfo() const override;
