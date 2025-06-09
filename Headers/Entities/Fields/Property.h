@@ -36,7 +36,7 @@ public:
 
 	const Mortgage* getMortgage() const;
 
-	void addMortgage(const Mortgage& mortgage);
+	void addMortgage(Mortgage& mortgage);
 
 	void interactWithField(Player* player) override; // Visitor Pattern
 	void printInfo() const override;

@@ -7,7 +7,7 @@ private:
 	int positions;
 
 public:
-	MovePositionCard();
+	MovePositionCard() = default;
 	MovePositionCard(int positions);
 
 	Card* clone() const override;

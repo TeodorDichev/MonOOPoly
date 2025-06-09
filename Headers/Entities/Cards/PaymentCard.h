@@ -6,7 +6,7 @@ private:
 	int amount;
 
 public:
-	PaymentCard();
+	PaymentCard() = default;
 	PaymentCard(int amount);
 
 	Card* clone() const override;

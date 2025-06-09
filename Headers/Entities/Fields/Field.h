@@ -13,6 +13,6 @@ public:
 	virtual ~Field() = default;
 
 	int getFieldIndex() const;
-	virtual void interactWithField(Player* player) = 0; // Visitor Pattern
+	virtual void interactWithField(Player* player) = 0;
 	virtual void printInfo() const = 0;
 };

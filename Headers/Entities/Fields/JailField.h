@@ -7,9 +7,9 @@ private:
 
 public:
 	JailField();
-	JailField(int index, const MyString& description);
+	JailField(int index, const MyString& description, int tax);
 
-	int getPrizonTax() const;
+	int getJailTax() const;
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

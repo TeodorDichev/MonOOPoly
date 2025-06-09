@@ -8,7 +8,7 @@ private:
 	int amount;
 
 public:
-	GroupPaymentCard();
+	GroupPaymentCard() = default;
 	GroupPaymentCard(int amount);
 
 	Card* clone() const override;

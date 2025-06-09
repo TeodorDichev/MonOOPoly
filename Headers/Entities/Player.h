@@ -32,7 +32,9 @@ public:
 	Player(int playerIndex, MyString playerName, int playerBalance);
 
 	void moveTo(Field* field);
+	void setSkipTurn(bool value);
 
+	bool hasAnyProperties() const;
 	int getPropertiesWithColor(const MyString& color);
 	int getBalance() const;
 	int getPairsCount() const;
@@ -53,9 +55,7 @@ public:
 	void sellProperty(int fieldIndex);
 	void sellCheapestProperty();
 
-	void visit(const JailField* field);
 	void visit(Property* field);
-	void visit(const FreeParkingField* field);
 
 	void printCurrentPosition() const;
 	void printPlayerDetails() const;
