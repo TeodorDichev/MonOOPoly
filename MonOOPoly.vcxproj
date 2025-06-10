@@ -123,6 +123,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Entities\Bank.cpp" />
+    <ClCompile Include="SourceFiles\Commands\AcceptTrade.cpp" />
+    <ClCompile Include="SourceFiles\Commands\MakeTrade.cpp" />
     <ClCompile Include="SourceFiles\Commands\EndTurn.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp" />
     <ClCompile Include="SourceFiles\Entities\Fields\JailField.cpp" />
@@ -155,8 +158,11 @@
     <ClCompile Include="SourceFiles\Utills\GlobalFunctionsAndConstants.cpp" />
     <ClCompile Include="SourceFiles\Utills\MyString.cpp" />
     <ClCompile Include="SourceFiles\Utills\SerializeFunctions.cpp" />
+    <ClCompile Include="SourceFiles\Commands\ViewTrades.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Entities\Bank.h" />
+    <ClInclude Include="Headers\Commands\AcceptTrade.h" />
     <ClInclude Include="Headers\Commands\EndTurn.h" />
     <ClInclude Include="Headers\Entities\Trade.h" />
     <ClInclude Include="Headers\Entities\Trade\FieldTrade.h" />
@@ -194,6 +200,8 @@
     <ClInclude Include="Headers\Utills\MyVector.hpp" />
     <ClInclude Include="Headers\Utills\SerializeFunctions.h" />
     <ClInclude Include="Headers\Entities\Fields\JailField.h" />
+    <ClInclude Include="Headers\Commands\MakeTrade.h" />
+    <ClInclude Include="Headers\Commands\ViewTrades.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Help.txt" />

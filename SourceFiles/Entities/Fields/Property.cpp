@@ -126,3 +126,8 @@ void Property::printInfo() const
 
 	std::cout << std::endl;
 }
+
+bool CardField::isJail() const
+{
+	return false;
+}

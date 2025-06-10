@@ -11,4 +11,6 @@ public:
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;
+
+	bool isJail() const override;
 };

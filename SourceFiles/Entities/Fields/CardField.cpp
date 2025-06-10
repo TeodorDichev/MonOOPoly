@@ -11,6 +11,11 @@ void CardField::printInfo() const
 	std::cout << index << ", CardField" << std::endl;
 }
 
+bool CardField::isJail() const
+{
+	return false;
+}
+
 void CardField::interactWithField(Player* player)
 {
 	this->deck->drawCard(player);

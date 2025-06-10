@@ -7,7 +7,7 @@ void StartNewGame::execute() const
 
 	if (playersCount < 2 || playersCount > 6)
 	{
-		throw new std::invalid_argument("Game can have 2 to 6 players!");
+		throw new std::invalid_argument(ExceptionMessages::invalidPlayersCount.c_str());
 	}
 
 	SerializeFunctions::loadDefaultFieldsFromFile();
@@ -23,7 +23,7 @@ void StartNewGame::execute() const
 		board->addPlayer(i + 1,playerName, GlobalFunctionsAndConstants::startingPlayerBalance);
 	}
 
-	board->printBoard(); // printing the game board
-	board->setPlayerIndex(1); // start new game
-	board->playTurn(1); // start new game from player 1
+	board->printBoard();
+	board->setPlayerIndex(1);
+	board->playTurn(1);
 }

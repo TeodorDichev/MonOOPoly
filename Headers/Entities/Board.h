@@ -1,17 +1,15 @@
 #pragma once
 #include "Cards/CardDeck.h"
 #include "../Utills/HeterogeneousContainer.hpp"
-#include "Trade.h"
 
 class Board
 {
 private:
 	bool gameOver = false;
-	int currPlayerIndex; // when loading the game to know where to start and also to check if the game has started
+	int currPlayerIndex;
 
 	CardDeck cardDeck;
 
-	MyVector<Trade> trades;
 	MyVector<Player> players;
 	HeterogeneousContainer<Field> fields;
 
@@ -25,7 +23,7 @@ public:
 	bool isGameOver() const;
 	int getWinnerIndex() const;
 
-	int getPlayerIndex() const;
+	int getCurrentPlayerIndex() const;
 	Player* getPlayer(int index);
 
 	void setPlayerIndex(int value);
@@ -33,9 +31,6 @@ public:
 
 	Field* getField(int index);
 	int getJailIndex() const;
-
-	void addTrade();
-	void removeTrade();
 
 	void printBoard() const;
 	void playTurn(int playerIndex);

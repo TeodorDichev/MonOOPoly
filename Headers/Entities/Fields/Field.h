@@ -20,4 +20,6 @@ public:
 
 	static MyString fieldEdge(bool draw);
 	MyString printContent() const;
+
+	virtual bool isJail() const = 0;
 };

@@ -2,22 +2,22 @@
 
 void RollDice::execute() const
 {
-	int playerIndex = board->getPlayerIndex();
+	int playerIndex = board->getCurrentPlayerIndex();
 	if (playerIndex == -1)
 	{
 		throw new std::invalid_argument(ExceptionMessages::notStartedGame.c_str());
 	}
-
-	std::srand(std::time(nullptr));
-
-	int die1 = std::rand() % 6 + 1;
-	int die2 = std::rand() % 6 + 1;
 
 	Player* currPlayer = board->getPlayer(playerIndex);
 	if (currPlayer)
 	{
 		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
+
+	std::srand(std::time(nullptr));
+
+	int die1 = std::rand() % 6 + 1;
+	int die2 = std::rand() % 6 + 1;
 
 	std::cout << "You threw : " << die1 << ", " << die2 << std::endl;
 

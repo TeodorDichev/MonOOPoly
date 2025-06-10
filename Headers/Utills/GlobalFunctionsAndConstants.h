@@ -22,6 +22,8 @@ namespace ExceptionMessages
 	const static MyString anotherPlayerProperty;
 	const static MyString insufficientFunds;
 	const static MyString invalidMortgageName;
+	const static MyString invalidTradeIndex;
+	const static MyString invalidPlayersCount;
 };
 
 enum class Mortgages

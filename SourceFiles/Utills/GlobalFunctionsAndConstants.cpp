@@ -9,3 +9,5 @@ const static MyString ExceptionMessages::cannotBuyPropertyTwice = "You have alre
 const static MyString ExceptionMessages::anotherPlayerProperty = "This property is owned by another player!";
 const static MyString ExceptionMessages::insufficientFunds = "You have insufficient funds to purchase this property!";
 const static MyString ExceptionMessages::invalidMortgageName = "Invalid mortgage name!";
+const static MyString ExceptionMessages::invalidTradeIndex = "Invalid trade index!";
+const static MyString ExceptionMessages::invalidPlayersCount = "Invalid players count! Game must have between 2 and 6 players!";

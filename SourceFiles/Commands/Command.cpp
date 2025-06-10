@@ -3,4 +3,5 @@
 Command::Command()
 {
 	board = Board::getInstance();
+	bank = Bank::getInstance();
 }

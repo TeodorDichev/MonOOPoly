@@ -43,12 +43,10 @@ int Board::getWinnerIndex() const
 	return notResignedPlayersCount == 1 ? winnerId : -1;
 }
 
-int Board::getPlayerIndex() const
+int Board::getCurrentPlayerIndex() const
 {
 	return currPlayerIndex;
 }
-
-
 
 Player* Board::getPlayer(int index)
 {
@@ -86,19 +84,52 @@ Field* Board::getField(int index)
 
 int Board::getJailIndex() const
 {
-	return 0;
+	for (int i = 0; i < fields.getSize(); i++)
+	{
+		if (fields[i]->isJail())
+		{
+			return i;
+		}
+	}
+
+	return -1;
 }
 
-void Board::addTrade()
+void Board::playTurn()
 {
-	// TO DO
+	playTurn(currPlayerIndex);
+}
+void Board::playTurn(int playerIndex)
+{
+	if (getWinnerIndex() != -1)
+	{
+		printGameSummary();
+		gameOver = true;
+		return;
+	}
+
+	Player* currPlayer = getPlayer(playerIndex);
+	int field = currPlayer->getCurrentFieldIndex();
+	currPlayerIndex = playerIndex;
+
+	if (currPlayer->hasResigned())
+	{
+		playTurn(playerIndex++);
+	}
+
+	// player went to prison last turn or drew a card and should skip a turn
+	if (currPlayer->shouldSkipTurn())
+	{
+		currPlayer->setSkipTurn(false);
+		playTurn(playerIndex++);
+	}
+
 	return;
 }
 
-void Board::removeTrade()
+void Board::printGameSummary() const
 {
 	// TO DO
-	return;
 }
 
 void Board::printBoard() const
@@ -183,41 +214,4 @@ void Board::printBoard() const
 	{
 		players[i].printPlayerSummary();
 	}
-}
-
-void Board::playTurn(int playerIndex)
-{
-	if (getWinnerIndex() != -1)
-	{
-		printGameSummary();
-		gameOver = true;
-		return;
-	}
-	
-	Player* currPlayer = getPlayer(playerIndex);
-	int field = currPlayer->getCurrentFieldIndex();
-	currPlayerIndex = playerIndex;
-
-	if (currPlayer->hasResigned())
-	{
-		playTurn(playerIndex++);
-	}
-
-	// player went to prison last turn or drew a card and should skip a turn
-	if (currPlayer->shouldSkipTurn())
-	{
-		currPlayer->setSkipTurn(false);
-		playTurn(playerIndex++);
-	}
-
-	return;
-}
-
-void Board::playTurn()
-{
-	playTurn(currPlayerIndex);
-}
-
-void Board::printGameSummary() const
-{
 }

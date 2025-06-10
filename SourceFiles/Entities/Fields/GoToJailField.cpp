@@ -17,3 +17,8 @@ void GoToJailField::interactWithField(Player* player)
 {
 	player->moveTo(jailFieldIndex);
 }
+
+bool CardField::isJail() const
+{
+	return false;
+}

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "../Entities/Board.h"
+#include "../Entities/Bank.h"
 #include "../Utills/GlobalFunctionsAndConstants.h"
 
 class Command
@@ -12,4 +13,5 @@ public:
 
 protected:
 	Board* board;
+	Bank* bank;
 };

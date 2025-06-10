@@ -1,6 +1,6 @@
-#include "../../Headers/Commands/ResignCommand.h"
+#include "../../Headers/Commands/ViewTrades.h"
 
-void ResignCommand::execute() const
+void ViewTrades::execute() const
 {
 	int playerIndex = board->getCurrentPlayerIndex();
 	if (playerIndex == -1)
@@ -11,10 +11,6 @@ void ResignCommand::execute() const
 	{
 		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
-
-	Player* currPlayer = board->getPlayer(playerIndex);
-	currPlayer->resign();
-	bank->removeTradesOfPlayer(playerIndex);
-
-	board->playTurn(playerIndex++);
+	
+	bank->printPlayerTrades(playerIndex);
 }

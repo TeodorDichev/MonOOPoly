@@ -4,19 +4,26 @@
 class Trade
 {
 private:
-	Player* player1;
-	Player* player2;
+	static int currIdIndex;
+
+	int id;
+	Player* sender;
+	Player* receiver;
 	MyString offerDescription;
 	Property* property;
 	int requestedAmount;
-	bool isAccepted;
+	bool isAccepted = false;
 
 public:
-	Trade();
-	Trade(Player* player1, Player* player2,	const MyString& offerDescription, Property* property, int requestedAmount);
+	Trade() = default;
+	Trade(Player* sender, Player* receiver,	const MyString& offerDescription, Property* property, int requestedAmount);
+	Trade(int id, Player* sender, Player* receiver,	const MyString& offerDescription, Property* property, int requestedAmount);
 
-	void printOffer();
-	void acceptOffer(); // removes sum/prop from p1 and gives sum/prop to p2
-	void rejectOffer();
-	void getOfferResponce();
+	int getTradeId() const;
+	int getSenderIndex() const;
+	int getReceiverIndex() const;
+	bool getOfferResponse() const;
+
+	void printOffer() const;
+	void acceptOffer();
 };

@@ -2,7 +2,7 @@
 
 void UpgradeMortgage::execute() const
 {
-	int playerIndex = board->getPlayerIndex();
+	int playerIndex = board->getCurrentPlayerIndex();
 	if (playerIndex == -1)
 	{
 		throw new std::invalid_argument(ExceptionMessages::notStartedGame.c_str());

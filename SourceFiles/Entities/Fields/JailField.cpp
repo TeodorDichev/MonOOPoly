@@ -22,3 +22,8 @@ void JailField::interactWithField(Player* player)
 {
 	player->setSkipTurn(true);
 }
+
+bool CardField::isJail() const
+{
+	return true;
+}
