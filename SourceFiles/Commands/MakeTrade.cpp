@@ -15,6 +15,9 @@ void MakeTrade::execute() const
 	int receiverIndex, fieldIndex, requestedAmount;
 	MyString description;
 
+	std::cin >> receiverIndex >> fieldIndex >> requestedAmount;
+	std::cin >> description;
+
 	Player* receiver = board->getPlayer(receiverIndex);
 	if (receiver)
 	{

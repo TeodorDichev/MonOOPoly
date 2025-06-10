@@ -1,6 +1,6 @@
 #pragma once
-#include "Cards/CardDeck.h"
 #include "../Utills/HeterogeneousContainer.hpp"
+#include "Player.h"
 
 class Board
 {
@@ -21,7 +21,7 @@ public:
 	static void freeInstance();
 
 	bool isGameOver() const;
-	int getWinnerIndex() const;
+	int getCurrentPlayersCount() const;
 
 	int getCurrentPlayerIndex() const;
 	Player* getPlayer(int index);
@@ -39,4 +39,9 @@ public:
 	void printGameSummary() const;
 
 	friend class SerializeFunctions;
+
+	// These cards needs access to all players and/or getFields
+	// Other solutions cause circular dependencies
+	friend class GroupPaymentCard;
+	friend class MovePositionCard;
 };

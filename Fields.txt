@@ -1,0 +1,40 @@
+Start 0 _Start
+Property 1 01_Red Red 70 400 240 180
+Property 2 02_Red Red 75 420 200 250
+Property 3 03_Red Red 90 450 220 250
+Cards 4 _Cards
+Property 5 05_Tea Tea 80 410 230 190
+Property 6 06_Tea Tea 85 430 210 200
+Cards 7 _Cards
+Property 8 08_Tea Tea 95 460 240 220
+Property 9 09_Tea Tea 100 470 250 230
+Jail 10 _Jail_ 100
+Cards 11 _Cards
+Property 11 11_Ash Ash 65 380 200 160
+Property 12 12_Ash Ash 70 390 210 170
+Property 13 13_Ash Ash 75 400 220 180
+Property 14 14_Ash Ash 80 410 230 190
+Cards 16 _Cards
+Property 17 17_Sea Sea 70 400 210 170
+Property 18 18_Sea Sea 75 410 220 180
+Property 19 19_Sea Sea 80 420 230 190
+Park 20 _Park_
+Property 21 21_Sea Sea 85 430 240 200
+Cards 22 _Cards
+Property 23 23_Sky Sky 90 440 250 210
+Property 24 24_Sky Sky 95 450 260 220
+Property 25 25_Sky Sky 100 460 270 230
+Property 26 26_Sky Sky 105 470 280 240
+Cards 27 _Cards
+Property 28 28_Jet Jet 100 460 270 230
+Property 29 29_Jet Jet 105 470 280 240
+GoJail 30 GoJail
+Property 31 31_Jet Jet 115 490 300 260
+Property 32 32_Jet Jet 120 500 310 270
+Cards 33 _Cards
+Property 34 34_Mud Mud 50 300 150 120
+Property 35 35_Mud Mud 55 310 160 130
+Property 36 36_Mud Mud 60 320 170 140
+Property 37 37_Mud Mud 65 330 180 150
+Cards 38 _Cards
+Property 39 39_Red Red 60 350 140 190

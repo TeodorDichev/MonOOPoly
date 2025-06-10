@@ -83,24 +83,8 @@ void Property::interactWithField(Player* player)
 	}
 
 	int rent = getRent();
-	while (!player->hasSufficientFund(rent) && player->hasAnyProperties())
-	{
-		player->sellCheapestProperty();
-	}
-
-	if (player->hasSufficientFund(rent))
-	{
-		player->addToBalance(rent * (-1));
-		owner->addToBalance(rent);
-	}
-	else
-	{
-		player->resign();
-
-		std::cout << "You were unable to pay rent! You have lost!";
-
-		owner->addToBalance(player->getBalance());
-	}
+	player->reduceBalance(rent);
+	owner->increaseBalance(rent);
 }
 
 void Property::printInfo() const

@@ -24,5 +24,12 @@ void PaymentCard::printCardDescription() const
 
 void PaymentCard::applyEffect(Player& player) const
 {
-	player.addToBalance(amount);
+	if (amount < 0)
+	{
+		player.reduceBalance(amount * (-1));
+	}
+	else
+	{
+		player.increaseBalance(amount);
+	}
 }

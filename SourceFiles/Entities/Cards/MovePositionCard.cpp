@@ -25,4 +25,7 @@ void MovePositionCard::printCardDescription() const
 void MovePositionCard::applyEffect(Player& player) const
 {
 	player.moveWith(positions);
+
+	Board* board = Board::getInstance();
+	board->getField(player.getCurrentFieldIndex())->interactWithField(&player);
 }

@@ -26,21 +26,19 @@ bool Board::isGameOver() const
 	return gameOver;
 }
 
-int Board::getWinnerIndex() const
+int Board::getCurrentPlayersCount() const
 {
 	int notResignedPlayersCount = 0;
-	int winnerId = -1;
 
 	for (int i = 0; i < players.size(); i++)
 	{
 		if (!players[i].hasResigned())
 		{
 			notResignedPlayersCount++;
-			winnerId = players[i].getPlayerIndex();
 		}
 	}
 
-	return notResignedPlayersCount == 1 ? winnerId : -1;
+	return notResignedPlayersCount;
 }
 
 int Board::getCurrentPlayerIndex() const
@@ -99,9 +97,10 @@ void Board::playTurn()
 {
 	playTurn(currPlayerIndex);
 }
+
 void Board::playTurn(int playerIndex)
 {
-	if (getWinnerIndex() != -1)
+	if (getCurrentPlayersCount() == 1)
 	{
 		printGameSummary();
 		gameOver = true;

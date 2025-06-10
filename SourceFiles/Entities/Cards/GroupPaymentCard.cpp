@@ -24,5 +24,22 @@ void GroupPaymentCard::printCardDescription() const
 
 void GroupPaymentCard::applyEffect(Player& player) const
 {
-	
+	Board* board = Board::getInstance();
+
+	for (int i = 0; i < board->players.size(); i++)
+	{
+		if (board->players[i].getPlayerIndex() != player.getPlayerIndex() && !board->players[i].hasResigned())
+		{
+			if (amount < 0)
+			{
+				board->players[i].increaseBalance(amount * (-1));
+				player.reduceBalance(amount * (-1));
+			}
+			else
+			{
+				board->players[i].reduceBalance(amount);
+				player.increaseBalance(amount);
+			}
+		}
+	}
 }

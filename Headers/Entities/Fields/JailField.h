@@ -3,13 +3,13 @@
 class JailField : public Field
 {
 private:
-	int tax;
+	static int tax;
 
 public:
 	JailField();
 	JailField(int index, const MyString& content, int tax);
 
-	int getJailTax() const;
+	static int getJailTax();
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

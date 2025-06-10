@@ -10,7 +10,11 @@ namespace GlobalFunctionsAndConstants
 	
 	constexpr static int boardSize = 40;
 	constexpr static int startingPlayerBalance = 1500;
+	constexpr static int defaultJailTax = 100;
+
 	const static MyString helpFileName;
+	const static MyString fieldsFileName;
+	const static MyString gameLostMessage;
 };
 
 namespace ExceptionMessages

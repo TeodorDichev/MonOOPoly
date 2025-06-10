@@ -26,7 +26,7 @@ void Player::moveWith(int positions)
 	if (newIndex / 39 != 0)
 	{
 		newIndex = newIndex % 39 - 1;
-		addToBalance(200);
+		increaseBalance(200);
 	}
 
 	currentFieldIndex = newIndex;
@@ -35,6 +35,29 @@ void Player::moveWith(int positions)
 void Player::moveTo(int index)
 {
 	currentFieldIndex = index;
+}
+
+void Player::increaseBalance(int amount)
+{
+	balance += amount;
+}
+
+void Player::reduceBalance(int amount)
+{
+	while (!hasSufficientFund(amount) && hasAnyProperties())
+	{
+		sellCheapestProperty();
+	}
+
+	if (hasSufficientFund(amount))
+	{
+		balance -= amount;
+	}
+	else
+	{
+		resigned = true;
+		std::cout << GlobalFunctionsAndConstants::gameLostMessage.c_str();
+	}
 }
 
 void Player::setSkipTurn(bool value)
@@ -77,6 +100,11 @@ int Player::getPairsCount() const
 	return pairsCount;
 }
 
+int Player::getPlayerIndex() const
+{
+	return playerIndex;
+}
+
 void Player::throwsPair()
 {
 	pairsCount++;
@@ -87,11 +115,6 @@ void Player::resetPairsCount()
 	pairsCount = 0;
 }
 
-void Player::addToBalance(int amount)
-{
-	balance += amount;
-}
-
 void Player::sellProperty(int fieldIndex)
 {
 	int i = 0;
@@ -99,7 +122,7 @@ void Player::sellProperty(int fieldIndex)
 	{
 		if (properties[i].getFieldIndex() == fieldIndex)
 		{
-			addToBalance(properties[i].getBasePurchaseValue());
+			increaseBalance(properties[i].getBasePurchaseValue());
 			properties[i].removeOwner();
 		}
 	}
@@ -129,7 +152,7 @@ void Player::sellCheapestProperty()
 	}
 
 	properties[minIndex];
-	addToBalance(properties[minIndex].getBasePurchaseValue());
+	increaseBalance(properties[minIndex].getBasePurchaseValue());
 	properties[minIndex].removeOwner();
 
 	std::cout << "You have sold: ";
@@ -163,7 +186,7 @@ void Player::printPlayerSummary() const
 void Player::buyProperty(Property* property)
 {
 	property->setOwner(this);
-	addToBalance(property->getBasePurchaseValue() * (-1));
+	reduceBalance(property->getBasePurchaseValue());
 }
 
 void Player::buyCastle(Property* property)
@@ -184,7 +207,7 @@ void Player::buyCastle(Property* property)
 		throw std::invalid_argument("Cannot buy a mortgage twice!");
 	}
 
-	addToBalance(property->getBaseCastleValue() * (-1));
+	reduceBalance(property->getBaseCastleValue());
 	property->addMortgage(Castle());
 }
 
@@ -203,7 +226,7 @@ void Player::buyCottage(Property* property)
 		throw std::invalid_argument("Cannot buy a mortgage twice!");
 	}
 
-	addToBalance(property->getBaseCottageValue() * (-1));
+	reduceBalance(property->getBaseCottageValue());
 	property->addMortgage(Cottage());
 }
 

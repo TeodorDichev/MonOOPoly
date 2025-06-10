@@ -49,7 +49,7 @@ void RollDice::execute() const
 
 		if (answer == "y")
 		{
-			currPlayer->addToBalance(-100);
+			currPlayer->reduceBalance(JailField::getJailTax());
 		}
 		else
 		{

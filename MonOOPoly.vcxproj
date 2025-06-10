@@ -204,6 +204,7 @@
     <ClInclude Include="Headers\Commands\ViewTrades.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Fields.txt" />
     <Text Include="Help.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

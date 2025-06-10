@@ -5,7 +5,7 @@
 
 #Defined by me files
 *.dat
-*.txt
+*.zip
 
 # User-specific files
 *.rsuser

@@ -251,5 +251,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Help.txt" />
+    <Text Include="Fields.txt" />
   </ItemGroup>
 </Project>

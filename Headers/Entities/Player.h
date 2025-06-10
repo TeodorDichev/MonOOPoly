@@ -53,7 +53,9 @@ public:
 	void moveWith(int positions);
 	void moveTo(int index);
 
-	void addToBalance(int amount);
+	void increaseBalance(int amount);
+	void reduceBalance(int amount);
+
 	void sellProperty(int fieldIndex);
 	void sellCheapestProperty();
 

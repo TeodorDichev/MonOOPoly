@@ -56,10 +56,10 @@ void Trade::acceptOffer()
 		}
 
 		property->removeOwner();
-		sender->addToBalance(requestedAmount);
+		sender->increaseBalance(requestedAmount);
 
 		property->setOwner(receiver);
-		receiver->addToBalance((-1) * requestedAmount);
+		receiver->reduceBalance(requestedAmount);
 		isAccepted = true;
 	}
 	else if (receiver->owsProperty(property->getFieldIndex()))
@@ -71,10 +71,10 @@ void Trade::acceptOffer()
 		}
 
 		property->removeOwner();
-		receiver->addToBalance(requestedAmount);
+		receiver->increaseBalance(requestedAmount);
 
 		property->setOwner(sender);
-		sender->addToBalance((-1) * requestedAmount);
+		sender->reduceBalance((-1) * requestedAmount);
 		isAccepted = true;
 	}
 	else
