@@ -55,6 +55,8 @@ Player* Board::getPlayer(int index)
 			return &players[i];
 		}
 	}
+
+	return nullptr;
 }
 
 void Board::setPlayerIndex(int value)

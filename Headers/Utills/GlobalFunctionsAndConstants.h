@@ -12,22 +12,22 @@ namespace GlobalFunctionsAndConstants
 	constexpr static int startingPlayerBalance = 1500;
 	constexpr static int defaultJailTax = 100;
 
-	const static MyString helpFileName;
-	const static MyString fieldsFileName;
-	const static MyString gameLostMessage;
+	const MyString helpFileName = "Help.txt";
+	const static MyString fieldsFileName = "Fields.txt";
+	const static MyString gameLostMessage = "You have insufficient funds to execute this action and no more properties to sell due to this you have lost!";
 };
 
 namespace ExceptionMessages
 {
-	const static MyString notStartedGame;
-	const static MyString playerNotFound;
-	const static MyString invalidFieldIndex;
-	const static MyString cannotBuyPropertyTwice;
-	const static MyString anotherPlayerProperty;
-	const static MyString insufficientFunds;
-	const static MyString invalidMortgageName;
-	const static MyString invalidTradeIndex;
-	const static MyString invalidPlayersCount;
+	const MyString notStartedGame = "You must start a game in order to be able to execute this command!";
+	const MyString playerNotFound = "Player with this index was not found!";
+	const static MyString invalidFieldIndex = "Fields start from 0 to 39. Make sure to enter valid index!";
+	const static MyString cannotBuyPropertyTwice = "You have already bought this property!";
+	const static MyString anotherPlayerProperty = "This property is owned by another player!";
+	const static MyString insufficientFunds = "You have insufficient funds to execute this action!";
+	const static MyString invalidMortgageName = "Invalid mortgage name!";
+	const static MyString invalidTradeIndex = "Invalid trade index!";
+	const static MyString invalidPlayersCount = "Invalid players count! Game must have between 2 and 6 players!";
 };
 
 enum class Mortgages

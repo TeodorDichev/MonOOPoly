@@ -1,4 +1,5 @@
 #include "../../../Headers/Entities/Fields/JailField.h"
+#include "../../../Headers/Entities/Player.h"
 
 int JailField::tax = GlobalFunctionsAndConstants::defaultJailTax;
 
@@ -25,7 +26,7 @@ void JailField::interactWithField(Player* player)
 	player->setSkipTurn(true);
 }
 
-bool CardField::isJail() const
+bool JailField::isJail() const
 {
 	return true;
 }

@@ -7,7 +7,7 @@ class Bank
 private:
 	MyVector<Trade> trades;
 
-	Bank();
+	Bank() = default;
 	static Bank* instance;
 
 public:

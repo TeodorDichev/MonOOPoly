@@ -1,4 +1,5 @@
 #include "../../../Headers/Entities/Cards/PaymentCard.h"
+#include "../../../Headers/Entities/Player.h"
 
 PaymentCard::PaymentCard(int amount) : Card()
 {

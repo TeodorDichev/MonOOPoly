@@ -1,4 +1,5 @@
 #include "../../../Headers/Entities/Fields/Property.h"
+#include "../../../Headers/Entities/Player.h"
 
 Property::Property() : Property(-1, "", "", 0, 0, 0, 0)
 { }
@@ -111,7 +112,7 @@ void Property::printInfo() const
 	std::cout << std::endl;
 }
 
-bool CardField::isJail() const
+bool Property::isJail() const
 {
 	return false;
 }

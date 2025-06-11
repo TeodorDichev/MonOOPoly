@@ -5,12 +5,12 @@ double Castle::getRentIncrease() const
 	return this->rentIncreasePercentage;
 }
 
-bool Cottage::isCastle() const
+bool Castle::isCastle() const
 {
 	return true;
 }
 
-bool Cottage::isCottage() const
+bool Castle::isCottage() const
 {
 	return false;
 }

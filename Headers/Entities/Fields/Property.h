@@ -1,7 +1,9 @@
 #pragma once
 #include "Field.h"
+#include "../Mortgage/Castle.h"
+#include "../Mortgage/Cottage.h"
 
-class Mortgage;
+class Player;
 
 class Property : public Field
 {

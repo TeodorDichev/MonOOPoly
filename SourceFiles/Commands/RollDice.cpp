@@ -1,4 +1,5 @@
 #include "../../Headers/Commands/RollDice.h"
+#include "../../Headers/Entities/Fields/JailField.h"
 
 void RollDice::execute() const
 {

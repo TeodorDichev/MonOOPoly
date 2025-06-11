@@ -4,11 +4,6 @@
 #include "../Utills/GlobalFunctionsAndConstants.h"
 
 #include "Fields/Property.h"
-#include "Fields/CardField.h"
-#include "Fields/JailField.h"
-#include "Fields/FreeParkingField.h"
-#include "Mortgage/Cottage.h"
-#include "Mortgage/Castle.h"
 
 class Player
 {
@@ -19,7 +14,7 @@ private:
 	int balance = 0;
 	int pairsCount = 0;
 	int playerIndex;
-	int currentFieldIndex;
+	int currentFieldIndex = 0;
 
 	MyString playerName;
 	MyVector<Property> properties;

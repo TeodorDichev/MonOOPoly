@@ -16,7 +16,7 @@ void FreeParkingField::interactWithField(Player* player)
 	std::cout << "Welcome! This is a free parking!";
 }
 
-bool CardField::isJail() const
+bool FreeParkingField::isJail() const
 {
 	return false;
 }

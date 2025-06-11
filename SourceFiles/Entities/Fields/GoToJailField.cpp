@@ -1,7 +1,10 @@
 #include "../../../Headers/Entities/Fields/GoToJailField.h"
+#include "../../../Headers/Entities/Player.h"
 
 GoToJailField::GoToJailField() : Field()
-{ }
+{ 
+	this->jailFieldIndex = -1;
+}
 
 GoToJailField::GoToJailField(int index, const MyString& description, int jailIndex) : Field(index, description)
 { 
@@ -18,7 +21,7 @@ void GoToJailField::interactWithField(Player* player)
 	player->moveTo(jailFieldIndex);
 }
 
-bool CardField::isJail() const
+bool GoToJailField::isJail() const
 {
 	return false;
 }

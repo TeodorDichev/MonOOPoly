@@ -1,12 +1,13 @@
 #pragma once
 #include "../Utills/HeterogeneousContainer.hpp"
 #include "Player.h"
+#include "Cards/CardDeck.h"
 
 class Board
 {
 private:
 	bool gameOver = false;
-	int currPlayerIndex;
+	int currPlayerIndex = 0;
 
 	CardDeck cardDeck;
 

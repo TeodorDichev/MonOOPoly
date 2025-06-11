@@ -255,7 +255,7 @@ bool Player::owsProperty(int fieldIndex) const
 
 bool Player::hasResigned() const
 {
-	return resign;
+	return resigned;
 }
 
 bool Player::shouldSkipTurn() const
