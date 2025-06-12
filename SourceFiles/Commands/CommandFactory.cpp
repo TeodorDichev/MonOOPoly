@@ -19,10 +19,6 @@ void CommandFactory::freeInstance()
 
 Command* CommandFactory::readCommand(const MyString& command) const
 {
-	if (command == "buy_field")
-	{
-		return new BuyField();
-	}
 	if (command == "end_turn")
 	{
 		return new EndTurn();
@@ -61,6 +57,6 @@ Command* CommandFactory::readCommand(const MyString& command) const
 	}
 	else
 	{
-		throw std::invalid_argument("Invalid command!");
+		throw std::invalid_argument(ExceptionMessages::invalidCommand.c_str());
 	}
 }

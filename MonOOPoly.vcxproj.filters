@@ -81,9 +81,6 @@
     <ClCompile Include="SourceFiles\Commands\CheckField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Commands\BuyField.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\Commands\SellField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -103,9 +100,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceFiles\Utills\GlobalFunctionsAndConstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Commands\EndTurn.cpp">
@@ -194,9 +188,6 @@
     <ClInclude Include="Headers\Commands\CheckField.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Commands\BuyField.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Commands\SellField.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -218,7 +209,7 @@
     <ClInclude Include="Headers\Utills\SerializeFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Utills\GlobalFunctionsAndConstants.h">
+    <ClInclude Include="Headers\Utills\GlobalConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Entities\Fields\JailField.h">

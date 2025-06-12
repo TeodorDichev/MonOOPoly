@@ -1,7 +1,7 @@
 #include "../../../Headers/Entities/Fields/JailField.h"
 #include "../../../Headers/Entities/Player.h"
 
-int JailField::tax = GlobalFunctionsAndConstants::defaultJailTax;
+int JailField::tax = GlobalConstants::defaultJailTax;
 
 JailField::JailField() : Field()
 { }

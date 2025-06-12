@@ -18,7 +18,7 @@ void StartNewGame::execute() const
 		std::cin >> playerName;
 		std::cout << std::endl;
 
-		board->addPlayer(i + 1,playerName, GlobalFunctionsAndConstants::startingPlayerBalance);
+		board->addPlayer(Player(i, playerName, GlobalConstants::startingPlayerBalance));
 	}
 
 	SerializeFunctions::startNewGame();

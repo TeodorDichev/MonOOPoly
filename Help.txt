@@ -22,10 +22,9 @@ help                           - Displays help and a list of commands.
 
 # In-game commands #
 roll                           - Rolls the dice and moves the current player.
-buy_field                      - Buys the field the player landed on (if it's unowned).
 sell_field <field index>       - Sells a field owned by the player.
 check_field <field index>      - Displays information about a specific field.
-upgrade_mortgage <field index> - Upgrades mortgage from a field.
+upgrade_mortgage <field index> - Upgrades mortgage on current property if the requirement are met.
 resign                         - The current player resigns from the game.
 
 # Trade #

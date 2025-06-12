@@ -36,10 +36,6 @@ int Property::getBaseCottageValue() const
 	return baseCottageValue;
 }
 
-Player* Property::getOwner() const
-{
-	return owner;
-}
 
 void Property::setOwner(Player* player)
 {
@@ -56,7 +52,7 @@ const Mortgage* Property::getMortgage() const
 	return mortgage;
 }
 
-void Property::addMortgage(const Mortgage& mortgage)
+void Property::addMortgage(const Mortgage* mortgage)
 {
 	if (this->mortgage)
 	{
@@ -83,14 +79,36 @@ const MyString& Property::getColor() const
 
 void Property::interactWithField(Player* player)
 {
-	if (owner == nullptr || owner->getPlayerIndex() == player->getPlayerIndex())
+	if (owner == nullptr)
+	{
+		std::cout << "Would you like to purchase this property?" << std::endl;
+		MyString ans;
+		std::cin >> ans;
+
+		if (ans == "y")
+		{
+			player->buyProperty(this);
+			this->owner = player;
+		}
+		else if (ans == "n")
+		{
+			return;
+		}
+		else
+		{
+			throw std::invalid_argument(ExceptionMessages::invalidCommand.c_str());
+		}
+	}
+	else if (owner->getPlayerIndex() == player->getPlayerIndex())
 	{
 		return;
 	}
-
-	int rent = getRent();
-	player->reduceBalance(rent);
-	owner->increaseBalance(rent);
+	else
+	{
+		int rent = getRent();
+		player->reduceBalance(rent);
+		owner->increaseBalance(rent);
+	}
 }
 
 void Property::printInfo() const

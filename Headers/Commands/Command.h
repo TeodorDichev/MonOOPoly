@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../Entities/Board.h"
 #include "../Entities/Bank.h"
-#include "../Utills/GlobalFunctionsAndConstants.h"
+#include "../Utills/GlobalConstants.h"
 
 class Command
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Utills/MyString.h"
+#include "../../Utills/GlobalConstants.h"
 
 class Player;
 

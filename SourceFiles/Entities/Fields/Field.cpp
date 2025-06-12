@@ -1,5 +1,4 @@
 #include "../../../Headers/Entities/Fields/Field.h"
-#include "../../../Headers/Utills/GlobalFunctionsAndConstants.h"
 
 Field::Field() : Field(-1, "Exampl")
 { }
@@ -19,8 +18,8 @@ MyString& Field::getContentRef()
 
 MyString Field::fieldEdge(bool draw)
 {
-	return draw ? "+" + MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth, '-') 
-		: MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth + 1, ' ');
+	return draw ? "+" + MyString::repeatChar(GlobalConstants::fieldWidth, '-') 
+		: MyString::repeatChar(GlobalConstants::fieldWidth + 1, ' ');
 }
 
 MyString Field::printContent() const

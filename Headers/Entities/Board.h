@@ -29,7 +29,7 @@ public:
 	Player* getPlayer(int index);
 
 	void setPlayerIndex(int value);
-	void addPlayer(int index, const MyString& playerName, int balance);
+	void addPlayer(const Player& player);
 
 	int getBoardSize() const;
 	Field* getField(int index);

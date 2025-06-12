@@ -1,6 +1,6 @@
 #pragma once
 #include "MyString.h"
-#include "GlobalFunctionsAndConstants.h"
+#include "GlobalConstants.h"
 
 #include "../Entities/Fields/Property.h"
 #include "../Entities/Fields/StartField.h"
@@ -31,9 +31,9 @@ public:
 
 private:
 	static void loadFieldsTxt(std::ifstream& fieldsStream);
-	static void loadFieldsBin();
+	static void loadFieldsBin(std::ifstream& fieldsStream);
+	static void loadPlayersBin(std::ifstream& playersStream);
 	static void loadCardsTxt(std::ifstream& cardsStream);
-	static void loadCardsBin();
 
 	static void writeStringToBinFile(std::ofstream& ofs, const MyString& str);
 	static MyString readStringFromBinFile(std::ifstream& ifs);

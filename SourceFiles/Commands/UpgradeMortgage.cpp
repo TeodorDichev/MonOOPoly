@@ -14,13 +14,25 @@ void UpgradeMortgage::execute() const
 		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
 
-	int fieldIndex = currPlayer->getCurrentFieldIndex();
-	Field* field = board->getField(fieldIndex);
-
-	if (!currPlayer->owsProperty(fieldIndex))
+	Property* property = currPlayer->getProperty(currPlayer->getCurrentFieldIndex());
+	if (property)
 	{
-		throw new std::invalid_argument(ExceptionMessages::cannotBuyPropertyTwice.c_str());
+		throw new std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
 	}
 
-	field->interactWithField(currPlayer);
+	MyString mortgage;
+	std::cin >> mortgage;
+
+	if (mortgage == "Cottage")
+	{
+		currPlayer->buyCottage(property);
+	}
+	else if (mortgage == "Castle")
+	{
+		currPlayer->buyCastle(property);
+	}
+	else
+	{
+		throw std::invalid_argument(ExceptionMessages::invalidMortgageName.c_str());
+	}
 }

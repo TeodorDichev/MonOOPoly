@@ -6,6 +6,15 @@ Player::Player() : Player(-1, "", 0)
 Player::Player(int playerIndex, const MyString& playerName, int playerBalance) : playerIndex(playerIndex), playerName(playerName), balance(playerBalance)
 { }
 
+Player::Player(int playerIndex, const MyString& playerName, int playerBalance, bool resigned, bool skipTurn, int pairsCount, int currentFieldIndex) 
+	: Player(playerIndex, playerName, playerBalance)
+{
+	this->resigned = resigned;
+	this->skipTurn = skipTurn;
+	this->pairsCount = pairsCount;
+	this->currentFieldIndex = currentFieldIndex;
+}
+
 void Player::resign()
 {
 	resigned = true;
@@ -56,7 +65,7 @@ void Player::reduceBalance(int amount)
 	else
 	{
 		resigned = true;
-		std::cout << GlobalFunctionsAndConstants::gameLostMessage.c_str();
+		std::cout << GlobalConstants::gameLostMessage.c_str();
 	}
 }
 
@@ -83,6 +92,19 @@ bool Player::hasAllPropertiesOfColor(const MyString& color)
 	}
 	
 	return cnt == 4;
+}
+
+Property* Player::getProperty(int index)
+{
+	for (int i = 0; i < properties.size(); i++)
+	{
+		if (properties[i].getFieldIndex() == index)
+		{
+			return &properties[i];
+		}
+	}
+
+	return nullptr;
 }
 
 const MyString& Player::getName() const
@@ -183,9 +205,8 @@ void Player::printPlayerSummary() const
 	std::cout << std::endl;
 }
 
-void Player::buyProperty(Property* property)
+void Player::buyProperty(const Property* property)
 {
-	property->setOwner(this);
 	reduceBalance(property->getBasePurchaseValue());
 }
 
@@ -208,7 +229,7 @@ void Player::buyCastle(Property* property)
 	}
 
 	reduceBalance(property->getBaseCastleValue());
-	property->addMortgage(Castle());
+	property->addMortgage(new Castle());
 }
 
 void Player::buyCottage(Property* property)
@@ -227,7 +248,7 @@ void Player::buyCottage(Property* property)
 	}
 
 	reduceBalance(property->getBaseCottageValue());
-	property->addMortgage(Cottage());
+	property->addMortgage(new Cottage());
 }
 
 int Player::getCurrentFieldIndex() const

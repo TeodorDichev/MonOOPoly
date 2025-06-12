@@ -1,7 +1,7 @@
 #pragma once
 #include "../Utills/MyVector.hpp"
 #include "../Utills/MyString.h"
-#include "../Utills/GlobalFunctionsAndConstants.h"
+#include "../Utills/GlobalConstants.h"
 
 #include "Fields/Property.h"
 
@@ -19,13 +19,10 @@ private:
 	MyString playerName;
 	MyVector<Property> properties;
 
-	void buyProperty(Property* property);
-	void buyCastle(Property* property);
-	void buyCottage(Property* property);
-
 public:
 	Player();
 	Player(int playerIndex, const MyString& playerName, int playerBalance);
+	Player(int playerIndex, const MyString& playerName, int playerBalance, bool resigned, bool skipTurn, int pairsCount, int currentFieldIndex);
 
 	void resign();
 	void throwsPair();
@@ -39,6 +36,7 @@ public:
 	bool hasResigned() const;
 	bool shouldSkipTurn() const;
 
+	Property* getProperty(int index);
 	const MyString& getName() const;
 	int getBalance() const;
 	int getPairsCount() const;
@@ -50,6 +48,10 @@ public:
 
 	void increaseBalance(int amount);
 	void reduceBalance(int amount);
+
+	void buyProperty(const Property* property);
+	void buyCastle(Property* property);
+	void buyCottage(Property* property);
 
 	void sellProperty(int fieldIndex);
 	void sellCheapestProperty();

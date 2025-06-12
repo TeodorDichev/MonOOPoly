@@ -64,9 +64,9 @@ void Board::setPlayerIndex(int value)
 	currPlayerIndex = value;
 }
 
-void Board::addPlayer(int index, const MyString& playerName, int balance)
+void Board::addPlayer(const Player& player)
 {
-	players.push_back(Player(index, playerName, balance));
+	players.push_back(player);
 }
 
 int Board::getBoardSize() const
@@ -144,38 +144,38 @@ void Board::printBoard() const
 	std::cout << "\033[2J\033[1;1H"; 
 	
 	// prints the table
-	for (int r = 0; r < GlobalFunctionsAndConstants::tableSize; ++r) 
+	for (int r = 0; r < GlobalConstants::tableSize; ++r) 
 	{
 		// Top line of current row
-		for (int c = 0; c < GlobalFunctionsAndConstants::tableSize; ++c) 
+		for (int c = 0; c < GlobalConstants::tableSize; ++c) 
 		{
-			bool onBorder = (r == 0 || r == GlobalFunctionsAndConstants::tableSize - 1 || c == 0 || c == GlobalFunctionsAndConstants::tableSize - 1 || r == 1);
+			bool onBorder = (r == 0 || r == GlobalConstants::tableSize - 1 || c == 0 || c == GlobalConstants::tableSize - 1 || r == 1);
 			std::cout << Field::fieldEdge(onBorder);
 			
-			if (r != 0 && r != 1 && r != GlobalFunctionsAndConstants::tableSize - 1 && c == 0) 
+			if (r != 0 && r != 1 && r != GlobalConstants::tableSize - 1 && c == 0) 
 			{
 				std::cout << "+";
-				std::cout << MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth, ' ');
+				std::cout << MyString::repeatChar(GlobalConstants::fieldWidth, ' ');
 				c++;
 			}
 		}
 		std::cout << "+" << std::endl;
 
 		// Inner cell lines
-		for (int h = 0; h < GlobalFunctionsAndConstants::fieldHeight; ++h) 
+		for (int h = 0; h < GlobalConstants::fieldHeight; ++h) 
 		{
-			for (int c = 0; c < GlobalFunctionsAndConstants::tableSize; ++c) 
+			for (int c = 0; c < GlobalConstants::tableSize; ++c) 
 			{
 				// The variable exists with the sole purpose to be know what exactly the conditions is
-				bool finalColLeftLine = (c == GlobalFunctionsAndConstants::tableSize - 1 && h == 0 && r != GlobalFunctionsAndConstants::tableSize - 1 && r != 0);
+				bool finalColLeftLine = (c == GlobalConstants::tableSize - 1 && h == 0 && r != GlobalConstants::tableSize - 1 && r != 0);
 				if (r == 0 && c == 0 || (c == 0 && h == 0) || finalColLeftLine)
 				{
 					std::cout << "|";
 				}
 
-				if (c == GlobalFunctionsAndConstants::tableSize - 2 && r != 0 && r != GlobalFunctionsAndConstants::tableSize - 1)
+				if (c == GlobalConstants::tableSize - 2 && r != 0 && r != GlobalConstants::tableSize - 1)
 				{
-					std::cout << MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth, ' ');
+					std::cout << MyString::repeatChar(GlobalConstants::fieldWidth, ' ');
 					continue;
 				}
 
@@ -185,7 +185,7 @@ void Board::printBoard() const
 					int index = 20 + c;
 					std::cout << fields[index]->printContent();
 				}
-				else if (r == GlobalFunctionsAndConstants::tableSize - 1) // bottom row including edges
+				else if (r == GlobalConstants::tableSize - 1) // bottom row including edges
 				{
 					int index = 10 - c;
 					std::cout << fields[index]->printContent();
@@ -195,14 +195,14 @@ void Board::printBoard() const
 					int index = 20 - r;
 					std::cout << fields[index]->printContent();
 				}
-				else if (c == GlobalFunctionsAndConstants::tableSize - 1)
+				else if (c == GlobalConstants::tableSize - 1)
 				{
 					int index = 30 + r;
 					std::cout << fields[index]->printContent();
 				}
 				else
 				{
-					std::cout << MyString::repeatChar(GlobalFunctionsAndConstants::fieldWidth + 1, ' ');
+					std::cout << MyString::repeatChar(GlobalConstants::fieldWidth + 1, ' ');
 				}
 			}
 			std::cout << std::endl;
@@ -210,7 +210,7 @@ void Board::printBoard() const
 	}
 
 	// Final bottom line
-	for (int c = 0; c < GlobalFunctionsAndConstants::tableSize; ++c) 
+	for (int c = 0; c < GlobalConstants::tableSize; ++c) 
 	{
 		std::cout << Field::fieldEdge(true);
 	}

@@ -23,6 +23,7 @@ public:
 	Property();
 	Property(int index, const MyString& content, const MyString& color,
 		int baseRentValue, int basePurchaseValue, int baseCottageValue, int baseCastleValue);
+
 	Field* clone() const override;
 
 	int getRent() const;
@@ -33,14 +34,12 @@ public:
 	int getBaseCottageValue() const;
 	int getBaseCastleValue() const;
 
-	Player* getOwner() const;
-
 	void setOwner(Player* player);
 	void removeOwner();
 
 	const Mortgage* getMortgage() const;
 
-	void addMortgage(const Mortgage& mortgage);
+	void addMortgage(const Mortgage* mortgage);
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

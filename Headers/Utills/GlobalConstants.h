@@ -1,7 +1,7 @@
 #pragma once
 #include "MyString.h"
 
-namespace GlobalFunctionsAndConstants
+namespace GlobalConstants
 {
 	static constexpr int fieldWidth = 6;
 	static constexpr int fieldHeight = 1;
@@ -13,6 +13,8 @@ namespace GlobalFunctionsAndConstants
 
 	const static MyString helpFileName = "Help.txt";
 	const static MyString fieldsFileName = "Fields.txt";
+	const static MyString prevGameFields = "Fields.dat";
+	const static MyString prevGamePlayers = "Players.dat";
 	const static MyString cardsFileName = "Cards.txt";
 	const static MyString gameLostMessage = "You have insufficient funds to execute this action and no more properties to sell due to this you have lost!";
 };
@@ -31,6 +33,8 @@ namespace ExceptionMessages
 	const static MyString failedToOpenFile = "Failed opening file!";
 	const static MyString unknownFieldType = "Unknown field type has been reached!";
 	const static MyString unknownCardType = "Unknown card type has been reached!";
+	const static MyString noPrevGames = "There is no previous game to load!";
+	const static MyString invalidCommand = "Invalid command!";
 };
 
 enum class Mortgages
