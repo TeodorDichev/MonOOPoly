@@ -123,6 +123,9 @@
     <ClCompile Include="SourceFiles\Entities\Bank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\Entities\Fields\StartField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Monopoly.h">
@@ -248,9 +251,13 @@
     <ClInclude Include="Headers\Entities\Bank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Entities\Fields\StartField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Help.txt" />
     <Text Include="Fields.txt" />
+    <Text Include="Cards.txt" />
   </ItemGroup>
 </Project>

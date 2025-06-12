@@ -2,5 +2,5 @@
 
 void Help::execute() const
 {
-	SerializeFunctions::printRules();
+	SerializeFunctions::printHelp();
 }

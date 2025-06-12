@@ -69,6 +69,11 @@ void Board::addPlayer(int index, const MyString& playerName, int balance)
 	players.push_back(Player(index, playerName, balance));
 }
 
+int Board::getBoardSize() const
+{
+	return fields.getSize();
+}
+
 Field* Board::getField(int index)
 {
 	for (int i = 0; i < fields.getSize(); i++)
@@ -79,7 +84,7 @@ Field* Board::getField(int index)
 		}
 	}
 
-	throw std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
+	return nullptr;
 }
 
 int Board::getJailIndex() const

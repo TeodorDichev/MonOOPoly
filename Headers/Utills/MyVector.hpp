@@ -19,9 +19,9 @@ class MyVector
 public:
 	MyVector();
 	MyVector(const MyVector<T>& other);
-	MyVector(MyVector<T>&& other);
+	MyVector(MyVector<T>&& other) noexcept;
 	MyVector<T>& operator=(const MyVector<T>& other);
-	MyVector<T>& operator=(MyVector<T>&& other);
+	MyVector<T>& operator=(MyVector<T>&& other) noexcept;
 	~MyVector<T>();
 
 	size_t size() const;
@@ -93,7 +93,7 @@ MyVector<T>::MyVector(const MyVector<T>& other)
 }
 
 template <typename T>
-MyVector<T>::MyVector(MyVector<T>&& other)
+MyVector<T>::MyVector(MyVector<T>&& other) noexcept
 {
 	moveFrom(std::move(other));
 }
@@ -110,7 +110,7 @@ MyVector<T>& MyVector<T>::operator=(const MyVector<T>& other)
 }
 
 template <typename T>
-MyVector<T>& MyVector<T>::operator=(MyVector<T>&& other)
+MyVector<T>& MyVector<T>::operator=(MyVector<T>&& other) noexcept
 {
 	if (this != &other)
 	{

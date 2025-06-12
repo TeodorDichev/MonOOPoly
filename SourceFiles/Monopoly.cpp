@@ -30,4 +30,5 @@ void Monopoly::Run()
 
 	CommandFactory::freeInstance();
 	Board::freeInstance();
+	Bank::freeInstance();
 }

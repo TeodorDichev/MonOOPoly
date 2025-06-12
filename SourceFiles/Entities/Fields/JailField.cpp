@@ -11,6 +11,11 @@ JailField::JailField(int index, const MyString& description, int tax) : Field(in
 	this->tax = tax;
 }
 
+Field* JailField::clone() const
+{
+	return new JailField(*this);
+}
+
 void JailField::printInfo() const
 {
 	std::cout << index << ", JailField: Your next turn will be skipped! If you want to go out you will need to pay a tax of " << tax << "$!" << std::endl;

@@ -16,7 +16,7 @@ void SellField::execute() const
 
 	int fieldIndex;
 	std::cin >> fieldIndex;
-	if (fieldIndex < 0 || fieldIndex >= GlobalFunctionsAndConstants::boardSize)
+	if (fieldIndex < 0 || fieldIndex >= board->getBoardSize())
 	{
 		throw new std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
 	}

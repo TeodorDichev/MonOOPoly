@@ -6,6 +6,11 @@ FreeParkingField::FreeParkingField() : Field()
 FreeParkingField::FreeParkingField(int index, const MyString& description) : Field(index, description)
 { }
 
+Field* FreeParkingField::clone() const
+{
+	return new FreeParkingField(*this);
+}
+
 void FreeParkingField::printInfo() const
 {
 	std::cout << index << ", FreeParkingField" << std::endl;

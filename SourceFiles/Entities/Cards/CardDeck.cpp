@@ -1,6 +1,6 @@
 #include "../../../Headers/Entities/Cards/CardDeck.h"
 
-void CardDeck::drawCard(Player* player)
+void CardDeck::drawCard(Player* player) const
 {
 	std::srand(std::time(nullptr));
 
@@ -8,4 +8,9 @@ void CardDeck::drawCard(Player* player)
 
 	cards[index]->applyEffect(*player);
 	cards[index]->printCardDescription();
+}
+
+void CardDeck::addCard(const Card& card)
+{
+	cards.addObject(card);
 }

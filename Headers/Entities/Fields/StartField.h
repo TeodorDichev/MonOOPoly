@@ -1,15 +1,17 @@
 #pragma once
 #include "Field.h"
 
-class FreeParkingField : public Field
+class StartField : public Field
 {
 public:
-	FreeParkingField();
-	FreeParkingField(int index, const MyString& content);
+	StartField();
+	StartField(int index, const MyString& content);
 	Field* clone() const override;
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;
 
 	bool isJail() const override;
+
 };
+

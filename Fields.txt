@@ -28,7 +28,7 @@ Property 26 26_Sky Sky 105 470 280 240
 Cards 27 _Cards
 Property 28 28_Jet Jet 100 460 270 230
 Property 29 29_Jet Jet 105 470 280 240
-GoJail 30 GoJail
+GoJail 30 GoJail 10
 Property 31 31_Jet Jet 115 490 300 260
 Property 32 32_Jet Jet 120 500 310 270
 Cards 33 _Cards

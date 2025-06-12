@@ -6,12 +6,13 @@
 class CardField : public Field
 {
 private:
-	// All card field have a pointer to the single card deck
-	CardDeck* deck;
+	// All card field have a pointer to the a card deck
+	const CardDeck* deck = nullptr;
 
 public:
 	CardField();
-	CardField(int index, const MyString& content);
+	CardField(int index, const MyString& content, const CardDeck* ptr);
+	Field* clone() const override;
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

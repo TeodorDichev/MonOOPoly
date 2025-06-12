@@ -20,4 +20,6 @@ public:
 	void removeTradesOfPlayer(int playerId);
 	void printPlayerTrades(int playerIndex) const;
 	void acceptTrade(int tradeId);
+
+	friend class SerializeFunctions;
 };

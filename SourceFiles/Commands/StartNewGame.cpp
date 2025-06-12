@@ -9,8 +9,6 @@ void StartNewGame::execute() const
 	{
 		throw new std::invalid_argument(ExceptionMessages::invalidPlayersCount.c_str());
 	}
-
-	SerializeFunctions::loadDefaultFieldsFromFile();
 	
 	for (int i = 0; i < playersCount; i++)
 	{
@@ -23,6 +21,8 @@ void StartNewGame::execute() const
 		board->addPlayer(i + 1,playerName, GlobalFunctionsAndConstants::startingPlayerBalance);
 	}
 
+	SerializeFunctions::startNewGame();
+	
 	board->printBoard();
 	board->setPlayerIndex(1);
 	board->playTurn(1);

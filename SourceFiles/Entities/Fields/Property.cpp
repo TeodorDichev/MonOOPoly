@@ -16,6 +16,11 @@ Property::Property(int index, const MyString& content, const MyString& color, in
 	this->baseCastleValue = baseCastleValue;
 }
 
+Field* Property::clone() const
+{
+	return new Property(*this);
+}
+
 int Property::getBaseCastleValue() const
 {
 	return baseCastleValue;

@@ -188,5 +188,5 @@ void HeterogeneousContainer<T>::addObject(T* ptr)
 	if (size == capacity) {
 		resize(capacity * 2);
 	}
-	objects[size++] = ptr;
+	objects[size++] = ptr->clone();
 }

@@ -23,6 +23,7 @@ public:
 	Property();
 	Property(int index, const MyString& content, const MyString& color,
 		int baseRentValue, int basePurchaseValue, int baseCottageValue, int baseCastleValue);
+	Field* clone() const override;
 
 	int getRent() const;
 	bool hasMortgage() const;

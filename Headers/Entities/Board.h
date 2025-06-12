@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../Utills/HeterogeneousContainer.hpp"
 #include "Player.h"
 #include "Cards/CardDeck.h"
@@ -30,6 +31,7 @@ public:
 	void setPlayerIndex(int value);
 	void addPlayer(int index, const MyString& playerName, int balance);
 
+	int getBoardSize() const;
 	Field* getField(int index);
 	int getJailIndex() const;
 

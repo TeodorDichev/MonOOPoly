@@ -9,6 +9,7 @@ private:
 public:
 	GoToJailField();
 	GoToJailField(int index, const MyString& content, int jailIndex);
+	Field* clone() const override;
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

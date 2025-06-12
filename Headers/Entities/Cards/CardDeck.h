@@ -8,5 +8,6 @@ private:
 	HeterogeneousContainer<Card> cards;
 
 public:
-	void drawCard(Player* player);
+	void drawCard(Player* player) const;
+	void addCard(const Card& card);
 };

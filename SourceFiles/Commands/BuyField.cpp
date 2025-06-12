@@ -9,7 +9,7 @@ void BuyField::execute() const
 	}
 
 	Player* currPlayer = board->getPlayer(playerIndex);
-	if (currPlayer)
+	if (currPlayer == nullptr)
 	{
 		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}

@@ -8,6 +8,7 @@ private:
 public:
 	JailField();
 	JailField(int index, const MyString& content, int tax);
+	Field* clone() const override;
 
 	static int getJailTax();
 

@@ -13,6 +13,7 @@ public:
 	Field();
 	Field(int index, const MyString& content);
 	virtual ~Field() = default;
+	virtual Field* clone() const = 0;
 
 	int getFieldIndex() const;
 	virtual void interactWithField(Player* player) = 0;

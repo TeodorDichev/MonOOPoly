@@ -3,8 +3,15 @@
 CardField::CardField() : Field()
 { }
 
-CardField::CardField(int index, const MyString& description) : Field(index, description)
-{ }
+CardField::CardField(int index, const MyString& description, const CardDeck* ptr) : Field(index, description)
+{ 
+	deck = ptr;
+}
+
+Field* CardField::clone() const
+{
+	return new CardField(*this);
+}
 
 void CardField::printInfo() const
 {
