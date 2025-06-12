@@ -17,7 +17,7 @@ private:
 	int currentFieldIndex = 0;
 
 	MyString playerName;
-	MyVector<Property> properties;
+	MyVector<Property*> propertiesPtrs;
 
 public:
 	Player();
@@ -36,7 +36,7 @@ public:
 	bool hasResigned() const;
 	bool shouldSkipTurn() const;
 
-	void addProperty(const Property* property);
+	void addProperty(Property* property);
 	Property* getProperty(int index);
 	const MyString& getName() const;
 	int getBalance() const;

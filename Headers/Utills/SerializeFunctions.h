@@ -20,8 +20,10 @@ private:
 	static Board* board;
 	static Bank* bank;
 
-	static void loadFieldsTxt(std::ifstream& fieldsStream);
-	static void loadFieldsBin(std::ifstream& fieldsStream);
-	static void loadPlayersBin(std::ifstream& playersStream);
-	static void loadCardsTxt(std::ifstream& cardsStream);
+	static void loadFieldsTxt(std::ifstream& ifs);
+	static void loadCardsTxt(std::ifstream& ifs);
+
+	static void loadFieldsBin(std::ifstream& ifs);
+	static void loadPlayersBin(std::ifstream& ifs);
+	static void loadTradesBin(std::ifstream& ifs);
 };

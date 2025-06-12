@@ -7,7 +7,7 @@ void ViewTrades::execute() const
 	{
 		throw new std::invalid_argument(ExceptionMessages::notStartedGame.c_str());
 	}
-	if (board->getPlayer(playerIndex))
+	if (!board->getPlayer(playerIndex))
 	{
 		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}

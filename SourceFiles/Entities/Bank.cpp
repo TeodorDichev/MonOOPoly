@@ -22,13 +22,52 @@ bool Bank::hasPlayerReceivedTrade(int tradeId, int playerIndex) const
 {
 	for (int i = 0; i < trades.size(); i++)
 	{
-		if (trades[i].getReceiverIndex() == playerIndex || trades[i].getTradeId() == tradeId)
+		if (trades[i].getReceiverIndex() == playerIndex && trades[i].getTradeId() == tradeId)
 		{
 			return true;
 		}
 	}
 
 	return false;
+}
+
+int Bank::getTradeSenderIndex(int tradeId) const
+{
+	for (int i = 0; i < trades.size(); i++)
+	{
+		if (trades[i].getTradeId() == tradeId)
+		{
+			return trades[i].getSenderIndex();
+		}
+	}
+	
+	return -1;
+}
+
+int Bank::getTradeRequestedAmount(int tradeId) const
+{
+	for (int i = 0; i < trades.size(); i++)
+	{
+		if (trades[i].getTradeId() == tradeId)
+		{
+			return trades[i].getRequestedAmount();
+		}
+	}
+
+	return -1;
+}
+
+int Bank::getPropertyIndex(int tradeId) const
+{
+	for (int i = 0; i < trades.size(); i++)
+	{
+		if (trades[i].getTradeId() == tradeId)
+		{
+			return trades[i].getPropertyIndex();
+		}
+	}
+
+	return -1;
 }
 
 void Bank::addTrade(const Trade& trade)
@@ -65,6 +104,7 @@ void Bank::acceptTrade(int tradeId)
 		if (trades[i].getTradeId() == tradeId)
 		{
 			trades[i].acceptOffer();
+			std::cout << "Trade successfully accepted!" << std::endl;
 			return;
 		}
 	}

@@ -16,6 +16,10 @@ public:
 
 	bool hasPlayerReceivedTrade(int tradeId,int playerIndex) const;
 
+	int getTradeSenderIndex(int tradeId) const;
+	int getTradeRequestedAmount(int tradeId) const;
+	int getPropertyIndex(int tradeId) const;
+
 	void addTrade(const Trade& trade);
 	void removeTradesOfPlayer(int playerId);
 	void printPlayerTrades(int playerIndex) const;

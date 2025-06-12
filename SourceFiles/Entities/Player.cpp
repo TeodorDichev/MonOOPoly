@@ -22,9 +22,9 @@ void Player::resign()
 	playerIndex = -1;
 	currentFieldIndex = -1;
 
-	for (int i = 0; i < properties.size(); i++)
+	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
-		properties[i].removeOwner();
+		propertiesPtrs[i]->removeOwner();
 	}
 }
 
@@ -76,16 +76,16 @@ void Player::setSkipTurn(bool value)
 
 bool Player::hasAnyProperties() const
 {
-	return properties.size() != 0;
+	return propertiesPtrs.size() != 0;
 }
 
 bool Player::hasAllPropertiesOfColor(const MyString& color)
 {
 	int cnt = 0;
 
-	for (int i = 0; i < properties.size(); i++)
+	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
-		if (properties[i].getColor() == color)
+		if (propertiesPtrs[i]->getColor() == color)
 		{
 			cnt++;
 		}
@@ -94,18 +94,18 @@ bool Player::hasAllPropertiesOfColor(const MyString& color)
 	return cnt == 4;
 }
 
-void Player::addProperty(const Property* property)
+void Player::addProperty(Property* property)
 {
-	properties.push_back(*property);
+	propertiesPtrs.push_back(property);
 }
 
 Property* Player::getProperty(int index)
 {
-	for (int i = 0; i < properties.size(); i++)
+	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
-		if (properties[i].getFieldIndex() == index)
+		if (propertiesPtrs[i]->getFieldIndex() == index)
 		{
-			return &properties[i];
+			return propertiesPtrs[i];
 		}
 	}
 
@@ -145,31 +145,31 @@ void Player::resetPairsCount()
 void Player::sellProperty(int fieldIndex)
 {
 	int i = 0;
-	for (; i < properties.size(); i++)
+	for (; i < propertiesPtrs.size(); i++)
 	{
-		if (properties[i].getFieldIndex() == fieldIndex)
+		if (propertiesPtrs[i]->getFieldIndex() == fieldIndex)
 		{
-			increaseBalance(properties[i].getBasePurchaseValue());
-			properties[i].removeOwner();
+			increaseBalance(propertiesPtrs[i]->getBasePurchaseValue());
+			propertiesPtrs[i]->removeOwner();
 		}
 	}
 
-	properties.erase(i);
+	propertiesPtrs.erase(i);
 }
 
 void Player::sellCheapestProperty()
 {
-	if (properties.size() == 0)
+	if (propertiesPtrs.size() == 0)
 	{
 		throw std::invalid_argument("You do not have any properties!");
 	}
 
 	int minIndex = 0;
-	int minPrice = properties[0].getBasePurchaseValue();
+	int minPrice = propertiesPtrs[0]->getBasePurchaseValue();
 
-	for (int i = 1; i < properties.size(); ++i)
+	for (int i = 1; i < propertiesPtrs.size(); ++i)
 	{
-		int currentPrice = properties[i].getBasePurchaseValue();
+		int currentPrice = propertiesPtrs[i]->getBasePurchaseValue();
 
 		if (currentPrice < minPrice)
 		{
@@ -178,23 +178,22 @@ void Player::sellCheapestProperty()
 		}
 	}
 
-	properties[minIndex];
-	increaseBalance(properties[minIndex].getBasePurchaseValue());
-	properties[minIndex].removeOwner();
+	increaseBalance(propertiesPtrs[minIndex]->getBasePurchaseValue());
+	propertiesPtrs[minIndex]->removeOwner();
 
 	std::cout << "You have sold: ";
-	properties[minIndex].printInfo();
+	propertiesPtrs[minIndex]->printInfo();
 
-	properties.erase(minIndex);
+	propertiesPtrs.erase(minIndex);
 }
 
 void Player::printPlayerDetails() const
 {
-	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | propertiesCount: " << properties.size() << std::endl;
+	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | propertiesCount: " << propertiesPtrs.size() << std::endl;
 	
-	for (int i = 0; i < properties.size(); i++)
+	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
-		properties[i].printInfo();
+		propertiesPtrs[i]->printInfo();
 	}
 }
 
@@ -202,9 +201,9 @@ void Player::printPlayerSummary() const
 {
 	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | properties: ";
 
-	for (int i = 0; i < properties.size(); i++)
+	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
-		std::cout << properties[i].getFieldIndex() << " ";
+		std::cout << propertiesPtrs[i]->getFieldIndex() << " ";
 	}
 
 	std::cout << std::endl;
@@ -268,9 +267,9 @@ bool Player::hasSufficientFund(int debt) const
 
 bool Player::owsProperty(int fieldIndex) const
 {
-	for (int i = 0; i < properties.size(); i++)
+	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
-		if (properties[i].getFieldIndex() == fieldIndex) 
+		if (propertiesPtrs[i]->getFieldIndex() == fieldIndex)
 		{
 			return true;
 		}

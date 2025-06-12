@@ -9,13 +9,13 @@ void UpgradeMortgage::execute() const
 	}
 
 	Player* currPlayer = board->getPlayer(playerIndex);
-	if (currPlayer)
+	if (!currPlayer)
 	{
 		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
 
 	Property* property = currPlayer->getProperty(currPlayer->getCurrentFieldIndex());
-	if (property)
+	if (!property)
 	{
 		throw new std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
 	}

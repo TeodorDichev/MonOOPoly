@@ -10,7 +10,7 @@ void RollDice::execute() const
 	}
 
 	Player* currPlayer = board->getPlayer(playerIndex);
-	if (currPlayer)
+	if (!currPlayer)
 	{
 		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}

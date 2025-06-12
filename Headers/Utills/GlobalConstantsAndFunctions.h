@@ -13,9 +13,10 @@ namespace GlobalConstants
 
 	const static MyString helpFileName = "Help.txt";
 	const static MyString fieldsFileName = "Fields.txt";
-	const static MyString prevGameFields = "Fields.dat";
-	const static MyString prevGamePlayers = "Players.dat";
 	const static MyString cardsFileName = "Cards.txt";
+	const static MyString prevGameFieldsFile = "Fields.dat";
+	const static MyString prevGamePlayersFile = "Players.dat";
+	const static MyString prevGameTradesFile = "Trades.dat";
 	const static MyString gameLostMessage = "You have insufficient funds to execute this action and no more properties to sell due to this you have lost!";
 };
 
