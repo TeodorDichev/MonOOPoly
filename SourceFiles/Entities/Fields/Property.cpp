@@ -59,7 +59,7 @@ void Property::addMortgage(const Mortgage* mortgage)
 		delete this->mortgage;
 	}
 
-	this->mortgage = mortgage.clone();
+	this->mortgage = mortgage->clone();
 }
 
 int Property::getRent() const
@@ -138,4 +138,38 @@ void Property::printInfo() const
 bool Property::isJail() const
 {
 	return false;
+}
+
+void Property::saveToBin(std::ofstream& ofs) const
+{
+	FileFunctions::writeStringToBinFile(ofs, "Property");
+
+	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
+	FileFunctions::writeStringToBinFile(ofs, content);
+
+	FileFunctions::writeStringToBinFile(ofs, color);
+
+	ofs.write(reinterpret_cast<const char*>(&baseRentValue), sizeof(baseRentValue));
+	ofs.write(reinterpret_cast<const char*>(&basePurchaseValue), sizeof(basePurchaseValue));
+	ofs.write(reinterpret_cast<const char*>(&baseCottageValue), sizeof(baseCottageValue));
+	ofs.write(reinterpret_cast<const char*>(&baseCastleValue), sizeof(baseCastleValue));
+
+	int ownerIndex = 0;
+	if (owner)
+	{
+		ownerIndex = owner->getPlayerIndex();
+		ofs.write(reinterpret_cast<const char*>(&ownerIndex), sizeof(ownerIndex));
+	}
+	else
+	{
+		ofs.write(reinterpret_cast<const char*>(&ownerIndex), sizeof(ownerIndex));
+	}
+
+	int isMortgaged = mortgage != nullptr ? 1 : 0;
+	ofs.write(reinterpret_cast<const char*>(&isMortgaged), sizeof(isMortgaged));
+
+	if (isMortgaged)
+	{
+		mortgage->saveToBin(ofs);
+	}
 }

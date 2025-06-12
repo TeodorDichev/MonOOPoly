@@ -27,3 +27,11 @@ void CardField::interactWithField(Player* player)
 {
 	this->deck->drawCard(player);
 }
+
+void CardField::saveToBin(std::ofstream& ofs) const
+{
+	FileFunctions::writeStringToBinFile(ofs, "Cards");
+
+	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
+	FileFunctions::writeStringToBinFile(ofs, content);
+}

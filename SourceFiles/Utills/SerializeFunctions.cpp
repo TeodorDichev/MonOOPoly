@@ -1,6 +1,14 @@
 #include "../../Headers/Utills/SerializeFunctions.h"
+#include "../../Headers/Entities/Fields/Property.h"
+#include "../../Headers/Entities/Fields/StartField.h"
+#include "../../Headers/Entities/Fields/FreeParkingField.h"
+#include "../../Headers/Entities/Fields/GoToJailField.h"
+#include "../../Headers/Entities/Fields/JailField.h"
+#include "../../Headers/Entities/Fields/CardField.h"
 
-#include<fstream>
+#include "../../Headers/Entities/Cards/GroupPaymentCard.h"
+#include "../../Headers/Entities/Cards/PaymentCard.h"
+#include "../../Headers/Entities/Cards/MovePositionCard.h"
 
 static size_t getFileSize(std::ifstream& ifs)
 {
@@ -15,7 +23,37 @@ Board* SerializeFunctions::board = Board::getInstance();
 
 void SerializeFunctions::saveGameToFile()
 {
+	std::ofstream fieldsStream(GlobalConstants::prevGameFields.c_str(), std::ios::binary | std::ios::trunc);
+	if (!fieldsStream.is_open())
+	{
+		throw std::invalid_argument(ExceptionMessages::failedToOpenFile.c_str());
+	}
 
+	int fieldsCount = board->getBoardSize();
+	fieldsStream.write(reinterpret_cast<const char*>(&fieldsCount), sizeof(fieldsCount));
+
+	for (int i = 0; i < board->fields.getSize(); i++)
+	{
+		board->fields[i]->saveToBin(fieldsStream);
+	}
+
+	std::ofstream playersStream(GlobalConstants::prevGamePlayers.c_str(), std::ios::binary | std::ios::trunc);
+
+	if (!playersStream.is_open())
+	{
+		throw std::invalid_argument(ExceptionMessages::failedToOpenFile.c_str());
+	}
+
+	int currentPlayerIndex = board->getCurrentPlayerIndex();
+	playersStream.write(reinterpret_cast<const char*>(&currentPlayerIndex), sizeof(currentPlayerIndex));
+
+	int playersCount = board->players.size();
+	playersStream.write(reinterpret_cast<const char*>(&playersCount), sizeof(playersCount));
+
+	for (int i = 0; i < playersCount; ++i)
+	{
+		board->players[i].saveToBin(playersStream);
+	}
 }
 
 void SerializeFunctions::loadGameFromFile()
@@ -43,6 +81,10 @@ void SerializeFunctions::loadGameFromFile()
 	{
 		throw std::invalid_argument(ExceptionMessages::noPrevGames.c_str());
 	}
+
+	int currentPlayerIndex;
+	playersStream.read(reinterpret_cast<char*>(&currentPlayerIndex), sizeof(currentPlayerIndex));
+	board->setPlayerIndex(currentPlayerIndex);
 
 	loadPlayersBin(playersStream);
 
@@ -157,14 +199,17 @@ void SerializeFunctions::loadFieldsTxt(std::ifstream& fieldsStream)
 
 void SerializeFunctions::loadFieldsBin(std::ifstream& fieldsStream)
 {
-	while (fieldsStream.peek() != fieldsStream.eof())
+	int fieldsCount = 0;
+	fieldsStream.read(reinterpret_cast<char*>(&fieldsCount), sizeof(fieldsCount));
+
+	for (int i = 0; i < fieldsCount; i++)
 	{
-		MyString type = readStringFromBinFile(fieldsStream);
+		MyString type = FileFunctions::readStringFromBinFile(fieldsStream);
 
 		int index;
 		fieldsStream.read(reinterpret_cast<char*>(&index), sizeof(index));
 
-		MyString content = readStringFromBinFile(fieldsStream);
+		MyString content = FileFunctions::readStringFromBinFile(fieldsStream);
 
 		if (type == "Start")
 		{
@@ -172,7 +217,7 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& fieldsStream)
 		}
 		else if (type == "Property")
 		{
-			MyString color = readStringFromBinFile(fieldsStream);
+			MyString color = FileFunctions::readStringFromBinFile(fieldsStream);
 
 			int rent, purchase, cottage, castle;
 			fieldsStream.read(reinterpret_cast<char*>(&rent), sizeof(rent));
@@ -180,23 +225,23 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& fieldsStream)
 			fieldsStream.read(reinterpret_cast<char*>(&cottage), sizeof(cottage));
 			fieldsStream.read(reinterpret_cast<char*>(&castle), sizeof(castle));
 
+			Property* property = new Property(index, content, color, rent, purchase, cottage, castle);
+
 			int ownerIndex;
 			fieldsStream.read(reinterpret_cast<char*>(&ownerIndex), sizeof(ownerIndex));
 
 			Player* player = board->getPlayer(ownerIndex);
-			if (player)
+			if (player != nullptr)
 			{
-				player.
+				property->setOwner(player);
 			}
 
 			int isMortgaged;
 			fieldsStream.read(reinterpret_cast<char*>(&isMortgaged), sizeof(isMortgaged));
 
-			Property* property = new Property(index, content, color, rent, purchase, cottage, castle);
-
 			if (isMortgaged == 1)
 			{
-				MyString mortgage = readStringFromBinFile(fieldsStream);
+				MyString mortgage = FileFunctions::readStringFromBinFile(fieldsStream);
 				if (mortgage == "Castle")
 				{
 					property->addMortgage(new Castle());
@@ -207,7 +252,8 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& fieldsStream)
 				}
 			}
 
-			board->fields.addObject(new Property(index, content, color, rent, purchase, cottage, castle));
+			player->addProperty(property);
+			board->fields.addObject(property);
 			delete property;
 		}
 		else if (type == "Cards")
@@ -256,7 +302,7 @@ void SerializeFunctions::loadPlayersBin(std::ifstream& ifs)
 		ifs.read(reinterpret_cast<char*>(&playerIndex), sizeof(playerIndex));
 		ifs.read(reinterpret_cast<char*>(&currentFieldIndex), sizeof(currentFieldIndex));
 
-		MyString playerName = readStringFromBinFile(ifs);
+		MyString playerName = FileFunctions::readStringFromBinFile(ifs);
 
 		board->addPlayer(Player(playerIndex, playerName, balance, resigned, skipTurn, pairsCount, currentFieldIndex));
 	}
@@ -288,28 +334,4 @@ void SerializeFunctions::loadCardsTxt(std::ifstream& cardsStream)
 			throw std::invalid_argument(ExceptionMessages::unknownCardType.c_str());
 		}
 	}
-}
-
-void SerializeFunctions::writeStringToBinFile(std::ofstream& ofs, const MyString& str)
-{
-	int len = str.length();
-	ofs.write((const char*)&len, sizeof(int));
-	ofs.write(str.c_str(), sizeof(char) * len);
-}
-
-MyString SerializeFunctions::readStringFromBinFile(std::ifstream& ifs)
-{
-	int len = 0;
-	ifs.read((char*)&len, sizeof(len));
-
-	char* buff = new char[len + 1];
-	ifs.read(buff, sizeof(char) * len);
-
-	buff[len] = '\0';
-
-	MyString toReturn(buff);
-
-	delete[] buff;
-
-	return toReturn;
 }

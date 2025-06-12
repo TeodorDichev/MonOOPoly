@@ -2,6 +2,6 @@
 
 void LoadGame::execute() const
 {
-	SerializeFunctions::loadGameFromFile(); // will set currentPlayerIndex to the proper value 
+	SerializeFunctions::loadGameFromFile();
 	board->playTurn();
 }

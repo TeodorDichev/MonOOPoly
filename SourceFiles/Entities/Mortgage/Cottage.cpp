@@ -19,3 +19,8 @@ Mortgage* Cottage::clone() const
 {
 	return new Cottage(*this);
 }
+
+void Cottage::saveToBin(std::ofstream& ofs) const
+{
+	FileFunctions::writeStringToBinFile(ofs, "Castle");
+}

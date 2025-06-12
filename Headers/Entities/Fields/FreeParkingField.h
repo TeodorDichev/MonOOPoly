@@ -12,4 +12,5 @@ public:
 	void printInfo() const override;
 
 	bool isJail() const override;
+	void saveToBin(std::ofstream& ofs) const override;
 };

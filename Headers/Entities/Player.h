@@ -1,7 +1,7 @@
 #pragma once
 #include "../Utills/MyVector.hpp"
 #include "../Utills/MyString.h"
-#include "../Utills/GlobalConstants.h"
+#include "../Utills/GlobalConstantsAndFunctions.h"
 
 #include "Fields/Property.h"
 
@@ -36,6 +36,7 @@ public:
 	bool hasResigned() const;
 	bool shouldSkipTurn() const;
 
+	void addProperty(const Property* property);
 	Property* getProperty(int index);
 	const MyString& getName() const;
 	int getBalance() const;
@@ -58,4 +59,6 @@ public:
 
 	void printPlayerDetails() const;
 	void printPlayerSummary() const;
+
+	void saveToBin(std::ofstream& ofs) const;
 };

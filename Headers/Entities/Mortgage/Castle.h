@@ -11,4 +11,5 @@ public:
 	bool isCastle() const override;
 	bool isCottage() const override;
 	Mortgage* clone() const override;
+	void saveToBin(std::ofstream& ofs) const override;
 };

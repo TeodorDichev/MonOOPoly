@@ -37,6 +37,12 @@ namespace ExceptionMessages
 	const static MyString invalidCommand = "Invalid command!";
 };
 
+namespace FileFunctions
+{
+	void writeStringToBinFile(std::ofstream& ofs, const MyString& str);
+	MyString readStringFromBinFile(std::ifstream& ifs);
+}
+
 enum class Mortgages
 {
 	cottage,

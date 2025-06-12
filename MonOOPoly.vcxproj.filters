@@ -120,6 +120,9 @@
     <ClCompile Include="SourceFiles\Entities\Fields\StartField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\Utills\GlobalConstantsAndFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Monopoly.h">
@@ -209,7 +212,7 @@
     <ClInclude Include="Headers\Utills\SerializeFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Utills\GlobalConstants.h">
+    <ClInclude Include="Headers\Utills\GlobalConstantsAndFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Entities\Fields\JailField.h">

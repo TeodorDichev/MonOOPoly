@@ -19,3 +19,8 @@ Mortgage* Castle::clone() const
 {
 	return new Castle(*this);
 }
+
+void Castle::saveToBin(std::ofstream& ofs) const
+{
+	FileFunctions::writeStringToBinFile(ofs, "Castle");
+}

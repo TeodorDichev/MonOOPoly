@@ -1,6 +1,8 @@
 #pragma once
 #include "../../Utills/MyString.h"
-#include "../../Utills/GlobalConstants.h"
+#include "../../Utills/GlobalConstantsAndFunctions.h"
+
+#include <fstream>
 
 class Player;
 
@@ -26,4 +28,6 @@ public:
 	MyString printContent() const;
 
 	virtual bool isJail() const = 0;
+
+	virtual void saveToBin(std::ofstream& ofs) const = 0;
 };

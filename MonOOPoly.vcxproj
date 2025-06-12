@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Utills\GlobalConstantsAndFunctions.cpp" />
     <ClCompile Include="SourceFiles\Entities\Bank.cpp" />
     <ClCompile Include="SourceFiles\Commands\AcceptTrade.cpp" />
     <ClCompile Include="SourceFiles\Commands\MakeTrade.cpp" />
@@ -166,7 +167,7 @@
     <ClInclude Include="Headers\Entities\Trade.h" />
     <ClInclude Include="Headers\Entities\Trade\FieldTrade.h" />
     <ClInclude Include="Headers\Entities\Fields\FreeParkingField.h" />
-    <ClInclude Include="Headers\Utills\GlobalConstants.h" />
+    <ClInclude Include="Headers\Utills\GlobalConstantsAndFunctions.h" />
     <ClInclude Include="Headers\Commands\CheckField.h" />
     <ClInclude Include="Headers\Commands\Command.h" />
     <ClInclude Include="Headers\Commands\CommandFactory.h" />

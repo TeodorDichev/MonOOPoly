@@ -94,6 +94,11 @@ bool Player::hasAllPropertiesOfColor(const MyString& color)
 	return cnt == 4;
 }
 
+void Player::addProperty(const Property* property)
+{
+	properties.push_back(*property);
+}
+
 Property* Player::getProperty(int index)
 {
 	for (int i = 0; i < properties.size(); i++)
@@ -282,4 +287,16 @@ bool Player::hasResigned() const
 bool Player::shouldSkipTurn() const
 {
 	return skipTurn;
+}
+
+void Player::saveToBin(std::ofstream& ofs) const
+{
+	ofs.write(reinterpret_cast<const char*>(&resigned), sizeof(resigned));
+	ofs.write(reinterpret_cast<const char*>(&skipTurn), sizeof(skipTurn));
+	ofs.write(reinterpret_cast<const char*>(&balance), sizeof(balance));
+	ofs.write(reinterpret_cast<const char*>(&pairsCount), sizeof(pairsCount));
+	ofs.write(reinterpret_cast<const char*>(&playerIndex), sizeof(playerIndex));
+	ofs.write(reinterpret_cast<const char*>(&currentFieldIndex), sizeof(currentFieldIndex));
+
+	FileFunctions::writeStringToBinFile(ofs, playerName);
 }

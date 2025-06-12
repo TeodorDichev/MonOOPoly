@@ -1,5 +1,8 @@
 #pragma once
 
+#include <fstream>
+#include "../../Utills/GlobalConstantsAndFunctions.h"
+
 class Mortgage
 {
 public:
@@ -10,4 +13,6 @@ public:
 
 	virtual bool isCastle() const = 0;
 	virtual bool isCottage() const = 0;
+
+	virtual void saveToBin(std::ofstream& ofs) const = 0;
 };

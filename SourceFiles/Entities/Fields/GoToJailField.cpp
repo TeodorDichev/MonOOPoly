@@ -30,3 +30,13 @@ bool GoToJailField::isJail() const
 {
 	return false;
 }
+
+void GoToJailField::saveToBin(std::ofstream& ofs) const
+{
+	FileFunctions::writeStringToBinFile(ofs, "GoJail");
+
+	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
+	FileFunctions::writeStringToBinFile(ofs, content);
+
+	ofs.write(reinterpret_cast<const char*>(&jailFieldIndex), sizeof(jailFieldIndex));
+}

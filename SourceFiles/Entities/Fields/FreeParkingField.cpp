@@ -25,3 +25,11 @@ bool FreeParkingField::isJail() const
 {
 	return false;
 }
+
+void FreeParkingField::saveToBin(std::ofstream& ofs) const
+{
+	FileFunctions::writeStringToBinFile(ofs, "Park");
+
+	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
+	FileFunctions::writeStringToBinFile(ofs, content);
+}
