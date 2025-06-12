@@ -38,7 +38,8 @@ bool JailField::isJail() const
 
 void JailField::saveToBin(std::ofstream& ofs) const
 {
-	FileFunctions::writeStringToBinFile(ofs, "Jail");
+	int type = (int)FieldType::jail;
+	ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
 
 	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
 	FileFunctions::writeStringToBinFile(ofs, content);

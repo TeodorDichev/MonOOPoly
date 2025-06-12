@@ -76,7 +76,7 @@ void SerializeFunctions::loadGameFromFile()
 	std::ifstream fieldsStream(GlobalConstants::prevGameFieldsFile.c_str(), std::ios::binary);
 	std::ifstream tradesStream(GlobalConstants::prevGameTradesFile.c_str(), std::ios::binary);
 
-	if (!fieldsStream.is_open() || !playersStream.is_open() || !playersStream.is_open())
+	if (!fieldsStream.is_open() || !playersStream.is_open() || !tradesStream.is_open())
 	{
 		throw std::invalid_argument(ExceptionMessages::noPrevGames.c_str());
 	}
@@ -93,21 +93,14 @@ void SerializeFunctions::loadGameFromFile()
 void SerializeFunctions::startNewGame()
 {
 	std::ifstream cardsStream(GlobalConstants::cardsFileName.c_str());
+	std::ifstream fieldsStream(GlobalConstants::fieldsFileName.c_str());
 
-	if (!cardsStream.is_open())
+	if (!cardsStream.is_open() || !fieldsStream.is_open())
 	{
 		throw std::invalid_argument(ExceptionMessages::failedToOpenFile.c_str());
 	}
 
 	loadCardsTxt(cardsStream);
-	
-	std::ifstream fieldsStream(GlobalConstants::fieldsFileName.c_str());
-
-	if (!fieldsStream.is_open())
-	{
-		throw std::invalid_argument(ExceptionMessages::failedToOpenFile.c_str());
-	}
-	
 	loadFieldsTxt(fieldsStream);
 }
 
@@ -131,7 +124,7 @@ void SerializeFunctions::printHelp()
 
 void SerializeFunctions::loadFieldsTxt(std::ifstream& ifs)
 {
-	MyString type;
+	int type;
 
 	while (ifs >> type)
 	{
@@ -140,43 +133,48 @@ void SerializeFunctions::loadFieldsTxt(std::ifstream& ifs)
 
 		ifs >> index >> content;
 
-		if (type == "Start")
+		switch (type)
 		{
+		case (int)FieldType::start:
 			board->fields.addObject(new StartField(index, content));
-		}
-		else if (type == "Property")
+			break;
+
+		case (int)FieldType::property:
 		{
 			MyString color;
 			int rent, purchase, cottage, castle;
 			ifs >> color >> rent >> purchase >> cottage >> castle;
-
 			board->fields.addObject(new Property(index, content, color, rent, purchase, cottage, castle));
+			break;
 		}
-		else if (type == "Cards")
-		{
+
+		case (int)FieldType::card:
 			board->fields.addObject(new CardField(index, content, &board->cardDeck));
-		}
-		else if (type == "Jail")
+			break;
+
+		case (int)FieldType::jail:
 		{
 			int tax;
 			ifs >> tax;
-
 			board->fields.addObject(new JailField(index, content, tax));
+			break;
 		}
-		else if (type == "GoJail")
+
+		case (int)FieldType::goToJail:
 		{
 			int jailIndex;
 			ifs >> jailIndex;
-
 			board->fields.addObject(new GoToJailField(index, content, jailIndex));
+			break;
 		}
-		else if (type == "Park")
-		{
+
+		case (int)FieldType::freeParking:
 			board->fields.addObject(new FreeParkingField(index, content));
-		}
-		else
-		{
+			break;
+
+		default:
 			throw std::invalid_argument(ExceptionMessages::unknownFieldType.c_str());
+			break;
 		}
 	}
 }
@@ -188,21 +186,22 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 
 	for (int i = 0; i < fieldsCount; i++)
 	{
-		MyString type = FileFunctions::readStringFromBinFile(ifs);
+		int type;
+		ifs.read(reinterpret_cast<char*>(&type), sizeof(type));
 
 		int index;
 		ifs.read(reinterpret_cast<char*>(&index), sizeof(index));
 
 		MyString content = FileFunctions::readStringFromBinFile(ifs);
 
-		if (type == "Start")
+		switch (type)
 		{
+		case (int)FieldType::start:
 			board->fields.addObject(new StartField(index, content));
-		}
-		else if (type == "Property")
+			break;
+		case (int)FieldType::property:
 		{
 			MyString color = FileFunctions::readStringFromBinFile(ifs);
-
 			int rent, purchase, cottage, castle;
 			ifs.read(reinterpret_cast<char*>(&rent), sizeof(rent));
 			ifs.read(reinterpret_cast<char*>(&purchase), sizeof(purchase));
@@ -220,51 +219,57 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 				property->setOwner(player);
 			}
 
-			int isMortgaged;
+			bool isMortgaged;
 			ifs.read(reinterpret_cast<char*>(&isMortgaged), sizeof(isMortgaged));
 
-			if (isMortgaged == 1)
+			if (isMortgaged)
 			{
-				MyString mortgage = FileFunctions::readStringFromBinFile(ifs);
-				if (mortgage == "Castle")
+				int mortgageType;
+				ifs.read(reinterpret_cast<char*>(&mortgageType), sizeof(mortgageType));
+
+				switch (mortgageType)
 				{
-					property->addMortgage(new Castle());
-				}
-				else if (mortgage == "Cottage")
-				{
+				case (int)MortgageType::cottage:
 					property->addMortgage(new Cottage());
+					break;
+				case (int)MortgageType::castle:
+					property->addMortgage(new Castle());
+					break;
+				default:
+					break;
 				}
 			}
 
 			player->addProperty(property);
 			board->fields.addObject(property);
 			delete property;
+			break;
 		}
-		else if (type == "Cards")
-		{
+		case (int)FieldType::card:
 			board->fields.addObject(new CardField(index, content, &board->cardDeck));
-		}
-		else if (type == "Jail")
+			break;
+		case (int)FieldType::jail:
 		{
 			int tax;
 			ifs.read(reinterpret_cast<char*>(&tax), sizeof(tax));
 
 			board->fields.addObject(new JailField(index, content, tax));
+			break;
 		}
-		else if (type == "GoJail")
+		case (int)FieldType::goToJail:
 		{
 			int jailIndex;
 			ifs.read(reinterpret_cast<char*>(&jailIndex), sizeof(jailIndex));
 
 			board->fields.addObject(new GoToJailField(index, content, jailIndex));
+			break;
 		}
-		else if (type == "Park")
-		{
+		case (int)FieldType::freeParking:
 			board->fields.addObject(new FreeParkingField(index, content));
-		}
-		else
-		{
+			break;
+		default:
 			throw std::invalid_argument(ExceptionMessages::unknownFieldType.c_str());
+			break;
 		}
 	}
 }
@@ -317,28 +322,27 @@ void SerializeFunctions::loadTradesBin(std::ifstream& ifs)
 
 void SerializeFunctions::loadCardsTxt(std::ifstream& ifs)
 {
-	MyString type;
+	int typeValue;
 
-	while (ifs >> type)
+	while (ifs >> typeValue)
 	{
 		int value;
 		ifs >> value;
 
-		if (type == "Move")
+		switch (typeValue)
 		{
+		case (int)CardType::move:
 			board->cardDeck.addCard(MovePositionCard(value));
-		}
-		else if (type == "Group")
-		{
-			board->cardDeck.addCard(GroupPaymentCard(value));
-		}
-		else if (type == "Pay")
-		{
+			break;
+		case (int)CardType::payment:
 			board->cardDeck.addCard(PaymentCard(value));
-		}
-		else
-		{
+			break;
+		case (int)CardType::groupPayment:
+			board->cardDeck.addCard(GroupPaymentCard(value));
+			break;
+		default:
 			throw std::invalid_argument(ExceptionMessages::unknownCardType.c_str());
+			break;
 		}
 	}
 }

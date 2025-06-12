@@ -17,6 +17,8 @@ private:
 	int currentFieldIndex = 0;
 
 	MyString playerName;
+
+	// This imitates shared_ptrs, and it is save as long as I manages properties elsewhere
 	MyVector<Property*> propertiesPtrs;
 
 public:

@@ -28,7 +28,8 @@ bool StartField::isJail() const
 
 void StartField::saveToBin(std::ofstream& ofs) const
 {
-	FileFunctions::writeStringToBinFile(ofs, "Park");
+	int type = (int)FieldType::start;
+	ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
 
 	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
 	FileFunctions::writeStringToBinFile(ofs, content);

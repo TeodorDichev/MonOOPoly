@@ -22,5 +22,6 @@ Mortgage* Cottage::clone() const
 
 void Cottage::saveToBin(std::ofstream& ofs) const
 {
-	FileFunctions::writeStringToBinFile(ofs, "Castle");
+	int type = (int)MortgageType::cottage;
+	ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
 }

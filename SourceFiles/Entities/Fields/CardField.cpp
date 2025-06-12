@@ -30,8 +30,8 @@ void CardField::interactWithField(Player* player)
 
 void CardField::saveToBin(std::ofstream& ofs) const
 {
-	FileFunctions::writeStringToBinFile(ofs, "Cards");
-
+	int type = (int) FieldType::card;
+	ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
 	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
 	FileFunctions::writeStringToBinFile(ofs, content);
 }
