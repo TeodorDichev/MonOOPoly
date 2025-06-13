@@ -104,6 +104,18 @@ void Player::addProperty(Property* property)
 	propertiesPtrs.push_back(property);
 }
 
+void Player::removeProperty(Property* property)
+{
+	for (int i = 0; i < propertiesPtrs.size(); i++)
+	{
+		if (propertiesPtrs[i]->getFieldIndex() == property->getFieldIndex())
+		{
+			propertiesPtrs.erase(i);
+			break;
+		}
+	}
+}
+
 Property* Player::getProperty(int index)
 {
 	for (int i = 0; i < propertiesPtrs.size(); i++)
@@ -125,11 +137,6 @@ const MyString& Player::getName() const
 const MyString& Player::getColorCode() const
 {
 	return colorCode;
-}
-
-int Player::getBalance() const
-{
-	return balance;
 }
 
 int Player::getPairsCount() const
@@ -154,17 +161,16 @@ void Player::resetPairsCount()
 
 void Player::sellProperty(int fieldIndex)
 {
-	int i = 0;
-	for (; i < propertiesPtrs.size(); i++)
+	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
 		if (propertiesPtrs[i]->getFieldIndex() == fieldIndex)
 		{
 			increaseBalance(propertiesPtrs[i]->getBasePurchaseValue());
 			propertiesPtrs[i]->removeOwner();
+			propertiesPtrs.erase(i);
+			return;
 		}
 	}
-
-	propertiesPtrs.erase(i);
 }
 
 void Player::sellCheapestProperty()
@@ -231,12 +237,6 @@ void Player::printPlayerSummary() const
 	std::cout << std::endl;
 }
 
-void Player::buyProperty(Property* property)
-{
-	reduceBalance(property->getBasePurchaseValue());
-	propertiesPtrs.push_back(property);
-}
-
 void Player::buyCastle(Property* property)
 {
 	if (!property->hasMortgage())
@@ -261,7 +261,7 @@ void Player::buyCastle(Property* property)
 
 void Player::buyCottage(Property* property)
 {
-	if (hasAllPropertiesOfColor(property->getColor()))
+	if (!hasAllPropertiesOfColor(property->getColor()))
 	{
 		throw std::invalid_argument(ExceptionMessages::invalidCottagePurchase.c_str());
 	}

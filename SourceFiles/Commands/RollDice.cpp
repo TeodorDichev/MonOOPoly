@@ -29,7 +29,10 @@ void RollDice::execute() const
 	}
 	if (currPlayer->getPairsCount() == 3)
 	{
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "You threw a pair for third time in a roll, you are sent to jail!" << std::endl;
+		std::cout << "Press anything to continue...";
+		std::cin.get();
 
 		Field* jail = board->getField(board->getJailIndex());
 		currPlayer->moveTo(jail->getFieldIndex());
@@ -71,6 +74,10 @@ void RollDice::execute() const
 	currPlayer->moveWith(die1 + die2);
 	Field* field = board->getField(currPlayer->getCurrentFieldIndex());
 	field->interactWithField(currPlayer);
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << "Press anything to continue...";
+	std::cin.get();
 
 	if (isPair && !currPlayer->hasResigned())
 	{

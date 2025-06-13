@@ -19,10 +19,6 @@ void FreeParkingField::printInfo() const
 void FreeParkingField::interactWithField(Player* player)
 {
 	printInfo();
-
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << "Press Enter to continue...";
-	std::cin.get();
 }
 
 bool FreeParkingField::isJail() const

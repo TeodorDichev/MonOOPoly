@@ -15,6 +15,7 @@ public:
 	static void freeInstance();
 
 	bool hasPlayerReceivedTrade(int tradeId,int playerIndex) const;
+	bool isTradeAccepted(int tradeId);
 
 	int getTradeSenderIndex(int tradeId) const;
 	int getTradeRequestedAmount(int tradeId) const;

@@ -27,8 +27,6 @@ public:
 
 	int getCurrentPlayerIndex() const;
 	Player* getPlayer(int index);
-
-	void setPlayerIndex(int value);
 	void addPlayer(const Player& player);
 
 	int getBoardSize() const;

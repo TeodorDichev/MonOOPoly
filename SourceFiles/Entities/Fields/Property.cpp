@@ -36,7 +36,6 @@ int Property::getBaseCottageValue() const
 	return baseCottageValue;
 }
 
-
 void Property::setOwner(Player* player)
 {
 	owner = player;
@@ -81,38 +80,22 @@ void Property::interactWithField(Player* player)
 {
 	printInfo();
 
-	if (!owner)
+	if (owner == nullptr && player->hasSufficientFund(basePurchaseValue))
 	{
-		std::cout << "Would you like to purchase this property? [y/n]" << std::endl;
+		std::cout << "Press 'y' to purchase the property." << std::endl;
+
 		MyString ans;
 		std::cin >> ans;
 
 		if (ans == "y")
 		{
-			player->buyProperty(this);
+			player->addProperty(this);
+			player->reduceBalance(basePurchaseValue);
 			this->owner = player;
 		}
-		else if (ans == "n")
-		{
-			return;
-		}
-		else
-		{
-			throw std::invalid_argument(ExceptionMessages::invalidCommand.c_str());
-		}
 	}
-	else if (owner->getPlayerIndex() == player->getPlayerIndex())
+	else if (owner != nullptr && owner->getPlayerIndex() != player->getPlayerIndex())
 	{
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Press Enter to continue...";
-		std::cin.get();
-	}
-	else
-	{
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Press Enter to continue...";
-		std::cin.get();
-
 		int rent = getRent();
 		player->reduceBalance(rent);
 		owner->increaseBalance(rent);
@@ -164,8 +147,8 @@ void Property::saveToBin(std::ofstream& ofs) const
 	ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
 
 	ofs.write(reinterpret_cast<const char*>(&index), sizeof(index));
-	FileFunctions::writeStringToBinFile(ofs, content);
 
+	FileFunctions::writeStringToBinFile(ofs, content);
 	FileFunctions::writeStringToBinFile(ofs, color);
 
 	ofs.write(reinterpret_cast<const char*>(&baseRentValue), sizeof(baseRentValue));
@@ -173,7 +156,7 @@ void Property::saveToBin(std::ofstream& ofs) const
 	ofs.write(reinterpret_cast<const char*>(&baseCottageValue), sizeof(baseCottageValue));
 	ofs.write(reinterpret_cast<const char*>(&baseCastleValue), sizeof(baseCastleValue));
 
-	int ownerIndex = 0;
+	int ownerIndex = -1;
 	if (owner)
 	{
 		ownerIndex = owner->getPlayerIndex();
@@ -184,7 +167,7 @@ void Property::saveToBin(std::ofstream& ofs) const
 		ofs.write(reinterpret_cast<const char*>(&ownerIndex), sizeof(ownerIndex));
 	}
 
-	int isMortgaged = mortgage != nullptr ? 1 : 0;
+	bool isMortgaged = (mortgage != nullptr ? true : false);
 	ofs.write(reinterpret_cast<const char*>(&isMortgaged), sizeof(isMortgaged));
 
 	if (isMortgaged)

@@ -29,11 +29,6 @@ int JailField::getJailTax()
 void JailField::interactWithField(Player* player)
 {
 	printInfo();
-
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << "Press Enter to continue...";
-	std::cin.get();
-
 	player->setSkipTurn(true);
 }
 

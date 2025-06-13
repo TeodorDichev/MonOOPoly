@@ -40,11 +40,11 @@ public:
 	bool shouldSkipTurn() const;
 
 	void addProperty(Property* property);
+	void removeProperty(Property* property);
 	Property* getProperty(int index);
 
 	const MyString& getName() const;
 	const MyString& getColorCode() const;
-	int getBalance() const;
 	int getPairsCount() const;
 	int getPlayerIndex() const;
 	int getCurrentFieldIndex() const;
@@ -55,7 +55,6 @@ public:
 	void increaseBalance(int amount);
 	void reduceBalance(int amount);
 
-	void buyProperty(Property* property);
 	void buyCastle(Property* property);
 	void buyCottage(Property* property);
 

@@ -31,6 +31,19 @@ bool Bank::hasPlayerReceivedTrade(int tradeId, int playerIndex) const
 	return false;
 }
 
+bool Bank::isTradeAccepted(int tradeId)
+{
+	for (int i = 0; i < trades.size(); i++)
+	{
+		if (trades[i].getTradeId() == tradeId && trades[i].getOfferResponse())
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 int Bank::getTradeSenderIndex(int tradeId) const
 {
 	for (int i = 0; i < trades.size(); i++)
@@ -72,6 +85,8 @@ int Bank::getPropertyIndex(int tradeId) const
 
 void Bank::addTrade(const Trade& trade)
 {
+	std::cout << "Trade successfully sended!" << std::endl;
+
 	trades.push_back(trade);
 }
 

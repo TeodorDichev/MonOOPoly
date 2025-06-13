@@ -21,6 +21,10 @@ void AcceptTrade::execute() const
 	{
 		throw std::invalid_argument(ExceptionMessages::invalidTradeIndex.c_str());
 	}
+	if (bank->isTradeAccepted(tradeId))
+	{
+		throw std::invalid_argument(ExceptionMessages::tradeAlreadyAccepted.c_str());
+	}
 
 	Player* sender = board->getPlayer(bank->getTradeSenderIndex(tradeId));
 	int requestedAmount = bank->getTradeRequestedAmount(tradeId);
@@ -37,9 +41,11 @@ void AcceptTrade::execute() const
 		}
 
 		property->removeOwner();
+		sender->removeProperty(property);
 		sender->increaseBalance(requestedAmount);
 
 		property->setOwner(currPlayer);
+		currPlayer->addProperty(property);
 		currPlayer->reduceBalance(requestedAmount);
 	}
 	else if (currPlayer->owsProperty(index))
@@ -53,10 +59,12 @@ void AcceptTrade::execute() const
 		}
 
 		property->removeOwner();
+		currPlayer->removeProperty(property);
 		currPlayer->increaseBalance(requestedAmount);
 
 		property->setOwner(sender);
-		sender->reduceBalance((-1) * requestedAmount);
+		sender->addProperty(property);
+		sender->reduceBalance(requestedAmount);
 	}
 	else
 	{

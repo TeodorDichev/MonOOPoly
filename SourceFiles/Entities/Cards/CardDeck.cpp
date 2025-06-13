@@ -7,10 +7,6 @@ void CardDeck::drawCard(Player* player) const
 	int index = std::rand() % cards.getSize();
 
 	cards[index]->printCardDescription();
-
-	std::cout << "Press anything to continue...";
-	std::cin.get();
-
 	cards[index]->applyEffect(*player);
 }
 

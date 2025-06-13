@@ -53,11 +53,11 @@ void SerializeFunctions::saveGameToFile()
 	}
 
 	int tradesCount = bank->trades.size();
-	playersStream.write(reinterpret_cast<const char*>(&playersCount), sizeof(playersCount));
+	tradesStream.write(reinterpret_cast<const char*>(&tradesCount), sizeof(tradesCount));
 
-	for (int i = 0; i < playersCount; ++i)
+	for (int i = 0; i < tradesCount; ++i)
 	{
-		bank->trades[i].saveToBin(playersStream);
+		bank->trades[i].saveToBin(tradesStream);
 	}
 }
 
@@ -83,7 +83,7 @@ void SerializeFunctions::loadGameFromFile()
 
 	int currentPlayerIndex;
 	playersStream.read(reinterpret_cast<char*>(&currentPlayerIndex), sizeof(currentPlayerIndex));
-	board->setPlayerIndex(currentPlayerIndex);
+	board->currPlayerIndex = currentPlayerIndex;;
 
 	loadPlayersBin(playersStream);
 	loadFieldsBin(fieldsStream);
@@ -217,6 +217,7 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 			if (player != nullptr)
 			{
 				property->setOwner(player);
+				player->addProperty(property);
 			}
 
 			bool isMortgaged;
@@ -240,9 +241,11 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 				}
 			}
 
-			player->addProperty(property);
 			board->fields.addObject(property);
-			delete property;
+
+			// I do not delete the property because now board is responsible for its lifespan and it will delete it when we free the last instance of board
+			// my heterogeneous container attaches the pointer and deletes the object and the pointer at the end of its life span so there are no memory leaks
+
 			break;
 		}
 		case (int)FieldType::card:

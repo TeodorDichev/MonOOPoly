@@ -17,7 +17,7 @@ void UpgradeMortgage::execute() const
 	Property* property = currPlayer->getProperty(currPlayer->getCurrentFieldIndex());
 	if (!property)
 	{
-		throw std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
+		throw std::invalid_argument(ExceptionMessages::anotherPlayerProperty.c_str());
 	}
 
 	MyString mortgage;

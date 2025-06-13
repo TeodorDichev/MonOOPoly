@@ -37,8 +37,8 @@ int Trade::getReceiverIndex() const
 void Trade::printOffer() const
 {
 	std::cout << "id: " << id  << " | sender: " << sender->getName() << " | receiver: " << receiver->getName()
-		<< " | description: " << offerDescription << " | " << " | property: " << propertyIndex
-		<< " | status: " << (isAccepted ? "accepted":"rejected") << " | amount: " << requestedAmount << "$" << std::endl;
+		<< " | description: " << offerDescription << " | property: " << propertyIndex << " | status: "
+		<< (isAccepted ? "accepted":"rejected") << " | amount: " << requestedAmount << "$" << std::endl;
 }
 
 bool Trade::getOfferResponse() const

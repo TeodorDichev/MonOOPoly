@@ -46,7 +46,8 @@ Notes:
 3) In order to buy a castle you need to have a cottage first.
 4) In order to buy a cottage you need to own all properties of color.
 5) When you go to prison you skip next turn. Then you can either stay in prison or pay to leave.
-6) The text files like Cards.txt and Fields.txt represent actual game data if you want to 
+6) When you are unable to pay a debt the game will automatically sell your cheapest property.
+7) The text files like Cards.txt and Fields.txt represent actual game data if you want to 
 spice up your game you can change the and start a new game with your custom cards and fields.
 However, by changing their format and indexes you may break the game so be careful!
 

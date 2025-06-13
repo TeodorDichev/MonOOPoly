@@ -60,11 +60,6 @@ Player* Board::getPlayer(int index)
 	return nullptr;
 }
 
-void Board::setPlayerIndex(int value)
-{
-	currPlayerIndex = value;
-}
-
 void Board::addPlayer(const Player& player)
 {
 	players.push_back(player);

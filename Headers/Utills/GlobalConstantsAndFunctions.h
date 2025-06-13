@@ -12,8 +12,8 @@ namespace GlobalConstants
 	constexpr static int startingPlayerBalance = 1500;
 	constexpr static int defaultJailTax = 100;
 
-	const static MyString defaultColorCode = "\033[0m";
 	const static MyString colorCodeBase = "\033[3";
+	const static MyString defaultColorCode = "\033[0m";
 	const static MyString strikeThroughCode = "\033[9m";
 
 	const static MyString clearConsoleCode = "cls";
@@ -38,6 +38,7 @@ namespace ExceptionMessages
 	const static MyString noPrevGames = "There is no previous game to load!";
 	const static MyString unknownCardType = "Unknown card type has been reached!";
 	const static MyString playerNotFound = "Player with this index was not found!";
+	const static MyString tradeAlreadyAccepted = "This trade is already accepted!";
 	const static MyString unknownFieldType = "Unknown field type has been reached!";
 	const static MyString cannotBuyMortgageTwice = "You have already bought mortgage!";
 	const static MyString cannotBuyPropertyTwice = "You have already bought this property!";

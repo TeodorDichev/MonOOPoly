@@ -3,5 +3,5 @@
 void SaveGameCommand::execute() const
 {
 	SerializeFunctions::saveGameToFile();
-	std::cout << "Game saved successfully!";
+	std::cout << "Game saved successfully!" << std::endl;
 }

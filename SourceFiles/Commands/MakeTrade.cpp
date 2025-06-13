@@ -21,12 +21,12 @@ void MakeTrade::execute() const
 	std::cin >> description;
 
 	Player* receiver = board->getPlayer(receiverIndex);
-	if (!receiver)
+	if (!receiver || receiver == currPlayer)
 	{
 		throw std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
 
-	if (!currPlayer->owsProperty(fieldIndex) || !receiver->owsProperty(fieldIndex))
+	if (!currPlayer->owsProperty(fieldIndex) && !receiver->owsProperty(fieldIndex))
 	{
 		throw std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
 	}

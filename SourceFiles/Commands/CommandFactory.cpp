@@ -55,6 +55,18 @@ Command* CommandFactory::readCommand(const MyString& command) const
 	{
 		return new SaveGameCommand();
 	}
+	else if (command == "view_trades")
+	{
+		return new ViewTrades();
+	}
+	else if (command == "make_trade")
+	{
+		return new MakeTrade();
+	}
+	else if (command == "accept_trade")
+	{
+		return new AcceptTrade();
+	}
 	else
 	{
 		throw std::invalid_argument(ExceptionMessages::invalidCommand.c_str());
