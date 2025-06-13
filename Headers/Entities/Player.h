@@ -55,7 +55,7 @@ public:
 	void increaseBalance(int amount);
 	void reduceBalance(int amount);
 
-	void buyProperty(const Property* property);
+	void buyProperty(Property* property);
 	void buyCastle(Property* property);
 	void buyCottage(Property* property);
 

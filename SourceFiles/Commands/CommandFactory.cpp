@@ -19,11 +19,7 @@ void CommandFactory::freeInstance()
 
 Command* CommandFactory::readCommand(const MyString& command) const
 {
-	if (command == "end_turn")
-	{
-		return new EndTurn();
-	}
-	else if (command == "check_field")
+	if (command == "check_field")
 	{
 		return new CheckField();
 	}

@@ -219,9 +219,10 @@ void Player::printPlayerSummary() const
 	std::cout << std::endl;
 }
 
-void Player::buyProperty(const Property* property)
+void Player::buyProperty(Property* property)
 {
 	reduceBalance(property->getBasePurchaseValue());
+	propertiesPtrs.push_back(property);
 }
 
 void Player::buyCastle(Property* property)

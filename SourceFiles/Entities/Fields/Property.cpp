@@ -81,7 +81,7 @@ void Property::interactWithField(Player* player)
 {
 	if (!owner)
 	{
-		std::cout << "Would you like to purchase this property?" << std::endl;
+		std::cout << "Would you like to purchase this property? [y/n]" << std::endl;
 		MyString ans;
 		std::cin >> ans;
 
@@ -120,7 +120,7 @@ void Property::printInfo() const
 
 	if (!owner)
 	{
-		std::cout << "Owner: none" << "$ | ";
+		std::cout << "Owner: none" << " | ";
 	}
 	else
 	{

@@ -7,7 +7,9 @@ void MakeTrade::execute() const
 	{
 		throw std::invalid_argument(ExceptionMessages::notStartedGame.c_str());
 	}
-	if (!board->getPlayer(playerIndex))
+
+	Player* currPlayer = board->getPlayer(playerIndex);
+	if (!currPlayer)
 	{
 		throw std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
@@ -24,11 +26,10 @@ void MakeTrade::execute() const
 		throw std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
 
-	Field* field = board->getField(fieldIndex);
-	if (!field || !receiver->owsProperty(fieldIndex))
+	if (!currPlayer->owsProperty(fieldIndex) || !receiver->owsProperty(fieldIndex))
 	{
 		throw std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
 	}
 
-	bank->addTrade(Trade());
+	bank->addTrade(Trade(currPlayer, receiver, description, fieldIndex, requestedAmount));
 }

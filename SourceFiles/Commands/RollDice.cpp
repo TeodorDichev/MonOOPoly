@@ -36,10 +36,8 @@ void RollDice::execute() const
 		jail->printInfo();
 		jail->interactWithField(currPlayer);
 
-		board->printBoard();
-
 		currPlayer->resetPairsCount();
-		board->playTurn(playerIndex++);
+		board->playTurn(playerIndex + 1);
 	}
 
 	if (currPlayer->getCurrentFieldIndex() == board->getJailIndex() && !isPair)
@@ -64,8 +62,6 @@ void RollDice::execute() const
 	field->printInfo();
 	field->interactWithField(currPlayer);
 
-	board->printBoard();
-
 	if (isPair)
 	{
 		std::cout << "You threw a pair so you have an additional turn!" << std::endl;
@@ -74,6 +70,6 @@ void RollDice::execute() const
 	else
 	{
 		currPlayer->resetPairsCount();
-		board->playTurn(playerIndex++);
+		board->playTurn(playerIndex + 1);
 	}
 }

@@ -26,4 +26,5 @@ void SellField::execute() const
 	}
 
 	currPlayer->sellProperty(fieldIndex);
+	board->printBoard();
 }

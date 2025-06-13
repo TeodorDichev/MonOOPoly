@@ -15,7 +15,7 @@ namespace GlobalConstants
 
 	const static MyString colorCodeBase = "\033[3";
 
-	const static MyString clearConsoleCode = "\033[2J\033[1;1H";
+	const static MyString clearConsoleCode = "cls";
 
 	const static MyString helpFileName = "Help.txt";
 	const static MyString cardsFileName = "Cards.txt";

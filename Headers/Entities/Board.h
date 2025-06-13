@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../Utills/HeterogeneousContainer.hpp"
-#include "Player.h"
 #include "Cards/CardDeck.h"
+#include "Player.h"
 
 class Board
 {

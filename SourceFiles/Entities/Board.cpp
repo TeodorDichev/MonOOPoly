@@ -1,4 +1,5 @@
 #include "../../Headers/Entities/Board.h"
+#include <windows.h>
 
 Board::Board() : currPlayerIndex(-1)
 { }
@@ -107,6 +108,11 @@ void Board::playTurn()
 
 void Board::playTurn(int playerIndex)
 {
+	if (playerIndex >= players.size())
+	{
+		playerIndex %= players.size();
+	}
+	
 	if (getCurrentPlayersCount() == 1)
 	{
 		printGameSummary();
@@ -130,6 +136,8 @@ void Board::playTurn(int playerIndex)
 		playTurn(playerIndex++);
 	}
 
+	printBoard();
+
 	return;
 }
 
@@ -141,8 +149,8 @@ void Board::printGameSummary() const
 void Board::printBoard() const
 {
 	// clear the console
-	std::cout << GlobalConstants::clearConsoleCode; 
-	
+	system(GlobalConstants::clearConsoleCode.c_str());
+
 	// prints the table
 	for (int r = 0; r < GlobalConstants::tableSize; ++r) 
 	{

@@ -35,4 +35,6 @@ void UpgradeMortgage::execute() const
 	{
 		throw std::invalid_argument(ExceptionMessages::invalidMortgageName.c_str());
 	}
+
+	board->printBoard();
 }

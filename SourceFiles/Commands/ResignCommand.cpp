@@ -16,5 +16,5 @@ void ResignCommand::execute() const
 	currPlayer->resign();
 	bank->removeTradesOfPlayer(playerIndex);
 
-	board->playTurn(playerIndex++);
+	board->playTurn(playerIndex + 1);
 }

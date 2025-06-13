@@ -23,7 +23,5 @@ void StartNewGame::execute() const
 
 	SerializeFunctions::startNewGame();
 	
-	board->setPlayerIndex(0);
-	board->printBoard();
-	board->playTurn(1);
+	board->playTurn(0);
 }

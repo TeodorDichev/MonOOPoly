@@ -102,9 +102,6 @@
     <ClCompile Include="SourceFiles\Entities\Fields\FreeParkingField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Commands\EndTurn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFiles\Commands\MakeTrade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -231,9 +228,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Entities\Trade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Commands\EndTurn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Commands\MakeTrade.h">
