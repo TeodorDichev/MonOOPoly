@@ -40,6 +40,7 @@ public:
 	void playTurn();
 
 	void printGameSummary() const;
+	void printWelcomeScreen() const;
 
 	friend class SerializeFunctions;
 

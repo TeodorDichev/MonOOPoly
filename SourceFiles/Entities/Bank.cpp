@@ -95,6 +95,9 @@ void Bank::printPlayerTrades(int playerIndex) const
 			trades[i].printOffer();
 		}
 	}
+
+	std::cout << "Press anything to continue...";
+	std::cin.get();
 }
 
 void Bank::acceptTrade(int tradeId)
@@ -105,6 +108,10 @@ void Bank::acceptTrade(int tradeId)
 		{
 			trades[i].acceptOffer();
 			std::cout << "Trade successfully accepted!" << std::endl;
+
+			std::cout << "Press anything to continue...";
+			std::cin.get();
+
 			return;
 		}
 	}

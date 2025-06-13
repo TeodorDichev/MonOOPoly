@@ -112,7 +112,13 @@ void Board::playTurn(int playerIndex)
 	{
 		playerIndex %= players.size();
 	}
-	
+
+	Player* currPlayer = getPlayer(playerIndex);
+	int field = currPlayer->getCurrentFieldIndex();
+	currPlayerIndex = playerIndex;
+
+	printBoard();
+
 	if (getCurrentPlayersCount() == 1)
 	{
 		printGameSummary();
@@ -120,30 +126,41 @@ void Board::playTurn(int playerIndex)
 		return;
 	}
 
-	Player* currPlayer = getPlayer(playerIndex);
-	int field = currPlayer->getCurrentFieldIndex();
-	currPlayerIndex = playerIndex;
-
 	if (currPlayer->hasResigned())
 	{
-		playTurn(playerIndex++);
+		playTurn(playerIndex + 1);
 	}
 
-	// player went to prison last turn or drew a card and should skip a turn
 	if (currPlayer->shouldSkipTurn())
 	{
 		currPlayer->setSkipTurn(false);
-		playTurn(playerIndex++);
+		playTurn(playerIndex + 1);
 	}
-
-	printBoard();
 
 	return;
 }
 
 void Board::printGameSummary() const
 {
-	// TO DO
+	for (int i = 0; i < players.size(); i++)
+	{
+		if (!players[i].hasResigned())
+		{
+			std::cout << std::endl << std::endl << "The winner is: ";
+			players[i].printPlayerDetails();
+			std::cout << std::endl;
+
+			return;
+		}
+	}
+}
+
+void Board::printWelcomeScreen() const
+{
+	std::cout << "Welcome to the MonOOPoly Game!" << std::endl << std::endl;
+	std::cout << "start_new_game <player count> - Begins a new Monopoly game.Players count must be from 2 to 6." << std::endl;
+	std::cout << "load_game - Loads a previously saved game if there is one." << std::endl;
+	std::cout << "help - Displays help and a list of commands." << std::endl << std::endl;
 }
 
 void Board::printBoard() const

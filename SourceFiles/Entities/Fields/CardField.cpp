@@ -25,6 +25,12 @@ bool CardField::isJail() const
 
 void CardField::interactWithField(Player* player)
 {
+	printInfo();
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << "Press Enter to continue...";
+	std::cin.get();
+
 	this->deck->drawCard(player);
 }
 

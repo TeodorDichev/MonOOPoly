@@ -79,6 +79,8 @@ const MyString& Property::getColor() const
 
 void Property::interactWithField(Player* player)
 {
+	printInfo();
+
 	if (!owner)
 	{
 		std::cout << "Would you like to purchase this property? [y/n]" << std::endl;
@@ -101,10 +103,16 @@ void Property::interactWithField(Player* player)
 	}
 	else if (owner->getPlayerIndex() == player->getPlayerIndex())
 	{
-		return;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Press Enter to continue...";
+		std::cin.get();
 	}
 	else
 	{
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Press Enter to continue...";
+		std::cin.get();
+
 		int rent = getRent();
 		player->reduceBalance(rent);
 		owner->increaseBalance(rent);

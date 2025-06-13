@@ -33,14 +33,18 @@ void RollDice::execute() const
 
 		Field* jail = board->getField(board->getJailIndex());
 		currPlayer->moveTo(jail->getFieldIndex());
-		jail->printInfo();
 		jail->interactWithField(currPlayer);
 
 		currPlayer->resetPairsCount();
 		board->playTurn(playerIndex + 1);
+		return;
 	}
 
-	if (currPlayer->getCurrentFieldIndex() == board->getJailIndex() && !isPair)
+	if (currPlayer->getCurrentFieldIndex() == board->getJailIndex() && isPair)
+	{
+		std::cout << "You threw a pair and you got out of prison!" << std::endl;
+	}
+	else if (currPlayer->getCurrentFieldIndex() == board->getJailIndex())
 	{
 		std::cout << "You did not throw a pair and you must pay to get out of prison! Enter 'y' if you like to pay?" << std::endl;
 		MyString answer;
@@ -49,22 +53,31 @@ void RollDice::execute() const
 		if (answer == "y")
 		{
 			currPlayer->reduceBalance(JailField::getJailTax());
+
+			if (currPlayer->hasResigned())
+			{
+				board->playTurn(playerIndex + 1);
+				return;
+			}
 		}
 		else
 		{
 			currPlayer->resetPairsCount();
-			board->playTurn(playerIndex++);
+			board->playTurn(playerIndex + 1);
+			return;
 		}
 	}
 
 	currPlayer->moveWith(die1 + die2);
 	Field* field = board->getField(currPlayer->getCurrentFieldIndex());
-	field->printInfo();
 	field->interactWithField(currPlayer);
 
-	if (isPair)
+	if (isPair && !currPlayer->hasResigned())
 	{
 		std::cout << "You threw a pair so you have an additional turn!" << std::endl;
+		std::cout << "Press Enter to continue...";
+		std::cin.get();
+
 		board->playTurn(playerIndex);
 	}
 	else

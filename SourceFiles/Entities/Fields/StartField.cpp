@@ -18,7 +18,11 @@ void StartField::printInfo() const
 
 void StartField::interactWithField(Player* player)
 {
-	return;
+	printInfo();
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << "Press Enter to continue...";
+	std::cin.get();
 }
 
 bool StartField::isJail() const

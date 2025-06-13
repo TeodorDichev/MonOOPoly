@@ -33,9 +33,9 @@ void Player::moveWith(int positions)
 {	
 	int newIndex = currentFieldIndex + positions;
 
-	if (newIndex / 39 != 0)
+	if (newIndex / GlobalConstants::defaultBoardSize != 0)
 	{
-		newIndex = newIndex % 39 - 1;
+		newIndex %= GlobalConstants::defaultBoardSize;
 		increaseBalance(200);
 	}
 
@@ -66,7 +66,11 @@ void Player::reduceBalance(int amount)
 	else
 	{
 		resigned = true;
-		std::cout << GlobalConstants::gameLostMessage.c_str();
+		std::cout << GlobalConstants::gameLostMessage.c_str() << std::endl;
+
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Press anything to continue...";
+		std::cin.get();
 	}
 }
 
@@ -189,6 +193,8 @@ void Player::sellCheapestProperty()
 
 	std::cout << "You have sold: ";
 	propertiesPtrs[minIndex]->printInfo();
+	std::cout << "Press anything to continue...";
+	std::cin.get();
 
 	propertiesPtrs.erase(minIndex);
 }
@@ -207,6 +213,12 @@ void Player::printPlayerDetails() const
 
 void Player::printPlayerSummary() const
 {
+	if (resigned)
+	{
+		std::cout << GlobalConstants::strikeThroughCode << colorCode << playerIndex << " " << playerName << GlobalConstants::defaultColorCode << std::endl;
+		return;
+	}
+	
 	std::cout << colorCode << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | properties: ";
 
 	for (int i = 0; i < propertiesPtrs.size(); i++)
@@ -229,7 +241,7 @@ void Player::buyCastle(Property* property)
 {
 	if (!property->hasMortgage())
 	{
-		throw std::invalid_argument("To buy a castle you need to have a cottage on the property!");
+		throw std::invalid_argument(ExceptionMessages::invalidCastlePurchase.c_str());
 	}
 	if (!hasSufficientFund(property->getBaseCastleValue()))
 	{
@@ -240,7 +252,7 @@ void Player::buyCastle(Property* property)
 
 	if (m->isCastle())
 	{
-		throw std::invalid_argument("Cannot buy a mortgage twice!");
+		throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
 	}
 
 	reduceBalance(property->getBaseCastleValue());
@@ -251,7 +263,7 @@ void Player::buyCottage(Property* property)
 {
 	if (hasAllPropertiesOfColor(property->getColor()))
 	{
-		throw std::invalid_argument("To buy a cottage you need to own all properties of certain color!");
+		throw std::invalid_argument(ExceptionMessages::invalidCottagePurchase.c_str());
 	}
 	if (!hasSufficientFund(property->getBaseCottageValue()))
 	{
@@ -259,7 +271,7 @@ void Player::buyCottage(Property* property)
 	}
 	if (property->hasMortgage())
 	{
-		throw std::invalid_argument("Cannot buy a mortgage twice!");
+		throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
 	}
 
 	reduceBalance(property->getBaseCottageValue());

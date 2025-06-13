@@ -18,14 +18,15 @@ void MovePositionCard::printCardDescription() const
 	}
 	else
 	{
-		std::cout << "You have to move " << positions << " forward" << "$" << std::endl;
+		std::cout << "You have to move " << positions << " forward" << std::endl;
 	}
 }
 
 void MovePositionCard::applyEffect(Player& player) const
 {
 	player.moveWith(positions);
-
 	Board* board = Board::getInstance();
+
+	board->printBoard();
 	board->getField(player.getCurrentFieldIndex())->interactWithField(&player);
 }

@@ -4,10 +4,14 @@ void CardDeck::drawCard(Player* player) const
 {
 	std::srand(std::time(nullptr));
 
-	int index = std::rand() % cards.getSize() + 1;
+	int index = std::rand() % cards.getSize();
+
+	cards[index]->printCardDescription();
+
+	std::cout << "Press anything to continue...";
+	std::cin.get();
 
 	cards[index]->applyEffect(*player);
-	cards[index]->printCardDescription();
 }
 
 void CardDeck::addCard(const Card& card)

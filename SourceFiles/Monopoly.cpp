@@ -5,6 +5,8 @@ void Monopoly::Run()
 	CommandFactory* factory = CommandFactory::getInstance();
 	Board* board = Board::getInstance();
 
+	board->printWelcomeScreen();
+
 	while (!board->isGameOver())
 	{
 		MyString input;
