@@ -292,8 +292,9 @@ void SerializeFunctions::loadPlayersBin(std::ifstream& ifs)
 		ifs.read(reinterpret_cast<char*>(&currentFieldIndex), sizeof(currentFieldIndex));
 
 		MyString playerName = FileFunctions::readStringFromBinFile(ifs);
+		MyString color = FileFunctions::readStringFromBinFile(ifs);
 
-		board->addPlayer(Player(playerIndex, playerName, balance, resigned, skipTurn, pairsCount, currentFieldIndex));
+		board->addPlayer(Player(playerIndex, playerName, color, balance, resigned, skipTurn, pairsCount, currentFieldIndex));
 	}
 }
 

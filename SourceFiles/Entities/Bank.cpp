@@ -109,5 +109,5 @@ void Bank::acceptTrade(int tradeId)
 		}
 	}
 
-	throw new std::invalid_argument(ExceptionMessages::invalidTradeIndex.c_str());
+	throw std::invalid_argument(ExceptionMessages::invalidTradeIndex.c_str());
 }

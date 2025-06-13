@@ -55,6 +55,10 @@ Command* CommandFactory::readCommand(const MyString& command) const
 	{
 		return new UpgradeMortgage();
 	}
+	else if (command == "save_game")
+	{
+		return new SaveGameCommand();
+	}
 	else
 	{
 		throw std::invalid_argument(ExceptionMessages::invalidCommand.c_str());

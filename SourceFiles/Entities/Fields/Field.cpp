@@ -11,11 +11,6 @@ int Field::getFieldIndex() const
 	return index;
 }
 
-MyString& Field::getContentRef()
-{
-	return content;
-}
-
 MyString Field::fieldEdge(bool draw)
 {
 	return draw ? "+" + MyString::repeatChar(GlobalConstants::fieldWidth, '-') 

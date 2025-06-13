@@ -79,7 +79,7 @@ const MyString& Property::getColor() const
 
 void Property::interactWithField(Player* player)
 {
-	if (owner == nullptr)
+	if (!owner)
 	{
 		std::cout << "Would you like to purchase this property?" << std::endl;
 		MyString ans;
@@ -118,7 +118,7 @@ void Property::printInfo() const
 		<< "BaseCastleValue: " << baseCastleValue << "$ | "
 		<< "Rent: " << getRent() << "$ | ";
 
-	if (owner != nullptr)
+	if (!owner)
 	{
 		std::cout << "Owner: none" << "$ | ";
 	}
@@ -138,6 +138,16 @@ void Property::printInfo() const
 bool Property::isJail() const
 {
 	return false;
+}
+
+MyString Property::printContent() const
+{
+	if (!owner)
+	{
+		return content + "|";
+	}
+
+	return owner->getColorCode() + content + GlobalConstants::defaultColorCode + "|";
 }
 
 void Property::saveToBin(std::ofstream& ofs) const

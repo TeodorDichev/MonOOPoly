@@ -16,6 +16,7 @@ private:
 	int playerIndex;
 	int currentFieldIndex = 0;
 
+	MyString colorCode;
 	MyString playerName;
 
 	// This imitates shared_ptrs, and it is save as long as I manages properties elsewhere
@@ -23,8 +24,8 @@ private:
 
 public:
 	Player();
-	Player(int playerIndex, const MyString& playerName, int playerBalance);
-	Player(int playerIndex, const MyString& playerName, int playerBalance, bool resigned, bool skipTurn, int pairsCount, int currentFieldIndex);
+	Player(int playerIndex, const MyString& playerName, const MyString& color, int playerBalance);
+	Player(int playerIndex, const MyString& playerName, const MyString& color, int playerBalance, bool resigned, bool skipTurn, int pairsCount, int currentFieldIndex);
 
 	void resign();
 	void throwsPair();
@@ -40,7 +41,9 @@ public:
 
 	void addProperty(Property* property);
 	Property* getProperty(int index);
+
 	const MyString& getName() const;
+	const MyString& getColorCode() const;
 	int getBalance() const;
 	int getPairsCount() const;
 	int getPlayerIndex() const;

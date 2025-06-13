@@ -141,7 +141,7 @@ void Board::printGameSummary() const
 void Board::printBoard() const
 {
 	// clear the console
-	std::cout << "\033[2J\033[1;1H"; 
+	std::cout << GlobalConstants::clearConsoleCode; 
 	
 	// prints the table
 	for (int r = 0; r < GlobalConstants::tableSize; ++r) 
@@ -218,6 +218,11 @@ void Board::printBoard() const
 
 	for (int i = 0; i < players.size(); i++)
 	{
+		if (currPlayerIndex == players[i].getPlayerIndex())
+		{
+			std::cout << "> ";
+		}
+
 		players[i].printPlayerSummary();
 	}
 }

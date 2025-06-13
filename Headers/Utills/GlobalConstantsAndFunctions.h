@@ -11,6 +11,12 @@ namespace GlobalConstants
 	constexpr static int startingPlayerBalance = 1500;
 	constexpr static int defaultJailTax = 100;
 
+	const static MyString defaultColorCode = "\033[0m";
+
+	const static MyString colorCodeBase = "\033[3";
+
+	const static MyString clearConsoleCode = "\033[2J\033[1;1H";
+
 	const static MyString helpFileName = "Help.txt";
 	const static MyString cardsFileName = "Cards.txt";
 	const static MyString fieldsFileName = "Fields.txt";

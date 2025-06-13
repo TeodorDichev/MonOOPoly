@@ -46,5 +46,7 @@ public:
 
 	bool isJail() const override;
 
+	MyString printContent() const override;
+
 	void saveToBin(std::ofstream& ofs) const override;
 };

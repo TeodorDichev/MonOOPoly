@@ -1,13 +1,14 @@
 #include "../../Headers/Entities/Player.h"
 
-Player::Player() : Player(-1, "", 0)
+Player::Player() : Player(-1, "", GlobalConstants::defaultColorCode, 0)
 { }
 
-Player::Player(int playerIndex, const MyString& playerName, int playerBalance) : playerIndex(playerIndex), playerName(playerName), balance(playerBalance)
+Player::Player(int playerIndex, const MyString& playerName, const MyString& color, int playerBalance) 
+	: playerIndex(playerIndex), playerName(playerName), balance(playerBalance), colorCode(color)
 { }
 
-Player::Player(int playerIndex, const MyString& playerName, int playerBalance, bool resigned, bool skipTurn, int pairsCount, int currentFieldIndex) 
-	: Player(playerIndex, playerName, playerBalance)
+Player::Player(int playerIndex, const MyString& playerName, const MyString& color, int playerBalance, bool resigned, bool skipTurn, int pairsCount, int currentFieldIndex)
+	: Player(playerIndex, playerName, color, playerBalance)
 {
 	this->resigned = resigned;
 	this->skipTurn = skipTurn;
@@ -117,6 +118,11 @@ const MyString& Player::getName() const
 	return playerName;
 }
 
+const MyString& Player::getColorCode() const
+{
+	return colorCode;
+}
+
 int Player::getBalance() const
 {
 	return balance;
@@ -189,22 +195,26 @@ void Player::sellCheapestProperty()
 
 void Player::printPlayerDetails() const
 {
-	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | propertiesCount: " << propertiesPtrs.size() << std::endl;
+	std::cout << colorCode << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | propertiesCount: " << propertiesPtrs.size() << std::endl;
 	
 	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
 		propertiesPtrs[i]->printInfo();
 	}
+
+	std::cout << GlobalConstants::defaultColorCode;
 }
 
 void Player::printPlayerSummary() const
 {
-	std::cout << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | properties: ";
+	std::cout << colorCode << playerIndex << " " << playerName << " | field: " << currentFieldIndex << " | " << "balance: " << balance << "$ | properties: ";
 
 	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
 		std::cout << propertiesPtrs[i]->getFieldIndex() << " ";
 	}
+
+	std::cout << GlobalConstants::defaultColorCode;
 
 	std::cout << std::endl;
 }
@@ -298,4 +308,5 @@ void Player::saveToBin(std::ofstream& ofs) const
 	ofs.write(reinterpret_cast<const char*>(&currentFieldIndex), sizeof(currentFieldIndex));
 
 	FileFunctions::writeStringToBinFile(ofs, playerName);
+	FileFunctions::writeStringToBinFile(ofs, colorCode);
 }

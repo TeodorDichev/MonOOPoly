@@ -71,7 +71,8 @@ MyString& MyString::operator=(const MyString& other)
 	return *this;
 }
 
-MyString MyString::repeatChar(char ch, size_t count) {
+MyString MyString::repeatChar(size_t count, char ch) 
+{
 	char* buffer = new char[count + 1];
 	for (size_t i = 0; i < count; ++i) {
 		buffer[i] = ch;
@@ -82,6 +83,19 @@ MyString MyString::repeatChar(char ch, size_t count) {
 	return result;
 }
 
+MyString MyString::fromInt(int digit)
+{
+	if (digit < 0 || digit > 9) 
+	{
+		return MyString("");
+	}
+
+	char buffer[2];
+	buffer[0] = '0' + digit;
+	buffer[1] = '\0';
+
+	return MyString(buffer);
+}
 
 void MyString::free()
 {

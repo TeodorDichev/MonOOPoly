@@ -5,13 +5,13 @@ void AcceptTrade::execute() const
 	int playerIndex = board->getCurrentPlayerIndex();
 	if (playerIndex == -1)
 	{
-		throw new std::invalid_argument(ExceptionMessages::notStartedGame.c_str());
+		throw std::invalid_argument(ExceptionMessages::notStartedGame.c_str());
 	}
 
 	Player* currPlayer = board->getPlayer(playerIndex);
 	if (!currPlayer)
 	{
-		throw new std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
+		throw std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
 
 	int tradeId;
@@ -19,7 +19,7 @@ void AcceptTrade::execute() const
 	
 	if (!bank->hasPlayerReceivedTrade(tradeId, playerIndex))
 	{
-		throw new std::invalid_argument(ExceptionMessages::invalidTradeIndex.c_str());
+		throw std::invalid_argument(ExceptionMessages::invalidTradeIndex.c_str());
 	}
 
 	Player* sender = board->getPlayer(bank->getTradeSenderIndex(tradeId));

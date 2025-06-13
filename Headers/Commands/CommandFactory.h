@@ -1,6 +1,5 @@
 #pragma once
 #include "../Utills/MyString.h"
-#include "../Utills/SerializeFunctions.h"
 
 #include "CheckField.h"
 #include "Help.h"
@@ -14,6 +13,7 @@
 #include "MakeTrade.h"
 #include "AcceptTrade.h"
 #include "ViewTrades.h"
+#include "SaveGameCommand.h"
 
 class CommandFactory
 {

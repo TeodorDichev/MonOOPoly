@@ -7,23 +7,23 @@ void StartNewGame::execute() const
 
 	if (playersCount < 2 || playersCount > 6)
 	{
-		throw new std::invalid_argument(ExceptionMessages::invalidPlayersCount.c_str());
+		throw std::invalid_argument(ExceptionMessages::invalidPlayersCount.c_str());
 	}
 	
 	for (int i = 0; i < playersCount; i++)
 	{
-		std::cout << "Player" << i << " enter your name: ";
+		std::cout << "Player " << i << " enter your name: ";
 
 		MyString playerName;
 		std::cin >> playerName;
-		std::cout << std::endl;
-
-		board->addPlayer(Player(i, playerName, GlobalConstants::startingPlayerBalance));
+		
+		MyString color = GlobalConstants::colorCodeBase + MyString::fromInt(i + 1) + "m";
+		board->addPlayer(Player(i, playerName, color, GlobalConstants::startingPlayerBalance));
 	}
 
 	SerializeFunctions::startNewGame();
 	
+	board->setPlayerIndex(0);
 	board->printBoard();
-	board->setPlayerIndex(1);
 	board->playTurn(1);
 }

@@ -123,6 +123,9 @@
     <ClCompile Include="SourceFiles\Utills\GlobalConstantsAndFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\Commands\SaveGameCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Monopoly.h">
@@ -246,6 +249,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Entities\Fields\StartField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Commands\SaveGameCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

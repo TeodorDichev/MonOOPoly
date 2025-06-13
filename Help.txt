@@ -26,6 +26,7 @@ sell_field <field index>       - Sells a field owned by the player.
 check_field <field index>      - Displays information about a specific field.
 upgrade_mortgage <field index> - Upgrades mortgage on current property if the requirement are met.
 resign                         - The current player resigns from the game.
+save_game                      - Saves the game and allows to load it next time
 
 # Trade #
 make_trade <player_index> <field_index> <amount>

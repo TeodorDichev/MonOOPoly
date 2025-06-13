@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SourceFiles\Commands\SaveGameCommand.cpp" />
     <ClCompile Include="SourceFiles\Utills\GlobalConstantsAndFunctions.cpp" />
     <ClCompile Include="SourceFiles\Entities\Bank.cpp" />
     <ClCompile Include="SourceFiles\Commands\AcceptTrade.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Headers\Commands\MakeTrade.h" />
     <ClInclude Include="Headers\Commands\ViewTrades.h" />
     <ClInclude Include="Headers\Entities\Fields\StartField.h" />
+    <ClInclude Include="Headers\Commands\SaveGameCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cards.txt" />
