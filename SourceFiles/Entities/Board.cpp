@@ -110,6 +110,10 @@ void Board::playTurn(int playerIndex)
 
 	Player* currPlayer = getPlayer(playerIndex);
 
+	if (!currPlayer)
+	{
+		throw std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
+	}
 	if (currPlayer->hasResigned())
 	{
 		playTurn(playerIndex + 1);
@@ -187,7 +191,7 @@ void Board::printBoard() const
 		{
 			for (int c = 0; c < GlobalConstants::tableSize; ++c) 
 			{
-				// The variable exists with the sole purpose to be know what exactly the conditions is
+				// The variable exists with the sole purpose to visualize what exactly the conditions is
 				bool finalColLeftLine = (c == GlobalConstants::tableSize - 1 && h == 0 && r != GlobalConstants::tableSize - 1 && r != 0);
 				if (r == 0 && c == 0 || (c == 0 && h == 0) || finalColLeftLine)
 				{

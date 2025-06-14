@@ -1,14 +1,4 @@
 #include "../../Headers/Utills/SerializeFunctions.h"
-#include "../../Headers/Entities/Fields/Property.h"
-#include "../../Headers/Entities/Fields/StartField.h"
-#include "../../Headers/Entities/Fields/FreeParkingField.h"
-#include "../../Headers/Entities/Fields/GoToJailField.h"
-#include "../../Headers/Entities/Fields/JailField.h"
-#include "../../Headers/Entities/Fields/CardField.h"
-
-#include "../../Headers/Entities/Cards/GroupPaymentCard.h"
-#include "../../Headers/Entities/Cards/PaymentCard.h"
-#include "../../Headers/Entities/Cards/MovePositionCard.h"
 
 static size_t getFileSize(std::ifstream& ifs)
 {
@@ -136,7 +126,7 @@ void SerializeFunctions::loadFieldsTxt(std::ifstream& ifs)
 		switch (type)
 		{
 		case (int)FieldType::start:
-			board->fields.addObject(new StartField(index, content));
+			board->fields.addObject(StartField(index, content));
 			break;
 
 		case (int)FieldType::property:
@@ -144,19 +134,19 @@ void SerializeFunctions::loadFieldsTxt(std::ifstream& ifs)
 			MyString color;
 			int rent, purchase, cottage, castle;
 			ifs >> color >> rent >> purchase >> cottage >> castle;
-			board->fields.addObject(new Property(index, content, color, rent, purchase, cottage, castle));
+			board->fields.addObject(Property(index, content, color, rent, purchase, cottage, castle));
 			break;
 		}
 
 		case (int)FieldType::card:
-			board->fields.addObject(new CardField(index, content, &board->cardDeck));
+			board->fields.addObject(CardField(index, content, &board->cardDeck));
 			break;
 
 		case (int)FieldType::jail:
 		{
 			int tax;
 			ifs >> tax;
-			board->fields.addObject(new JailField(index, content, tax));
+			board->fields.addObject(JailField(index, content, tax));
 			break;
 		}
 
@@ -164,12 +154,12 @@ void SerializeFunctions::loadFieldsTxt(std::ifstream& ifs)
 		{
 			int jailIndex;
 			ifs >> jailIndex;
-			board->fields.addObject(new GoToJailField(index, content, jailIndex));
+			board->fields.addObject(GoToJailField(index, content, jailIndex));
 			break;
 		}
 
 		case (int)FieldType::freeParking:
-			board->fields.addObject(new FreeParkingField(index, content));
+			board->fields.addObject(FreeParkingField(index, content));
 			break;
 
 		default:

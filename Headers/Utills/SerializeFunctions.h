@@ -5,6 +5,17 @@
 #include "../Entities/Bank.h"
 #include "../Entities/Board.h"
 
+#include "../Entities/Fields/Property.h"
+#include "../Entities/Fields/StartField.h"
+#include "../Entities/Fields/FreeParkingField.h"
+#include "../Entities/Fields/GoToJailField.h"
+#include "../Entities/Fields/JailField.h"
+#include "../Entities/Fields/CardField.h"
+
+#include "../Entities/Cards/GroupPaymentCard.h"
+#include "../Entities/Cards/PaymentCard.h"
+#include "../Entities/Cards/MovePositionCard.h"
+
 #include<fstream>
 
 class SerializeFunctions

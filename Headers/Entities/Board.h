@@ -43,7 +43,8 @@ public:
 	friend class SerializeFunctions;
 
 	// These cards needs access to all players and/or getFields
-	// Other solutions cause circular dependencies
+	// Other solutions cause circular dependencies or needlessly 
+	// overcomplicate the project
 	friend class GroupPaymentCard;
 	friend class MovePositionCard;
 };
