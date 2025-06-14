@@ -5,14 +5,15 @@ void ResignCommand::execute() const
 	int playerIndex = board->getCurrentPlayerIndex();
 	if (playerIndex == -1)
 	{
-		throw std::invalid_argument(ExceptionMessages::notStartedGame.c_str());
+		throw std::invalid_argument(ExceptionMessages::noGameInProgress.c_str());
 	}
-	if (!board->getPlayer(playerIndex))
+
+	Player* currPlayer = board->getPlayer(playerIndex);
+	if (!currPlayer)
 	{
 		throw std::invalid_argument(ExceptionMessages::playerNotFound.c_str());
 	}
 
-	Player* currPlayer = board->getPlayer(playerIndex);
 	currPlayer->resign();
 	bank->removeTradesOfPlayer(playerIndex);
 

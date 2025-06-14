@@ -47,10 +47,11 @@ namespace ExceptionMessages
 	const static MyString anotherPlayerProperty = "This property is owned by another player!";
 	const static MyString insufficientFunds = "You have insufficient funds to execute this action!";
 	const static MyString invalidFieldIndex = "Fields start from 0 to 39. Make sure to enter valid index!";
+	const static MyString gameInProgress = "Due to game in progress you are unable to execute this command!";
 	const static MyString invalidCastlePurchase = "To buy a castle you need to have a cottage on the property!";
-	const static MyString notStartedGame = "You must start a game in order to be able to execute this command!";
 	const static MyString invalidPlayersCount = "Invalid players count! Game must have between 2 and 6 players!";
 	const static MyString invalidCottagePurchase = "To buy a cottage you need to own all properties of certain color!";
+	const static MyString noGameInProgress = "In order to be able to execute this command you need a game in progress!";
 };
 
 namespace FileFunctions

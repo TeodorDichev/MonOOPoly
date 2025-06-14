@@ -5,7 +5,7 @@ void SellField::execute() const
 	int playerIndex = board->getCurrentPlayerIndex();
 	if (playerIndex == -1)
 	{
-		throw std::invalid_argument(ExceptionMessages::notStartedGame.c_str());
+		throw std::invalid_argument(ExceptionMessages::noGameInProgress.c_str());
 	}
 
 	Player* currPlayer = board->getPlayer(playerIndex);

@@ -2,6 +2,11 @@
 
 void StartNewGame::execute() const
 {
+	if (board->getCurrentPlayerIndex() != -1)
+	{
+		throw std::invalid_argument(ExceptionMessages::gameInProgress.c_str());
+	}
+	
 	int playersCount;
 	std::cin >> playersCount;
 
