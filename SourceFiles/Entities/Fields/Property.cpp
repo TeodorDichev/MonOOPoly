@@ -51,14 +51,24 @@ const Mortgage* Property::getMortgage() const
 	return mortgage;
 }
 
-void Property::addMortgage(const Mortgage* mortgage)
+void Property::removeMortgage()
 {
 	if (this->mortgage)
 	{
 		delete this->mortgage;
 	}
 
-	this->mortgage = mortgage->clone();
+	this->mortgage = nullptr;
+}
+
+void Property::addMortgage(const Mortgage& mortgage)
+{
+	if (this->mortgage)
+	{
+		delete this->mortgage;
+	}
+
+	this->mortgage = mortgage.clone();
 }
 
 int Property::getRent() const
@@ -82,7 +92,7 @@ void Property::interactWithField(Player* player)
 
 	if (owner == nullptr && player->hasSufficientFund(basePurchaseValue))
 	{
-		std::cout << "Press 'y' to purchase the property." << std::endl;
+		std::cout << "Press 'y' to purchase the property or anything else to continue." << std::endl;
 
 		MyString ans;
 		std::cin >> ans;

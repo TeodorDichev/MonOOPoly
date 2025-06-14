@@ -29,8 +29,8 @@ void RollDice::execute() const
 	}
 	if (currPlayer->getPairsCount() == 3)
 	{
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "You threw a pair for third time in a roll, you are sent to jail!" << std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Press anything to continue...";
 		std::cin.get();
 

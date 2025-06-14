@@ -109,10 +109,22 @@ void Board::playTurn(int playerIndex)
 	}
 
 	Player* currPlayer = getPlayer(playerIndex);
+
+	if (currPlayer->hasResigned())
+	{
+		playTurn(playerIndex + 1);
+		return;
+	}
+
 	int field = currPlayer->getCurrentFieldIndex();
 	currPlayerIndex = playerIndex;
 
-	printBoard();
+	if (currPlayer->shouldSkipTurn())
+	{
+		currPlayer->setSkipTurn(false);
+		playTurn(playerIndex + 1);
+		return;
+	}
 
 	if (getCurrentPlayersCount() == 1)
 	{
@@ -121,18 +133,7 @@ void Board::playTurn(int playerIndex)
 		return;
 	}
 
-	if (currPlayer->hasResigned())
-	{
-		playTurn(playerIndex + 1);
-	}
-
-	if (currPlayer->shouldSkipTurn())
-	{
-		currPlayer->setSkipTurn(false);
-		playTurn(playerIndex + 1);
-	}
-
-	return;
+	printBoard();
 }
 
 void Board::printGameSummary() const

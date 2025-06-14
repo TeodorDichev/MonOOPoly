@@ -10,6 +10,7 @@ namespace GlobalConstants
 	static constexpr int defaultBoardSize = 40;
 	
 	constexpr static int startingPlayerBalance = 1500;
+	constexpr static int defaultStartIncrease = 200;
 	constexpr static int defaultJailTax = 100;
 
 	const static MyString colorCodeBase = "\033[3";
@@ -41,6 +42,7 @@ namespace ExceptionMessages
 	const static MyString tradeAlreadyAccepted = "This trade is already accepted!";
 	const static MyString unknownFieldType = "Unknown field type has been reached!";
 	const static MyString cannotBuyMortgageTwice = "You have already bought mortgage!";
+	const static MyString noPropertiesToSell = "There are no more properties to sell!";
 	const static MyString cannotBuyPropertyTwice = "You have already bought this property!";
 	const static MyString anotherPlayerProperty = "This property is owned by another player!";
 	const static MyString insufficientFunds = "You have insufficient funds to execute this action!";

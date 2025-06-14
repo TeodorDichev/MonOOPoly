@@ -19,7 +19,7 @@ private:
 	MyString colorCode;
 	MyString playerName;
 
-	// This imitates shared_ptrs, and it is save as long as I manages properties elsewhere
+	// This imitates shared_ptrs, and it is save as long as I manage dynamic memory
 	MyVector<Property*> propertiesPtrs;
 
 public:
@@ -40,7 +40,7 @@ public:
 	bool shouldSkipTurn() const;
 
 	void addProperty(Property* property);
-	void removeProperty(Property* property);
+	void removeProperty(int index);
 	Property* getProperty(int index);
 
 	const MyString& getName() const;
@@ -54,9 +54,6 @@ public:
 
 	void increaseBalance(int amount);
 	void reduceBalance(int amount);
-
-	void buyCastle(Property* property);
-	void buyCottage(Property* property);
 
 	void sellProperty(int fieldIndex);
 	void sellCheapestProperty();

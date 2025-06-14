@@ -176,6 +176,7 @@ void HeterogeneousContainer<T>::addObject(const T& obj)
 	if (size == capacity) {
 		resize(capacity * 2);
 	}
+
 	objects[size++] = obj.clone();
 }
 
@@ -189,6 +190,6 @@ void HeterogeneousContainer<T>::addObject(T* ptr)
 		resize(capacity * 2);
 	}
 
-	// no ownership
+	// intentionally not cloning the objects I want to use the same pointer
 	objects[size++] = ptr;
 }

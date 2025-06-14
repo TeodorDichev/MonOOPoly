@@ -38,8 +38,8 @@ public:
 	void removeOwner();
 
 	const Mortgage* getMortgage() const;
-
-	void addMortgage(const Mortgage* mortgage);
+	void removeMortgage();
+	void addMortgage(const Mortgage& mortgage);
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

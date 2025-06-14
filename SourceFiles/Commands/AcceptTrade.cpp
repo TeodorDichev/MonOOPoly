@@ -41,7 +41,7 @@ void AcceptTrade::execute() const
 		}
 
 		property->removeOwner();
-		sender->removeProperty(property);
+		sender->removeProperty(property->getFieldIndex());
 		sender->increaseBalance(requestedAmount);
 
 		property->setOwner(currPlayer);
@@ -59,7 +59,7 @@ void AcceptTrade::execute() const
 		}
 
 		property->removeOwner();
-		currPlayer->removeProperty(property);
+		currPlayer->removeProperty(property->getFieldIndex());
 		currPlayer->increaseBalance(requestedAmount);
 
 		property->setOwner(sender);
@@ -68,7 +68,7 @@ void AcceptTrade::execute() const
 	}
 	else
 	{
-		throw std::invalid_argument(ExceptionMessages::invalidFieldIndex.c_str());
+		throw std::invalid_argument(ExceptionMessages::anotherPlayerProperty.c_str());
 	}
 
 	bank->acceptTrade(tradeId);

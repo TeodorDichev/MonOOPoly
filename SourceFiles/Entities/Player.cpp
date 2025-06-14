@@ -16,62 +16,19 @@ Player::Player(int playerIndex, const MyString& playerName, const MyString& colo
 	this->currentFieldIndex = currentFieldIndex;
 }
 
-void Player::resign()
+bool Player::hasResigned() const
 {
-	resigned = true;
-	
-	playerIndex = -1;
-	currentFieldIndex = -1;
-
-	for (int i = 0; i < propertiesPtrs.size(); i++)
-	{
-		propertiesPtrs[i]->removeOwner();
-	}
+	return resigned;
 }
 
-void Player::moveWith(int positions)
-{	
-	int newIndex = currentFieldIndex + positions;
-
-	if (newIndex / GlobalConstants::defaultBoardSize != 0)
-	{
-		newIndex %= GlobalConstants::defaultBoardSize;
-		increaseBalance(200);
-	}
-
-	currentFieldIndex = newIndex;
-}
-
-void Player::moveTo(int index)
+bool Player::shouldSkipTurn() const
 {
-	currentFieldIndex = index;
+	return skipTurn;
 }
 
 void Player::increaseBalance(int amount)
 {
 	balance += amount;
-}
-
-void Player::reduceBalance(int amount)
-{
-	while (!hasSufficientFund(amount) && hasAnyProperties())
-	{
-		sellCheapestProperty();
-	}
-
-	if (hasSufficientFund(amount))
-	{
-		balance -= amount;
-	}
-	else
-	{
-		resigned = true;
-		std::cout << GlobalConstants::gameLostMessage.c_str() << std::endl;
-
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Press anything to continue...";
-		std::cin.get();
-	}
 }
 
 void Player::setSkipTurn(bool value)
@@ -82,51 +39,6 @@ void Player::setSkipTurn(bool value)
 bool Player::hasAnyProperties() const
 {
 	return propertiesPtrs.size() != 0;
-}
-
-bool Player::hasAllPropertiesOfColor(const MyString& color)
-{
-	int cnt = 0;
-
-	for (int i = 0; i < propertiesPtrs.size(); i++)
-	{
-		if (propertiesPtrs[i]->getColor() == color)
-		{
-			cnt++;
-		}
-	}
-	
-	return cnt == 4;
-}
-
-void Player::addProperty(Property* property)
-{
-	propertiesPtrs.push_back(property);
-}
-
-void Player::removeProperty(Property* property)
-{
-	for (int i = 0; i < propertiesPtrs.size(); i++)
-	{
-		if (propertiesPtrs[i]->getFieldIndex() == property->getFieldIndex())
-		{
-			propertiesPtrs.erase(i);
-			break;
-		}
-	}
-}
-
-Property* Player::getProperty(int index)
-{
-	for (int i = 0; i < propertiesPtrs.size(); i++)
-	{
-		if (propertiesPtrs[i]->getFieldIndex() == index)
-		{
-			return propertiesPtrs[i];
-		}
-	}
-
-	return nullptr;
 }
 
 const MyString& Player::getName() const
@@ -159,6 +71,129 @@ void Player::resetPairsCount()
 	pairsCount = 0;
 }
 
+int Player::getCurrentFieldIndex() const
+{
+	return currentFieldIndex;
+}
+
+bool Player::hasSufficientFund(int debt) const
+{
+	return balance - debt >= 0;
+}
+
+bool Player::owsProperty(int fieldIndex) const
+{
+	for (int i = 0; i < propertiesPtrs.size(); i++)
+	{
+		if (propertiesPtrs[i]->getFieldIndex() == fieldIndex)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void Player::moveTo(int index)
+{
+	currentFieldIndex = index;
+}
+
+void Player::moveWith(int positions)
+{
+	int newIndex = currentFieldIndex + positions;
+
+	if (newIndex / GlobalConstants::defaultBoardSize != 0)
+	{
+		newIndex %= GlobalConstants::defaultBoardSize;
+		increaseBalance(GlobalConstants::defaultStartIncrease);
+		std::cout << "Moving past start grands you 200$" << std::endl;
+	}
+
+	currentFieldIndex = newIndex;
+}
+
+void Player::resign()
+{
+	resigned = true;
+	
+	for (int i = 0; i < propertiesPtrs.size(); i++)
+	{
+		propertiesPtrs[i]->removeOwner();
+		if (propertiesPtrs[i]->hasMortgage())
+		{
+			propertiesPtrs[i]->removeMortgage();
+		}
+	}
+}
+
+void Player::reduceBalance(int amount)
+{
+	while (!hasSufficientFund(amount) && hasAnyProperties())
+	{
+		sellCheapestProperty();
+	}
+
+	if (hasSufficientFund(amount))
+	{
+		balance -= amount;
+	}
+	else
+	{
+		resigned = true;
+		std::cout << GlobalConstants::gameLostMessage.c_str() << std::endl;
+
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Press anything to continue...";
+		std::cin.get();
+	}
+}
+
+bool Player::hasAllPropertiesOfColor(const MyString& color)
+{
+	int cnt = 0;
+
+	for (int i = 0; i < propertiesPtrs.size(); i++)
+	{
+		if (propertiesPtrs[i]->getColor() == color)
+		{
+			cnt++;
+		}
+	}
+	
+	return cnt == 4;
+}
+
+void Player::addProperty(Property* property)
+{
+	propertiesPtrs.push_back(property);
+}
+
+void Player::removeProperty(int index)
+{
+	for (int i = 0; i < propertiesPtrs.size(); i++)
+	{
+		if (propertiesPtrs[i]->getFieldIndex() == index)
+		{
+			propertiesPtrs.erase(i);
+			break;
+		}
+	}
+}
+
+Property* Player::getProperty(int index)
+{
+	for (int i = 0; i < propertiesPtrs.size(); i++)
+	{
+		if (propertiesPtrs[i]->getFieldIndex() == index)
+		{
+			return propertiesPtrs[i];
+		}
+	}
+
+	return nullptr;
+}
+
 void Player::sellProperty(int fieldIndex)
 {
 	for (int i = 0; i < propertiesPtrs.size(); i++)
@@ -177,7 +212,7 @@ void Player::sellCheapestProperty()
 {
 	if (propertiesPtrs.size() == 0)
 	{
-		throw std::invalid_argument("You do not have any properties!");
+		throw std::invalid_argument(ExceptionMessages::noPropertiesToSell.c_str());
 	}
 
 	int minIndex = 0;
@@ -197,10 +232,8 @@ void Player::sellCheapestProperty()
 	increaseBalance(propertiesPtrs[minIndex]->getBasePurchaseValue());
 	propertiesPtrs[minIndex]->removeOwner();
 
-	std::cout << "You have sold: ";
+	std::cout << playerName << " have sold: ";
 	propertiesPtrs[minIndex]->printInfo();
-	std::cout << "Press anything to continue...";
-	std::cin.get();
 
 	propertiesPtrs.erase(minIndex);
 }
@@ -235,80 +268,6 @@ void Player::printPlayerSummary() const
 	std::cout << GlobalConstants::defaultColorCode;
 
 	std::cout << std::endl;
-}
-
-void Player::buyCastle(Property* property)
-{
-	if (!property->hasMortgage())
-	{
-		throw std::invalid_argument(ExceptionMessages::invalidCastlePurchase.c_str());
-	}
-	if (!hasSufficientFund(property->getBaseCastleValue()))
-	{
-		throw std::invalid_argument(ExceptionMessages::insufficientFunds.c_str());
-	}
-
-    const Mortgage* m = property->getMortgage();
-
-	if (m->isCastle())
-	{
-		throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
-	}
-
-	reduceBalance(property->getBaseCastleValue());
-	property->addMortgage(new Castle());
-}
-
-void Player::buyCottage(Property* property)
-{
-	if (!hasAllPropertiesOfColor(property->getColor()))
-	{
-		throw std::invalid_argument(ExceptionMessages::invalidCottagePurchase.c_str());
-	}
-	if (!hasSufficientFund(property->getBaseCottageValue()))
-	{
-		throw std::invalid_argument(ExceptionMessages::insufficientFunds.c_str());
-	}
-	if (property->hasMortgage())
-	{
-		throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
-	}
-
-	reduceBalance(property->getBaseCottageValue());
-	property->addMortgage(new Cottage());
-}
-
-int Player::getCurrentFieldIndex() const
-{
-	return currentFieldIndex;
-}
-
-bool Player::hasSufficientFund(int debt) const
-{
-	return balance - debt >= 0;
-}
-
-bool Player::owsProperty(int fieldIndex) const
-{
-	for (int i = 0; i < propertiesPtrs.size(); i++)
-	{
-		if (propertiesPtrs[i]->getFieldIndex() == fieldIndex)
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
-bool Player::hasResigned() const
-{
-	return resigned;
-}
-
-bool Player::shouldSkipTurn() const
-{
-	return skipTurn;
 }
 
 void Player::saveToBin(std::ofstream& ofs) const

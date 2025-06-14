@@ -197,7 +197,7 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 		switch (type)
 		{
 		case (int)FieldType::start:
-			board->fields.addObject(new StartField(index, content));
+			board->fields.addObject(StartField(index, content));
 			break;
 		case (int)FieldType::property:
 		{
@@ -231,10 +231,10 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 				switch (mortgageType)
 				{
 				case (int)MortgageType::cottage:
-					property->addMortgage(new Cottage());
+					property->addMortgage(Cottage());
 					break;
 				case (int)MortgageType::castle:
-					property->addMortgage(new Castle());
+					property->addMortgage(Castle());
 					break;
 				default:
 					break;
@@ -249,14 +249,14 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 			break;
 		}
 		case (int)FieldType::card:
-			board->fields.addObject(new CardField(index, content, &board->cardDeck));
+			board->fields.addObject(CardField(index, content, &board->cardDeck));
 			break;
 		case (int)FieldType::jail:
 		{
 			int tax;
 			ifs.read(reinterpret_cast<char*>(&tax), sizeof(tax));
 
-			board->fields.addObject(new JailField(index, content, tax));
+			board->fields.addObject(JailField(index, content, tax));
 			break;
 		}
 		case (int)FieldType::goToJail:
@@ -264,11 +264,11 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 			int jailIndex;
 			ifs.read(reinterpret_cast<char*>(&jailIndex), sizeof(jailIndex));
 
-			board->fields.addObject(new GoToJailField(index, content, jailIndex));
+			board->fields.addObject(GoToJailField(index, content, jailIndex));
 			break;
 		}
 		case (int)FieldType::freeParking:
-			board->fields.addObject(new FreeParkingField(index, content));
+			board->fields.addObject(FreeParkingField(index, content));
 			break;
 		default:
 			throw std::invalid_argument(ExceptionMessages::unknownFieldType.c_str());

@@ -25,11 +25,42 @@ void UpgradeMortgage::execute() const
 
 	if (mortgage == "Cottage")
 	{
-		currPlayer->buyCottage(property);
+		if (!currPlayer->hasAllPropertiesOfColor(property->getColor()))
+		{
+			throw std::invalid_argument(ExceptionMessages::invalidCottagePurchase.c_str());
+		}
+		if (!currPlayer->hasSufficientFund(property->getBaseCottageValue()))
+		{
+			throw std::invalid_argument(ExceptionMessages::insufficientFunds.c_str());
+		}
+		if (property->hasMortgage())
+		{
+			throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
+		}
+
+		currPlayer->reduceBalance(property->getBaseCottageValue());
+		property->addMortgage(Cottage());
 	}
 	else if (mortgage == "Castle")
 	{
-		currPlayer->buyCastle(property);
+		if (!property->hasMortgage())
+		{
+			throw std::invalid_argument(ExceptionMessages::invalidCastlePurchase.c_str());
+		}
+		if (!currPlayer->hasSufficientFund(property->getBaseCastleValue()))
+		{
+			throw std::invalid_argument(ExceptionMessages::insufficientFunds.c_str());
+		}
+
+		const Mortgage* m = property->getMortgage();
+
+		if (m->isCastle())
+		{
+			throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
+		}
+
+		currPlayer->reduceBalance(property->getBaseCastleValue());
+		property->addMortgage(Castle());
 	}
 	else
 	{
