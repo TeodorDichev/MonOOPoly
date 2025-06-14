@@ -1,6 +1,4 @@
-==========================
-     MONOOPOLY GAME
-==========================
+#MONOOPOLY GAME
 
 🎲 Welcome to Monoopoly – a console-based C++ remake of the classic property trading game, built with strategy, luck, and a bit of C++ magic.
 
