@@ -1,6 +1,6 @@
-#MONOOPOLY GAME
+# MONOOPOLY GAME
 
-🎲 Welcome to Monoopoly – a console-based C++ remake of the classic property trading game, built with strategy, luck, and a bit of C++ magic.
+### 🎲 Welcome to Monoopoly – a console-based C++ remake of the classic property trading game, built with strategy, luck, and a bit of C++ magic.
 
 🔥 Features:
 - Turn-based gameplay for 2–6 players
@@ -13,12 +13,12 @@
    GAMEPLAY COMMANDS
 --------------------------
 
-# Before the Game
+## Before the Game
 - `start_new_game <2–6>`    Start a new match
 - `load_game`               Resume your last saved game
 - `help`                    List all available commands
 
-# During the Game
+## During the Game
 - `roll`                    Roll dice and move
 - `sell_field <id>`         Sell your property
 - `check_field <id>`        View field info
@@ -26,7 +26,7 @@
 - `resign`                  Forfeit the match
 - `save_game`               Save your progress
 
-# Trading
+## Trading
 - `make_trade <player> <field> <amount>` Send trade offers
 - `accept_trade <trade_id>`               Accept offers
 - `view_trades`                           View trade history
