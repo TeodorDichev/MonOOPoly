@@ -3,13 +3,13 @@
 #include <fstream>
 #include "../../Utills/GlobalConstantsAndFunctions.h"
 
-class Mortgage
+class Building
 {
 public:
 	virtual double getRentIncrease() const = 0;
-	virtual ~Mortgage() = default;
+	virtual ~Building() = default;
 
-	virtual Mortgage* clone() const = 0;
+	virtual Building* clone() const = 0;
 
 	virtual bool isCastle() const = 0;
 	virtual bool isCottage() const = 0;

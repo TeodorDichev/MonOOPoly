@@ -120,9 +120,9 @@ void Player::resign()
 	for (int i = 0; i < propertiesPtrs.size(); i++)
 	{
 		propertiesPtrs[i]->removeOwner();
-		if (propertiesPtrs[i]->hasMortgage())
+		if (propertiesPtrs[i]->hasBuilding())
 		{
-			propertiesPtrs[i]->removeMortgage();
+			propertiesPtrs[i]->removeBuilding();
 		}
 	}
 }

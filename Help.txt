@@ -24,7 +24,7 @@ help                           - Displays help and a list of commands.
 roll                           - Rolls the dice and moves the current player.
 sell_field <field index>       - Sells a field owned by the player.
 check_field <field index>      - Displays information about a specific field.
-upgrade_mortgage <field index> - Upgrades mortgage on current property if the requirement are met.
+upgrade_mortgage <field index> - Upgrades building on current property if the requirement are met.
 resign                         - The current player resigns from the game.
 save_game                      - Saves the game and allows to load it next time
 
@@ -41,8 +41,8 @@ view_trades
 This command lists all trades you have sent/received
 
 Notes:
-1) Selling properties will give back only their base value. Mortgages are lost!
-2) Each property can have either a cottage or a castle as a mortgage.
+1) Selling properties will give back only their base value. Buildings are lost!
+2) Each property can have either a cottage or a castle as a building.
 3) In order to buy a castle you need to have a cottage first.
 4) In order to buy a cottage you need to own all properties of color.
 5) When you go to prison you skip next turn. Then you can either stay in prison or pay to leave.

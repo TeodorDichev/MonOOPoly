@@ -1,6 +1,6 @@
-#include "../../Headers/Commands/UpgradeMortgage.h"
+#include "../../Headers/Commands/UpgradeBuilding.h"
 
-void UpgradeMortgage::execute() const
+void UpgradeBuilding::execute() const
 {
 	int playerIndex = board->getCurrentPlayerIndex();
 	if (playerIndex == -1)
@@ -20,10 +20,10 @@ void UpgradeMortgage::execute() const
 		throw std::invalid_argument(ExceptionMessages::anotherPlayerProperty.c_str());
 	}
 
-	MyString mortgage;
-	std::cin >> mortgage;
+	MyString building;
+	std::cin >> building;
 
-	if (mortgage == "Cottage")
+	if (building == "Cottage")
 	{
 		if (!currPlayer->hasAllPropertiesOfColor(property->getColor()))
 		{
@@ -33,17 +33,17 @@ void UpgradeMortgage::execute() const
 		{
 			throw std::invalid_argument(ExceptionMessages::insufficientFunds.c_str());
 		}
-		if (property->hasMortgage())
+		if (property->hasBuilding())
 		{
-			throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
+			throw std::invalid_argument(ExceptionMessages::cannotBuyBuildingTwice.c_str());
 		}
 
 		currPlayer->reduceBalance(property->getBaseCottageValue());
-		property->addMortgage(Cottage());
+		property->addBuilding(Cottage());
 	}
-	else if (mortgage == "Castle")
+	else if (building == "Castle")
 	{
-		if (!property->hasMortgage())
+		if (!property->hasBuilding())
 		{
 			throw std::invalid_argument(ExceptionMessages::invalidCastlePurchase.c_str());
 		}
@@ -52,19 +52,19 @@ void UpgradeMortgage::execute() const
 			throw std::invalid_argument(ExceptionMessages::insufficientFunds.c_str());
 		}
 
-		const Mortgage* m = property->getMortgage();
+		const Building* b = property->getBuilding();
 
-		if (m->isCastle())
+		if (b->isCastle())
 		{
-			throw std::invalid_argument(ExceptionMessages::cannotBuyMortgageTwice.c_str());
+			throw std::invalid_argument(ExceptionMessages::cannotBuyBuildingTwice.c_str());
 		}
 
 		currPlayer->reduceBalance(property->getBaseCastleValue());
-		property->addMortgage(Castle());
+		property->addBuilding(Castle());
 	}
 	else
 	{
-		throw std::invalid_argument(ExceptionMessages::invalidMortgageName.c_str());
+		throw std::invalid_argument(ExceptionMessages::invalidBuildingName.c_str());
 	}
 
 	board->printBoard();

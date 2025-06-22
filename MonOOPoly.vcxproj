@@ -138,8 +138,8 @@
     <ClCompile Include="SourceFiles\Commands\ResignCommand.cpp" />
     <ClCompile Include="SourceFiles\Commands\RollDice.cpp" />
     <ClCompile Include="SourceFiles\Commands\SellField.cpp" />
-    <ClCompile Include="SourceFiles\Entities\Mortgage\Castle.cpp" />
-    <ClCompile Include="SourceFiles\Entities\Mortgage\Cottage.cpp" />
+    <ClCompile Include="SourceFiles\Entities\Buildings\Castle.cpp" />
+    <ClCompile Include="SourceFiles\Entities\Buildings\Cottage.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\GroupPaymentCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\MovePositionCard.cpp" />
     <ClCompile Include="SourceFiles\Entities\Cards\PaymentCard.cpp" />
@@ -154,7 +154,7 @@
     <ClCompile Include="SourceFiles\Source.cpp" />
     <ClCompile Include="SourceFiles\Entities\Trade.cpp" />
     <ClCompile Include="SourceFiles\Commands\StartNewGame.cpp" />
-    <ClCompile Include="SourceFiles\Commands\UpgradeMortgage.cpp" />
+    <ClCompile Include="SourceFiles\Commands\UpgradeBuilding.cpp" />
     <ClCompile Include="SourceFiles\Utills\MyString.cpp" />
     <ClCompile Include="SourceFiles\Utills\SerializeFunctions.cpp" />
     <ClCompile Include="SourceFiles\Commands\ViewTrades.cpp" />
@@ -170,8 +170,8 @@
     <ClInclude Include="Headers\Commands\CheckField.h" />
     <ClInclude Include="Headers\Commands\Command.h" />
     <ClInclude Include="Headers\Commands\CommandFactory.h" />
-    <ClInclude Include="Headers\Entities\Mortgage\Castle.h" />
-    <ClInclude Include="Headers\Entities\Mortgage\Cottage.h" />
+    <ClInclude Include="Headers\Entities\Buildings\Castle.h" />
+    <ClInclude Include="Headers\Entities\Buildings\Cottage.h" />
     <ClInclude Include="Headers\Entities\Cards\GroupPaymentCard.h" />
     <ClInclude Include="Headers\Entities\Cards\Card.h" />
     <ClInclude Include="Headers\Entities\Cards\CardDeck.h" />
@@ -184,7 +184,7 @@
     <ClInclude Include="Headers\Entities\Fields\Property.h" />
     <ClInclude Include="Headers\Entities\Cards\MovePositionCard.h" />
     <ClInclude Include="Headers\Entities\Cards\PaymentCard.h" />
-    <ClInclude Include="Headers\Entities\Mortgage\Mortgage.h" />
+    <ClInclude Include="Headers\Entities\Buildings\Building.h" />
     <ClInclude Include="Headers\Entities\Trade\Trade.h" />
     <ClInclude Include="Headers\Commands\Help.h" />
     <ClInclude Include="Headers\Commands\LoadGame.h" />
@@ -192,7 +192,7 @@
     <ClInclude Include="Headers\Commands\RollDice.h" />
     <ClInclude Include="Headers\Commands\SellField.h" />
     <ClInclude Include="Headers\Commands\StartNewGame.h" />
-    <ClInclude Include="Headers\Commands\UpgradeMortgage.h" />
+    <ClInclude Include="Headers\Commands\UpgradeBuilding.h" />
     <ClInclude Include="Headers\Utills\HeterogeneousContainer.hpp" />
     <ClInclude Include="Headers\Utills\MyString.h" />
     <ClInclude Include="Headers\Utills\MyVector.hpp" />

@@ -51,10 +51,10 @@
     <ClCompile Include="SourceFiles\Entities\Cards\GroupPaymentCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Entities\Mortgage\Cottage.cpp">
+    <ClCompile Include="SourceFiles\Entities\Buildings\Cottage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Entities\Mortgage\Castle.cpp">
+    <ClCompile Include="SourceFiles\Entities\Buildings\Castle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Entities\Trade.cpp">
@@ -75,7 +75,7 @@
     <ClCompile Include="SourceFiles\Commands\Help.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFiles\Commands\UpgradeMortgage.cpp">
+    <ClCompile Include="SourceFiles\Commands\UpgradeBuilding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SourceFiles\Commands\CheckField.cpp">
@@ -161,13 +161,13 @@
     <ClInclude Include="Headers\Entities\Cards\GroupPaymentCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Entities\Mortgage\Mortgage.h">
+    <ClInclude Include="Headers\Entities\Buildings\Building.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Entities\Mortgage\Cottage.h">
+    <ClInclude Include="Headers\Entities\Buildings\Cottage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Entities\Mortgage\Castle.h">
+    <ClInclude Include="Headers\Entities\Buildings\Castle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Commands\Command.h">
@@ -185,7 +185,7 @@
     <ClInclude Include="Headers\Commands\Help.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Commands\UpgradeMortgage.h">
+    <ClInclude Include="Headers\Commands\UpgradeBuilding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Commands\CheckField.h">

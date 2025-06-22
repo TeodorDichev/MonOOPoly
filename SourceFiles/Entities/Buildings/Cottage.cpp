@@ -1,4 +1,4 @@
-#include "../../../Headers/Entities/Mortgage/Cottage.h"
+#include "../../../Headers/Entities/Buildings/Cottage.h"
 
 double Cottage::getRentIncrease() const
 {
@@ -15,7 +15,7 @@ bool Cottage::isCottage() const
 	return true;
 }
 
-Mortgage* Cottage::clone() const
+Building* Cottage::clone() const
 {
 	return new Cottage(*this);
 }

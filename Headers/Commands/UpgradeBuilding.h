@@ -1,9 +1,9 @@
 #pragma once
 #include "Command.h"
 
-class UpgradeMortgage : public Command
+class UpgradeBuilding : public Command
 {
 public:
-    UpgradeMortgage() = default;
+    UpgradeBuilding() = default;
     virtual void execute() const override;
 };

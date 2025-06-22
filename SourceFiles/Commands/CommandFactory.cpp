@@ -47,9 +47,9 @@ Command* CommandFactory::readCommand(const MyString& command) const
 	{
 		return new StartNewGame();
 	}
-	else if (command == "upgrade_mortgage")
+	else if (command == "upgrade_building")
 	{
-		return new UpgradeMortgage();
+		return new UpgradeBuilding();
 	}
 	else if (command == "save_game")
 	{

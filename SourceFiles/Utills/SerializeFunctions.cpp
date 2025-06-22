@@ -221,10 +221,10 @@ void SerializeFunctions::loadFieldsBin(std::ifstream& ifs)
 				switch (mortgageType)
 				{
 				case (int)MortgageType::cottage:
-					property->addMortgage(Cottage());
+					property->addBuilding(Cottage());
 					break;
 				case (int)MortgageType::castle:
-					property->addMortgage(Castle());
+					property->addBuilding(Castle());
 					break;
 				default:
 					break;

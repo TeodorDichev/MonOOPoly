@@ -8,7 +8,7 @@
 #include "RollDice.h"
 #include "SellField.h"
 #include "StartNewGame.h"
-#include "UpgradeMortgage.h"
+#include "UpgradeBuilding.h"
 #include "MakeTrade.h"
 #include "AcceptTrade.h"
 #include "ViewTrades.h"

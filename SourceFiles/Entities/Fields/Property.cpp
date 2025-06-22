@@ -46,39 +46,39 @@ void Property::removeOwner()
 	owner = nullptr;
 }
 
-const Mortgage* Property::getMortgage() const
+const Building* Property::getBuilding() const
 {
-	return mortgage;
+	return building;
 }
 
-void Property::removeMortgage()
+void Property::removeBuilding()
 {
-	if (this->mortgage)
+	if (this->building)
 	{
-		delete this->mortgage;
+		delete this->building;
 	}
 
-	this->mortgage = nullptr;
+	this->building = nullptr;
 }
 
-void Property::addMortgage(const Mortgage& mortgage)
+void Property::addBuilding(const Building& building)
 {
-	if (this->mortgage)
+	if (this->building)
 	{
-		delete this->mortgage;
+		delete this->building;
 	}
 
-	this->mortgage = mortgage.clone();
+	this->building = building.clone();
 }
 
 int Property::getRent() const
 {
-	return hasMortgage() ? baseRentValue * mortgage->getRentIncrease() : baseRentValue;
+	return hasBuilding() ? baseRentValue * building->getRentIncrease() : baseRentValue;
 }
 
-bool Property::hasMortgage() const
+bool Property::hasBuilding() const
 {
-	return mortgage != nullptr;
+	return building != nullptr;
 }
 
 const MyString& Property::getColor() const
@@ -128,9 +128,9 @@ void Property::printInfo() const
 		std::cout << "Owner: " << owner->getName() << " | ";
 	}
 
-	if (hasMortgage())
+	if (hasBuilding())
 	{
-		std::cout << "Mortgage: " << (mortgage->isCastle() ? "Castle" : "Cottage") << " | ";
+		std::cout << "Building: " << (building->isCastle() ? "Castle" : "Cottage") << " | ";
 	}
 
 	std::cout << std::endl;
@@ -177,11 +177,11 @@ void Property::saveToBin(std::ofstream& ofs) const
 		ofs.write(reinterpret_cast<const char*>(&ownerIndex), sizeof(ownerIndex));
 	}
 
-	bool isMortgaged = (mortgage != nullptr ? true : false);
+	bool isMortgaged = (building != nullptr ? true : false);
 	ofs.write(reinterpret_cast<const char*>(&isMortgaged), sizeof(isMortgaged));
 
 	if (isMortgaged)
 	{
-		mortgage->saveToBin(ofs);
+		building->saveToBin(ofs);
 	}
 }

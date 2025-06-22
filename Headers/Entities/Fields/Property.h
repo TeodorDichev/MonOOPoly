@@ -1,7 +1,7 @@
 #pragma once
 #include "Field.h"
-#include "../Mortgage/Castle.h"
-#include "../Mortgage/Cottage.h"
+#include "../Buildings/Castle.h"
+#include "../Buildings/Cottage.h"
 
 class Player;
 
@@ -17,7 +17,7 @@ private:
 
 	Player* owner = nullptr;
 
-	Mortgage* mortgage = nullptr;
+	Building* building = nullptr;
 
 public:
 	Property();
@@ -27,7 +27,7 @@ public:
 	Field* clone() const override;
 
 	int getRent() const;
-	bool hasMortgage() const;
+	bool hasBuilding() const;
 	const MyString& getColor() const;
 
 	int getBasePurchaseValue() const;
@@ -37,9 +37,9 @@ public:
 	void setOwner(Player* player);
 	void removeOwner();
 
-	const Mortgage* getMortgage() const;
-	void removeMortgage();
-	void addMortgage(const Mortgage& mortgage);
+	const Building* getBuilding() const;
+	void removeBuilding();
+	void addBuilding(const Building& building);
 
 	void interactWithField(Player* player) override;
 	void printInfo() const override;

@@ -35,13 +35,13 @@ namespace ExceptionMessages
 	const static MyString invalidCommand = "Invalid command!";
 	const static MyString failedToOpenFile = "Failed opening file!";
 	const static MyString invalidTradeIndex = "Invalid trade index!";
-	const static MyString invalidMortgageName = "Invalid mortgage name!";
+	const static MyString invalidBuildingName = "Invalid building name!";
 	const static MyString noPrevGames = "There is no previous game to load!";
 	const static MyString unknownCardType = "Unknown card type has been reached!";
 	const static MyString playerNotFound = "Player with this index was not found!";
 	const static MyString tradeAlreadyAccepted = "This trade is already accepted!";
 	const static MyString unknownFieldType = "Unknown field type has been reached!";
-	const static MyString cannotBuyMortgageTwice = "You have already bought mortgage!";
+	const static MyString cannotBuyBuildingTwice = "You have already bought building!";
 	const static MyString noPropertiesToSell = "There are no more properties to sell!";
 	const static MyString cannotBuyPropertyTwice = "You have already bought this property!";
 	const static MyString anotherPlayerProperty = "This property is owned by another player!";
