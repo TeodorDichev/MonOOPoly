@@ -4,7 +4,7 @@
 
 🔥 Features:
 - Turn-based gameplay for 2–6 players
-- Field upgrades, mortgages, and dynamic trading
+- Field upgrades, buildings, and dynamic trading
 - Automatic game saving using binary files
 - Full game data customization via editable text files (Fields.txt, Cards.txt)
 - Built with **Command**, **Visitor**, and **Factory** design patterns
@@ -22,7 +22,7 @@
 - `roll`                    Roll dice and move
 - `sell_field <id>`         Sell your property
 - `check_field <id>`        View field info
-- `upgrade_mortgage <id>`   Upgrade with cottage/castle
+- `upgrade_building <id>`   Upgrade with cottage/castle
 - `resign`                  Forfeit the match
 - `save_game`               Save your progress
 
@@ -33,8 +33,9 @@
 
 💡 Notes:
 - Own all properties of a color to unlock cottages; castles come after.
-- Mortgaged properties are lost when sold.
-- Prison skips a turn; you can buy freedom.
+- Only one cottage; once there is one, buy the castle.
+- Buildings on properties are lost when sold.
+- Prison skips a turn; you can buy your freedom. 🦅
 - Can't pay a debt? Your cheapest field is sold automatically.
 - Edit `Cards.txt` and `Fields.txt` to customize your own Monoopoly — just don't break the format!
 
