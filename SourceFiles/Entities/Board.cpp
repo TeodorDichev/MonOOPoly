@@ -120,7 +120,6 @@ void Board::playTurn(int playerIndex)
 		return;
 	}
 
-	int field = currPlayer->getCurrentFieldIndex();
 	currPlayerIndex = playerIndex;
 
 	if (currPlayer->shouldSkipTurn())

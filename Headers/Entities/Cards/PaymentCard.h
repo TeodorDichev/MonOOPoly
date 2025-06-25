@@ -1,5 +1,6 @@
 #pragma once
 #include "Card.h"
+#include "../../../Headers/Entities/Player.h"
 
 class PaymentCard : public Card
 {

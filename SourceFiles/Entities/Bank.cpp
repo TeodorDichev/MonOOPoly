@@ -85,7 +85,7 @@ int Bank::getPropertyIndex(int tradeId) const
 
 void Bank::addTrade(const Trade& trade)
 {
-	std::cout << "Trade successfully sended!" << std::endl;
+	std::cout << "Trade successfully sent!" << std::endl;
 
 	trades.push_back(trade);
 }
